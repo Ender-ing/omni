@@ -1,0 +1,32 @@
+// Each project that needs to be compiled must include a configuration file!
+{
+    // Basic info about your project
+    "name": "...", // Name your projet (make sure it's unique)
+    "type": "product", // "product": used to indicate normal projects (like an app or a game)
+                    // "library": used to indicate libraries (code meant for others to use to make their own final products)
+    // You may add your own custom library to the libraries scope!
+    // Notice that the "standard" scope is occupied by the compiler, and any attempts to overwrite it will result
+    // in a compilation failure! Notice that if you also attempt to overwrite any other already-existing scopes,
+    // the compiler will throw an error!
+    // If the type of the project is a library, you must also include a unique "scope" name!
+    // "scope": "scope-name",
+    "libraries": {
+        "my-lib": {
+            // Note that any extra paths within a scope should point to a folder contained within that specific scope's folder!
+            // To define a path relative to the default libraries shared folder, you may use the symbol "!" at the start of your path!
+            "~": "!/path/to/lib/file.omni",
+            "io": "!/path/to/lib/io/file.omni"
+        }
+    },
+    // build-related info
+    "build": {
+        // Specifiy the desired compilation targets
+        // Notice you can only import libraries that support all your targets!
+        "targets": {
+            // the name of each object here would be the id of your target
+            "...": {
+                // Any additional requirements for this target need to be included here!
+            }
+        }
+    }
+}
