@@ -7,9 +7,7 @@
 // [NOTE] Omniarium is not an independent programming language! It is strictly used to 
 // generate high-level code specific to the user's project!
 // [NOTE] You may define your own project libraries and import them using the "import" statement!
-// To add a path for your library, you may use the compiler's CLI to specify the library's path
-// and a special name for your library!
-// (e.g. "omni ... --library my-lib /path/to/my/lib" or "omni add-library my-lib /path/to/my/lib")
+// To add a path for your library, you may use your project file (.omni.manifest) to include them.
 // [NOTE] The "standard" library's only use is to help users generate code for common development
 // targets - like plain web, or plain C++.
 
@@ -20,6 +18,7 @@
 
 // Import platform filters
 import @web, @java as @android from standard.target;
+// Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
 import x, y, z from library.custom-lib;

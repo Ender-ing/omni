@@ -5,6 +5,8 @@ Omniarium is an open-source multi-targeted metaprogramming language whose sole p
 > [!IMPORTANT]
 > This language is still in its basic initial planning phase! Any and all suggestions could help shape and direct this language to be a better aid for your needs, do not hesitate to provide any sort of criticism!
 
+The concept this language replys on is that most programming languages share some core functionalities. The `standard` library will only include the bare minimum functionality that can enable the source code to be compiled to all the supported target lnaguages. Other than the standard library, there will be a collection of community-created libraries for specific use cases!
+
 ## Transpiler
 
 Omniarium will need a transpiler, a *source-to-source translator/compiler*, to convert Omniarium code into a targeted programming language.
