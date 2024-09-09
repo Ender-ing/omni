@@ -1,5 +1,7 @@
 # Omniarium
 
+> Last update: Sep 9th, 2024
+
 Omniarium is an open-source multi-targeted metaprogramming language whose sole purpose is to enable writing one flexible source-code instance meant to produce ready-for-use high-level code for multiple targets (be it platforms, frameworks, or any of such)!
 
 > [!IMPORTANT]
@@ -9,7 +11,7 @@ The concept this language replys on is that most programming languages share som
 
 ## Transpiler
 
-Omniarium will need a transpiler, a *source-to-source translator/compiler*, to convert Omniarium code into a targeted programming language.
+Omniarium will need a transpiler, a _source-to-source translator/compiler_, to convert Omniarium code into a targeted programming language.
 
 > [!NOTE]
 > The transpiler is yet to be built. As of now, the transpiler is planned to be built using C++. No actual programming will be done until the programing language is thoroughly planned out!
@@ -20,13 +22,14 @@ Omniarium will need a transpiler, a *source-to-source translator/compiler*, to c
 > All of the setups listed below need to be processed on an in-order basis!
 
 - [ ] Language draft
-- [ ] Transpiler basic CLI
+- [ ] Libraries manager
 - [ ] Transpiler
   - [ ] Lexical analysis (Tokenization)
   - [ ] Syntax analysis (Parsing)
   - [ ] Semantic analysis
   - [ ] Intermediate representation (Optional ???)
   - [ ] Code generation
+- [ ] Transpiler basic CLI
 - [ ] VSCode
   - [ ] Make a syntax language file
   - [ ] Add code auto-formatting
