@@ -1,6 +1,20 @@
 # MIT License
 
-Copyright (c) 2024 Ender.ing (<https://github.com/Ender-ing/omni>)
+This MIT License applies to the Omniarium transpiler - all the source code,
+libraries, and executables directly related to translating Omniarium code into
+target code -, the documentation of the Omniarium transpiler - any user
+manuals, tutorials, or reference guides explaining how to use the transpiler or
+the inner workings of the transpiler -, the Omniarium programming
+language - encompassing the aggregation of the syntax, semantics, and features
+of the language itself -, and the documentation of the Omniarium programming
+language - any materials explaining the concepts, keywords, and overall
+structure of the language -, but does not extend to any software created using
+the Omniarium programming language. As such, when using the term "Software",
+one should assume all of the aforementioned included elements to be part of
+said term.
+
+Copyright (c) 2024 Ender.ing (<https://github.com/Ender-ing/omni>),
+                   0xENDER (<https://github.com/0xENDER>)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +33,30 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Warning Against Harmful Use
+
+The use of the Software and any of its outputs for any purpose that could cause
+harm to others, including but not limited to malicious activities, illegal
+activities, discriminatory or hateful activities, or activities that violate
+the rights of others is strongly discouraged.
+
+Responsibility for any negative consequences that may arise from the misuse of
+this Software and any of its outputs solely fall on the actively engaged
+parties.
+
+## Contribution Statement
+
+Any contributions made to the Software, including but not limited to patches,
+bug fixes, enhancements, or new features, are assumed to be made under the
+terms of the MIT License and other conditions included in this document, unless
+the contributor explicitly states otherwise in the Software's source code.
+
+By contributing to the Software, you represent that you have the right to
+contribute your code and that your contribution does not violate any
+third-party rights, including but not limited to copyright, patent, or
+trademark rights.
+
+If you are contributing code that is subject to a different license, please
+clearly indicate the license in your contribution and provide any necessary
+permissions for its use.
