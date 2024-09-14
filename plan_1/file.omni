@@ -6,10 +6,14 @@
 
 // [NOTE] Omniarium is not an independent programming language! It is strictly used to 
 // generate high-level code specific to the user's project!
+
 // [NOTE] You may define your own project libraries and import them using the "import" statement!
 // To add a path for your library, you may use your project file (.omni.manifest) to include them.
+
 // [NOTE] The "standard" library's only use is to help users generate code for common development
 // targets - like plain web, or plain C++.
+// You may even make use of the language just to write more memory-conscious code for a specific
+// target!
 
 // Definitions:
 // root-exclusive: can be used only at the top-level of the code tree!
@@ -21,24 +25,24 @@ import @web, @java as @android from standard.target;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
-import x, y, z from library.custom-lib;
+import x, y, z from custom-lib;
+
 // And custom libraries can have inner paths of their own
-import Type-X, Type-Y, Type-Z from library.custom-lib.types;
-// Registered custom standards can be accessed using the word "flavor" at the start of the package,
-// followed by the standard's name!
-import other-x from flavor.standard2.x;
+import Type-X, Type-Y, Type-Z from custom-lib.types;
 
 // [NOTE] "import" statements are root-exclusive!
 
-// All data that is meant to be imported using the "import" statement
-// need to be exported using the "export" statement
+// All data that is meant to be imported using the "import" statement needs to be exported using
+// the "export" statement within the library file!
 export Integer a = 0;
 
 // [NOTE] "export" statements are root-exclusive!
 
 // [NOTE] Variables defined in the root-level of the code tree are global variables!
 // Global variables are only accessible to the code within the same file, unless they are exported!
+
 // [NOTE] Variables are only accessible to scopes/levels within the same, or a deeper, scope/level
+
 // [NOTE] Variables are automatically freed from memory at the end of the scope/level they were
 // defined in!
 
@@ -60,11 +64,18 @@ filter @my-filter {
 // [NOTE] The symbol "#" is used to access transpiler compile-time values!
 // Defined compile-time values are always strings!
 
+// This is another way to implement this filter
 filter @my-filter {
-    // This is another way to implement this filter
-    // (not recommended in normal circumstances,
-    // only used by standard libraries)
+    // (not recommended in normal circumstances, only used by the standard library)
     return (#target.is-web == "true" || #target.is-java == "true");
+}
+
+// [NOTE] The symbol "$" is used to access user-defined variables (stored in .omni.ini)
+
+// You may use a filter in your project like this!
+filter @my-filter {
+    // You'd naturally have these values saved in your project's ".omni.ini" file!
+    return ($using-subdomain-a == "true" || $using-subdomain-b == "true");
 }
 
 // [NOTE] "filter" statements are root-exclusive!
@@ -77,31 +88,22 @@ filter @my-filter {
 
 // [NOTE] You can use filters only at the start of a code-statement
 
+// [NOTE] Your library should be based on one of the available language targets! (like @java or such)
+// Should your specific library require the implementation of a new language target (say a new
+// programming language), do not mix it with your niche project-specific needs! Make a independent
+// custom language target from scratch, then base your library on that language target!
+
 // If you are making a custom target, you may check its name/code!
 filter @custom-target {
-    // You may pass the custom target name to the transpiler on run time!
+    // You may pass the custom target name to the transpiler when you build your project!
+    // (this code would be used by language-implementation libraries!)
     return (#target.name == "transpiler-target-name");
-    // But, if the target is based on an already existing target, you may
-    // want to indicate so to the transpiler on run time! Otherwise, some
-    // functions that your custom target depends on may become undefined!
-}
-
-// You can make custom filters that depend on build-time environment
-// variables!
-filter @project-filter {
-    // You can use this to build multiple versions of your code on the same
-    // target!
-    return (#environment.IS_BETA == "true");
-    // In your codebase root folder, you should have a file named "omni.environment"
-    // that contains this value!
-    // Alternatively, you could pass this value on build time in the CLI!
-    // (e.g. "omni ... --env IS_BETA true")
 }
 
 /**
  *
  * The standard library shall include standard types, which can
- * handle all the supported target platforms.
+ * handle all the supported target sources.
  *
  * Notice that an empty Omni code file does not include any types by default!
  * 
@@ -116,14 +118,20 @@ filter @project-filter {
 // Standard types
 import String, Integer from standard.type;
 
-String b = "The value of integer a is '{a}'!";
-// The value of the string b should be "The value of integer a is '0'!"
+Integer a = 0;
+String b = "The value of integer 'a' is '{a}'!";
+// The value of the string b should be "The value of integer 'a' is '0'!"
+// This is the recommended syntax in order to merge and make variable-dependent strings!
 
-// You cannot add strings together using the plus or dot operators! You must only
-// use this string concatenation method!
-String string-a = "Hello there!";
-String string-b = "Nice to meet you!";
-String string-a-and-b = "{string-a} {string-b}";
+// You may use the plus operator in order to append values to a stiring!
+String c = "hello there!";
+c += " I'm here to help you!";
+
+// In your final output, both the following string manipulation methods should be understood to be the same!
+"The value of integer 'a' is '{a}'!" ; // This is allowed!
+"The value of integer 'a' is '" + a + "'!"; // This is allowed too, but not recommended!
+// Allowing the "+" operator to act as a string manipulator is really just made for use within loops and use cases
+// that may require modification of an already-existing string!
 
 // Arrays
 import Array, Byte, Char from standard.type;
@@ -131,7 +139,6 @@ import Array, Byte, Char from standard.type;
 Array<Byte> bytes = new Array<Byte>(10); // a 'Byte' array with 10 items
 Array<Byte,> double-bytes = new Array<Byte,>(10, 20); // a 'Byte' matrix with 10 rows and 20 columns
 
-// The 'self' keyword
 // The 'self' keyword refers to the type of the variable that is being defined!
 Array<Byte,> double-bytes-2 = new self(10, 20); // Note that you can use the 'self' keyword to shorten the written code!
 
@@ -146,17 +153,24 @@ import get-dom-element-by-id, DOM-Element from standard.target.web;
 @android
 import get-java-element-by-id, Java-View from standard.target.java;
 
-// [NOTE] "Good" Omni Libraries (not flavours) should aim to reduce the need for the user to specify
-// a target filter as much as possible! Only standard and flavour libraries are meant to make use of
-// the target filters!
+// [NOTE] "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
+// a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
+// the source filters and such!
+// ideally, a ready-for-use library that is intended to help with a spicific collection of source targets should not
+// require the user to make use of any source target filters in their projects!
 
 /**
  *
  * Omni code values are typed, and this can be a problem when dealing with
- * more than one target platform. For that, you may define a type a type
+ * more than one target platform. For that, you may define a type
  * according to the current target platform using filters!
  *
 **/
+
+// [NOTE TO SELF] YOU NEED TO RETHINK TYPES AND CLASSES!
+// - Must support inheritance to enable more complex logic!
+// - Must distinguish between primitive types, and class types!
+
 type My-Type {
     String val;
     Char val2;
@@ -400,7 +414,7 @@ while (true) {
 // [NOTE] You can't use "for" and "while" loops in the root level
 // of the code tree!
 
-// code-statement:
+// a full code-statement:
 // (<Filter...>?) ... ({...}|CONTEXT_SEPARATION|;)
 
 // [NOTE] Tabs, whitespace, and new lines are always ignored while parsing! As such,
