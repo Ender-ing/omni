@@ -4,6 +4,9 @@
     "name": "...", // Name your projet (make sure it's unique)
     "type": "product", // "product": used to indicate normal projects (like an app or a game)
                     // "library": used to indicate libraries (code meant for others to use to make their own final products)
+                    // "implementation": used to indicate source language implementation libraries (e.g. an implementation for C++)
+                    // [NOTE] The standard library would be defined as a "library", but it will make use of "implementation" libraries
+                    // in order to offer standard functions that work for all basic source targets!
     // You may add your own custom library to the libraries scope!
     // Notice that the "standard" scope is occupied by the compiler, and any attempts to overwrite it will result
     // in a compilation failure! Notice that if you also attempt to overwrite any other already-existing scopes,
