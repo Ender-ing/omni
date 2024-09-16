@@ -122,6 +122,8 @@ Integer a = 0;
 String b = "The value of integer 'a' is '{a}'!";
 // The value of the string b should be "The value of integer 'a' is '0'!"
 // This is the recommended syntax in order to merge and make variable-dependent strings!
+// Note that the curly brackets are respected as variable indicators only on the initial definition!
+// You may use the escape character "\{" to prevent the curly brackets from being interpreted as variables!
 
 // You may use the plus operator in order to append values to a stiring!
 String c = "hello there!";
@@ -197,8 +199,8 @@ String string-alias is original-string;
 String original-function (Integer num) {
     return "My number is '{num}'!"
 }
-String function-alias (Integer my-number) is original-function; // Note that the alias function input variables' names can
-                                            // differ, but their types and other related attributes should
+String function-alias (Integer my-number) is original-function; // Note that the alias function input variables' names
+                                            // can differ, but their types and other related attributes should
                                             // remain the same!
 
 

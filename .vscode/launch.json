@@ -1,0 +1,6 @@
+// This file is used to configure debugging settings for your project. It specifies the debugger to
+// use, the target to debug, and any necessary arguments or environment variables.
+{
+    // Not needed yet!
+    // (need to also define c_cpp_properties.json later on!)
+}
