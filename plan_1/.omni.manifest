@@ -3,9 +3,12 @@
     // Basic info about your project
     "name": "...", // Name your project (make sure it's unique)
     "type": "product", // "product": used to indicate normal projects (like an app or a game)
-                    // "library": used to indicate libraries (code meant for others to use to make their own final products)
-                    // "implementation": used to indicate source language implementation libraries (e.g. an implementation for C++)
-                    // [NOTE] The standard library would be defined as a "library", but it will make use of "implementation" libraries
+                    // "library": used to indicate libraries (code meant for others to use to make their
+                    // own final products)
+                    // "implementation": used to indicate source language implementation libraries (e.g. an
+                    // implementation for C++)
+                    // [NOTE] The standard library would be defined as a "library", but it will make use of
+                    // "implementation" libraries
                     // in order to offer standard functions that work for all basic source targets!
     // You may add your own custom library to the libraries' scope!
     // Notice that the "standard" scope is occupied by the compiler, and any attempts to overwrite it will result
@@ -15,11 +18,17 @@
     // "scope": "scope-name",
     "libraries": {
         "my-lib": {
-            // Note that any extra paths within a scope should point to a folder contained within that specific scope's folder!
-            // To define a path relative to the default libraries shared folder, you may use the symbol "!" at the start of your path!
+            // Note that any extra paths within a scope should point to a folder contained within that specific
+            // scope's folder!
+            // To define a path relative to the default libraries shared folder, you may use the symbol "!" at the
+            // start of your path!
             "~": "!/path/to/lib/file.omni",
             "io": "!/path/to/lib/io/file.omni"
-        }
+        },
+        // To define a path relative to your project's default path, you can start your path without any
+        // special characters!
+        // (the default path for the manifest is the folder it exists within - e.i. your project's root folder)
+        "my-other-lib": "path/to/project/lib/file.omni"
     },
     // build-related info
     "build": {
