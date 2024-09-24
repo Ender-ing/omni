@@ -19,6 +19,6 @@
     "files.exclude": {
         "**/dist/**": true,
         "**/.git/**": true,
-        "**/.vscode/**": true
+        "**/.vscode0/**": true
     }
 }
