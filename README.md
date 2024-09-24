@@ -2,36 +2,30 @@
 
 > Last update: Sep 16th, 2024
 
-Omniarium is an open-source multi-targeted metaprogramming language whose sole
-purpose is to enable writing one flexible source-code instance meant to produce
-ready-for-use high-level code for multiple targets (be it platforms, frameworks,
-or any of such)!
+Omniarium - or *Omni* - is an open-source multi-targeted metaprogramming language whose sole purpose
+is to enable writing one flexible source-code instance meant to produce ready-for-use high-level
+code for multiple targets (be it platforms, frameworks, or any of such)!
 
 > [!IMPORTANT]
-> This language is still in its basic initial planning phase! Any and all
-> suggestions could help shape and direct this language to be a better aid for
-> your needs, do not hesitate to provide any sort of criticism!
+> This language is still in its basic initial planning phase! Any and all suggestions could help
+> shape and direct this language to be a better aid for your needs, do not hesitate to provide any
+> sort of criticism!
 
-The concept this language replys on is that most programming languages share
-some core functionalities. The `standard` library will only include the bare
-minimum functionality that can enable the source code to be compiled to all the
-supported target lnaguages. Other than the standard library, there will be a
-collection of community-created libraries for specific use cases!
+The concept this language replys on is the fact that most programming languages share some core
+functionalities. The `standard` library will only include the bare minimum functionality that can
+enable the source code to be compiled to all the supported target lnaguages. Other than the standard
+library, there will be a collection of community-created libraries for specific use cases!
 
 ## Transpiler
 
-Omniarium will need a transpiler, a _source-to-source translator/compiler_, to
-convert Omniarium code into a targeted programming language.
+Omni will need a transpiler, a *source-to-source translator/compiler*, to convert Omni code into a
+targeted programming language.
 
 > [!NOTE]
-> The transpiler is yet to be built. As of now, the transpiler is planned to be
-> built using C++. No actual programming will be done until the programing
-> language is thoroughly planned out!
+> The transpiler is yet to be built. As of now, the transpiler is planned to be built using C++.
+> No actual programming will be done until the programing language is thoroughly planned out!
 
-## To-do list
-
-> [!NOTE]
-> All of the setups listed below need to be processed on an in-order basis!
+## To-Do list (rough)
 
 - [ ] Language draft
 - [ ] Libraries manager
@@ -42,6 +36,8 @@ convert Omniarium code into a targeted programming language.
   - [ ] Intermediate representation (Optional ???)
   - [ ] Code generation
 - [ ] Transpiler basic CLI
+- [ ] GitHub support
+  - [ ] Create a TextMate grammars files for the language
 - [ ] VSCode
   - [ ] Make a syntax language file
   - [ ] Add code auto-formatting

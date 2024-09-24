@@ -1,3 +1,6 @@
+#Example
+
+```omniarium
 /**
  *
  * This is a language syntax draft for Omniarium
@@ -196,7 +199,7 @@ type Elm-Obj is @web DOM-Element, @java Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
 String original-string = "Hi!";
 String string-alias is original-string;
-String origi (Integer num) {
+String original-function (Integer num) {
     return "My number is '{num}'!"
 }
 String function-alias (Integer my-number) is original-function; // Note that the alias function input variables' names
@@ -209,13 +212,13 @@ Elm-Obj get-element (String id) {
     Elm-Obj elm;
     @web
     {
-        elm = get-dom-element-by-id (id);
+        elm = get-dom-element-by-id(id);
     }
     @android
     {
         // Java code
         // ...
-        elm = get-java-element-by-id (id);
+        elm = get-java-element-by-id(id);
         /**
          *
          * You can inject native code into the result of your target platform!
@@ -234,7 +237,7 @@ Elm-Obj get-element (String id) {
 Integer my-func () {
     // All this code above enables us to use one function
     // to write code for both targets @web and @android
-    const Elm-Obj my-elm = get-element ("my-id");
+    const Elm-Obj my-elm = get-element("my-id");
     Integer r;
 
     if (my-elm != empty) {
@@ -286,7 +289,7 @@ add-one (borrow Integer num) {
 }
 Integer test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
-add-one (lend test-num);
+add-one(lend test-num);
 // [NOTE] depending on your targeted language, the using of borrowing and lending may result in
 // increased memory usage! So use this carefully! (e.g. if you borrow an integer, the final
 // JavaScript code variable may hold the value inside an array, depening in the original code)
@@ -349,7 +352,7 @@ Custom-Type test-custom = new Custom-Type(0);
 // Normally, the value of an integer inside a custom type should change!
 // But because a this data type's "large-memory-use" trait is set to false, the value will not change
 // unless it is borrowed!
-custom-add-one (test-custom);
+custom-add-one(test-custom);
 
 // [NOTE] Careful! You can't actually call functions on the root-level of the code tree!
 // You need to call functions from within the initial function!
@@ -423,3 +426,4 @@ while (true) {
 
 // [NOTE] Tabs, whitespace, and new lines are always ignored while parsing! As such,
 // a 'code line' must always end with either a semi-colon (;) or a code block ({...})!
+```

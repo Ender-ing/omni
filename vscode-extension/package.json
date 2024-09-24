@@ -1,0 +1,28 @@
+{
+    "name": "omniarium",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": ">=0.9.0-pre.1"
+    },
+    "publisher": "0xENDER",
+    "contributes": {
+        "languages": [{
+            "id": "omniarium",
+            "aliases": ["Omniarium", "Omni"],
+            "extensions": [".omni"],
+            "icon": {
+                "light": "./icons/light.png",
+                "dark": "./icons/dark.png"
+            }
+        }],
+        "grammars": [{
+            "language": "omniarium",
+            "scopeName": "source.omniarium",
+            "path": "./syntaxes/omniarium.tmLanguage.json"
+        }],
+        "snippets": [{
+            "language": "omniarium",
+            "path": "./snippets/omniarium.code-snippets.json"
+        }]
+    }
+}
