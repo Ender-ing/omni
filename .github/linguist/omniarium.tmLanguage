@@ -1,20 +1,38 @@
 {
-  scopeName = 'source.untitled';
-  fileTypes = ( );
-  foldingStartMarker = '\{\s*$';
-  foldingStopMarker = '^\s*\}';
-  patterns = (
-    {  name = 'keyword.control.untitled';
-      match = '\b(if|while|for|return)\b';
+  // https://github.com/chriscamicas/abl-tmlanguage
+  "scopeName": "source.omniarium",
+  "patterns": [
+    // Types
+    {
+      "match": "\\b(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)\\b",
+      "name": "keyword.type.omniarium"
     },
-    {  name = 'string.quoted.double.untitled';
-      begin = '"';
-      end = '"';
-      patterns = ( 
-        {  name = 'constant.character.escape.untitled';
-          match = '\\.';
-        }
-      );
+    // Keywords
+    {
+      "match": "\\b(if|else|for|while|is)\\b",
+      "name": "keyword.control.omniarium"
     },
-  );
+    {
+      "match": "\\b(return|break|continue)\\b",
+      "name": "keyword.control.flow.omniarium"
+    },
+    // Filters
+    {
+      "match": "@\\w+",
+      "name": "entity.name.tag.omniarium"
+    },
+    // Static constants
+    {
+      "match": "\\b(true|false)\\b",
+      "name": "constant.boolean.omniarium"
+    },
+    {
+      "match": "\"(.*?)\"",
+      "name": "string.quoted.double.omniarium"
+    },
+    {
+      "match": "\\b\\d+(\\.\\d+)?\\b",
+      "name": "constant.numeric.omniarium"
+    }
+  ]
 }
