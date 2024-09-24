@@ -5,6 +5,7 @@
     "$ref-3": "https://macromates.com/manual/en/",
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "Omniarium",
+    "scopeName": "source.omniarium",
     "patterns": [
       {
         "include": "#comments"
@@ -137,6 +138,5 @@
           }
         ]
       }
-    },
-    "scopeName": "source.omniarium"
+    }
 }
