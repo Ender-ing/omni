@@ -1,4 +1,8 @@
 {
+    "$note": "NEVER update this file in the .GITHUB directory!!!",
+    "$ref-1": "https://github.com/chriscamicas/abl-tmlanguage",
+    "$ref-2": "https://github.com/microsoft/vscode/tree/main/extensions/javascript",
+    "$ref-3": "https://macromates.com/manual/en/",
     "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
     "name": "Omniarium",
     "patterns": [
