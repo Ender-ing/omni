@@ -19,6 +19,9 @@
         "include": "#types"
       },
       {
+        "include": "#functions"
+      },
+      {
         "include": "#variables"
       },
       {
@@ -99,6 +102,22 @@
           {
             "name": "keyword.constant.omniarium",
             "match": "#[a-z][a-zA-Z0-9_\\.-]*"
+          }
+        ]
+      },
+      "functions": {
+        "patterns": [
+          {
+            "name": "entity.name.function.omniarium",
+            "match": "\\b[a-z][a-zA-Z0-9_-]*\\b(?=\\s*\\()"
+          },
+          {
+            "name": "punctuation.parenthesis.open.function.omniarium",
+            "match": "\\("
+          },
+          {
+            "name": "punctuation.parenthesis.close.function.omniarium",
+            "match": "\\)"
           }
         ]
       },
