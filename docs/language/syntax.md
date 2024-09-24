@@ -27,7 +27,7 @@ or more, depending on the contextual indication of the keyword!
 
 **Example:**
 
-```omni
+```omniarium
 // Example code!
 ```
 

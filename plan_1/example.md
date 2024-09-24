@@ -1,6 +1,6 @@
 # Example
 
-```omni
+```omniarium
 /**
  *
  * This is a language syntax draft for Omniarium
