@@ -7,11 +7,27 @@
     {
       "match": "@\\w+",
       "name": "entity.name.tag.omni"
+    },
+    {
+      "match": "\\b(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)\\b",
+      "name": "keyword.type.omni"
+    },
+    {
+      "match": "\\b(true|false)\\b",
+      "name": "constant.boolean.omni"
+    },
+    {
+      "match": "\\b(if|else|for|while|is)\\b",
+      "name": "keyword.control.omni"
+    },
+    {
+      "match": "\\b(return|break|continue)\\b",
+      "name": "keyword.control.flow.omni"
     }
   ],
   "repository": {
     "keyword": {
-      "match": "\\b(return|else|if)\\b",
+      "match": "\\b(testsss|testsaa)\\b",
       "name": "keyword.control.omni"
     }
   }
