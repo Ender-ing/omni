@@ -1,21 +1,13 @@
 {
+  // https://github.com/chriscamicas/abl-tmlanguage
   "scopeName": "source.omni",
   "patterns": [
-    {
-      "include": "#keyword"
-    },
-    {
-      "match": "@\\w+",
-      "name": "entity.name.tag.omni"
-    },
+    // Types
     {
       "match": "\\b(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)\\b",
       "name": "keyword.type.omni"
     },
-    {
-      "match": "\\b(true|false)\\b",
-      "name": "constant.boolean.omni"
-    },
+    // Keywords
     {
       "match": "\\b(if|else|for|while|is)\\b",
       "name": "keyword.control.omni"
@@ -23,12 +15,24 @@
     {
       "match": "\\b(return|break|continue)\\b",
       "name": "keyword.control.flow.omni"
+    },
+    // Filters
+    {
+      "match": "@\\w+",
+      "name": "entity.name.tag.omni"
+    },
+    // Static constants
+    {
+      "match": "\\b(true|false)\\b",
+      "name": "constant.boolean.omni"
+    },
+    {
+      "match": "\"(.*?)\"",
+      "name": "string.quoted.double.yourlanguage"
+    },
+    {
+      "match": "\\b\\d+(\\.\\d+)?\\b",
+      "name": "constant.numeric.yourlanguage"
     }
-  ],
-  "repository": {
-    "keyword": {
-      "match": "\\b(testsss|testsaa)\\b",
-      "name": "keyword.control.omni"
-    }
-  }
+  ]
 }
