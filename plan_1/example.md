@@ -1,4 +1,4 @@
-# Example
+#Example
 
 ```omniarium
 /**
@@ -119,7 +119,7 @@ filter @custom-target {
 **/
 
 // Standard types
-import String, Integer from standard.type;
+import String, Integer from standard.types;
 
 Integer a = 0;
 String b = "The value of integer 'a' is '{a}'!";
@@ -139,7 +139,7 @@ c += " I'm here to help you!";
 // that may require modification of an already-existing string!
 
 // Arrays
-import Array, Byte, Char from standard.type;
+import Array, Byte, Char from standard.types;
 
 Array<Byte> bytes = new Array<Byte>(10); // a 'Byte' array with 10 items
 Array<Byte,> double-bytes = new Array<Byte,>(10, 20); // a 'Byte' matrix with 10 rows and 20 columns
@@ -179,10 +179,10 @@ import get-java-element-by-id, Java-View from standard.target.java;
 type My-Type {
     String val;
     Char val2;
-    ~define () {
+    self () {
         // Write code for when this type is defined!
     }
-    ~delete () {
+    delete () {
         // Write code for when this type is deleted/freed!
     }
 }
@@ -258,10 +258,10 @@ Integer my-func () {
 }
 
 // Run my-func() on start!
-initial my-func;
+default my-func;
 
-// [NOTE] "initial" statement is root-exclusive!
-// [NOTE] "initial" statement is a one-time use statement!
+// [NOTE] "default" statement, outside of a switch case, is root-exclusive!
+// [NOTE] "default" statement, outside of a switch case, is a one-time use statement!
 
 // You may define a function that doesn't return values as follows
 // (notice that the Any & Void types are NOT supported)
@@ -321,27 +321,27 @@ type Custom-Type {
     // Functions that start with the symbol "~" are type event functions!
     // These functions are used to manage the behaviour of the data type!
 
-    // The "~define" event function is a must-do for all types!
-    ~define (Integer a) {
+    // The "self" keyword can be used to manage the element's creation!
+    self (Integer a) {
         this.a = a;
     }
 
     // Take care of deallocating memory!
-    ~delete () {
+    delete () {
         delete this.a;
     }
 
     // Do something when the value of the variable is called!
-    ~retrieve () {
+    call () {
         // If you wish to define a custom behaviour when the value of this type if retrieved,
         // do so here!
     }
 
     // Define custom behaviour on lending and borrowing
-    ~lend () {
+    lend () {
         // ...
     }
-    ~borrow () {
+    borrow () {
         // ...
     }
 }
@@ -387,8 +387,10 @@ for (Integer i = 0; i < 10; i++) {
     // If statement
     if (...) {
         //
+        break;
     } else if (...) {
         //
+        continue;
     } else {
         //
     }
