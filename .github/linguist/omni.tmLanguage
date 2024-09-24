@@ -1,18 +1,18 @@
 {
-    "scopeName": "source.omni",
-    "patterns": [
-        {
-            "include": "#keyword"
-        },
-        {
-        	"match": "@\\w+",
-            "name": "entity.name.tag.omni"
-        }
-    ],
-    "repository": {
-        "keyword": {
-            "match": "\\b(return|else|if)\\b",
-            "name": "keyword.control.omni"
-        }
+  "scopeName": "source.omni",
+  "patterns": [
+    {
+      "include": "#keyword"
+    },
+    {
+      "match": "@\\w+",
+      "name": "entity.name.tag.omni"
     }
+  ],
+  "repository": {
+    "keyword": {
+      "match": "\\b(return|else|if)\\b",
+      "name": "keyword.control.omni"
+    }
+  }
 }
