@@ -16,7 +16,7 @@
     "root-order": {
       "patterns": [
         {
-          "include": "#function-calls"
+          "include": "#functions"
         },
         {
           "include": "#group-static"
@@ -25,10 +25,7 @@
           "include": "#keywords"
         },
         {
-          "include": "#classes"
-        },
-        {
-          "include": "#functions"
+          "include": "#objects"
         },
         {
           "include": "#variables"
@@ -86,11 +83,15 @@
         },
         {
           "name": "keyword.control.memory.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(lend|borrow|delete|call|new|class)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(lend|borrow|clone|delete|call|new|object)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.control.lib.omniarium",
           "match": "(?<![a-zA-Z0-9_])(import|export|from|inject)(?![a-zA-Z0-9_-])"
+        },
+        {
+          "name": "keyword.control.class.omniarium",
+          "match": "(?<![a-zA-Z0-9_])(expose|local)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.control.flow.omniarium",
@@ -151,7 +152,7 @@
         }
       ]
     },
-    "classes": {
+    "objects": {
       "patterns": [
         {
           "name": "entity.name.type.omniarium",
@@ -170,22 +171,6 @@
     "functions": {
       "patterns": [
         {
-          "name": "entity.name.function.definition.omniarium",
-          "match": "(?<![a-zA-Z0-9_])([a-z_-][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])(?=\\s*\\()"
-        },
-        {
-          "name": "punctuation.parenthesis.open.function.omniarium",
-          "match": "\\("
-        },
-        {
-          "name": "punctuation.parenthesis.close.function.omniarium",
-          "match": "\\)"
-        }
-      ]
-    },
-    "function-calls": {
-      "patterns": [
-        {
           "name": "entity.name.function.call.omniarium",
           "match": "(?<![a-zA-Z0-9_])-[a-zA-Z_-][a-zA-Z0-9_-]*"
         }
@@ -195,7 +180,7 @@
       "patterns": [
         {
           "name": "variable.other.omniarium",
-          "match": "(?<![a-zA-Z0-9_])([a-z_][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
+          "match": "\\b([a-z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
         }
       ]
     },
@@ -203,12 +188,12 @@
       "patterns": [
         {
           "name": "meta.preprocessor",
-          "match": "((@[\\w_-]+))",
+          "match": "(((@|@!)[\\w_-]+))",
           "captures": {
-            "0": {
+            "1": {
               "name": "constant.character.escape"
             },
-            "1": {
+            "2": {
               "name": "emphasis.omniarium"
             }
           }
@@ -223,7 +208,7 @@
         },
         {
           "name": "keyword.operator.omniarium",
-          "match": ",|{|}|;|:|\\."
+          "match": ",|{|}|\\(|\\)|;|:|\\."
         },
         {
           "name": "keyword.operator.new.omniarium",
