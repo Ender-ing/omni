@@ -21,7 +21,7 @@
 // context separation (e.g. && or || conditions)
 
 // Import platform filters
-import @web, @java as @android from standard.target;
+import @web, @java as @android from standard.targets;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
@@ -151,9 +151,9 @@ Array<Byte,> double-bytes-2 = new self(10, 20); // Note that you can use the 'se
  *
 **/
 @web
-import get-dom-element-by-id, DOM-Element from standard.target.web;
+import get-dom-element-by-id, DOM-Element from standard.targets.javascript;
 @android
-import get-java-element-by-id, Java-View from standard.target.java;
+import get-java-element-by-id, Java-View from standard.targets.java;
 
 // [NOTE] "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
 // a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
