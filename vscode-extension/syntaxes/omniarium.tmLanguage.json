@@ -31,6 +31,10 @@
     },
     {
       "include": "#operators"
+    },
+    {
+      "name": "invalid.illegal.unhighlighted.omniarium",
+      "match": "." 
     }
   ],
   "repository": {
@@ -55,7 +59,7 @@
         },
         {
           "name": "keyword.control.memory.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(lend|borrow|delete|call|new|type|traits)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(lend|borrow|delete|call|new|class)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.control.lib.omniarium",
@@ -131,8 +135,12 @@
     "functions": {
       "patterns": [
         {
-          "name": "entity.name.function.omniarium",
-          "match": "(?<![a-zA-Z0-9_])([a-z_][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])(?=\\s*\\()"
+          "name": "entity.name.function.definition.omniarium",
+          "match": "(?<![a-zA-Z0-9_])([a-z_-][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])(?=\\s*\\()"
+        },
+        {
+          "name": "entity.name.function.call.omniarium",
+          "match": "-[a-zA-Z_-][a-zA-Z0-9_-]*"
         },
         {
           "name": "punctuation.parenthesis.open.function.omniarium",
@@ -176,7 +184,7 @@
         },
         {
           "name": "keyword.operator.omniarium",
-          "match": ","
+          "match": ",|{|}|;|:|\\."
         },
         {
           "name": "keyword.operator.new.omniarium",
