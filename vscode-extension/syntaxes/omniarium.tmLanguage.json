@@ -9,35 +9,62 @@
   "scopeName": "source.omniarium",
   "patterns": [
     {
-      "include": "#comments"
-    },
-    {
-      "include": "#keywords"
-    },
-    {
-      "include": "#strings"
-    },
-    {
-      "include": "#types"
-    },
-    {
-      "include": "#functions"
-    },
-    {
-      "include": "#variables"
-    },
-    {
-      "include": "#filters"
-    },
-    {
-      "include": "#operators"
-    },
-    {
-      "name": "invalid.illegal.unhighlighted.omniarium",
-      "match": "." 
+      "include": "#root-order"
     }
   ],
   "repository": {
+    "root-order": {
+      "patterns": [
+        {
+          "include": "#function-calls"
+        },
+        {
+          "include": "#group-static"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#classes"
+        },
+        {
+          "include": "#functions"
+        },
+        {
+          "include": "#variables"
+        },
+        {
+          "include": "#unhighlighted"
+        }
+      ]
+    },
+    "group-static": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#types"
+        },
+        {
+          "include": "#filters"
+        },
+        {
+          "include": "#operators"
+        }
+      ]
+    },
+    "unhighlighted": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.unhighlighted.omniarium",
+          "match": "." 
+        }
+      ]
+    },
     "comments": {
       "patterns": [
         {
@@ -96,11 +123,7 @@
       "patterns": [
         {
           "name": "entity.name.type.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)(?![a-zA-Z0-9_-])"
-        },
-        {
-          "name": "entity.name.type.class.omniarium",
-          "match": "(?<![a-zA-Z0-9_])([A-Z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.boolean.omniarium",
@@ -109,10 +132,6 @@
         {
           "name": "constant.language.null.omniarium",
           "match": "(?<![a-zA-Z0-9_])(empty)(?![a-zA-Z0-9_-])"
-        },
-        {
-          "name": "constant.language.self.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(self)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "string.quoted.single.omniarium",
@@ -132,15 +151,27 @@
         }
       ]
     },
+    "classes": {
+      "patterns": [
+        {
+          "name": "entity.name.type.omniarium",
+          "match": "(?<![a-zA-Z0-9_])(Error)(?![a-zA-Z0-9_-])"
+        },
+        {
+          "name": "entity.name.type.class.omniarium",
+          "match": "(?<![a-zA-Z0-9_])([A-Z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
+        },
+        {
+          "name": "constant.language.self.omniarium",
+          "match": "(?<![a-zA-Z0-9_])(self)(?![a-zA-Z0-9_-])"
+        }
+      ]
+    },
     "functions": {
       "patterns": [
         {
           "name": "entity.name.function.definition.omniarium",
           "match": "(?<![a-zA-Z0-9_])([a-z_-][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])(?=\\s*\\()"
-        },
-        {
-          "name": "entity.name.function.call.omniarium",
-          "match": "-[a-zA-Z_-][a-zA-Z0-9_-]*"
         },
         {
           "name": "punctuation.parenthesis.open.function.omniarium",
@@ -149,6 +180,14 @@
         {
           "name": "punctuation.parenthesis.close.function.omniarium",
           "match": "\\)"
+        }
+      ]
+    },
+    "function-calls": {
+      "patterns": [
+        {
+          "name": "entity.name.function.call.omniarium",
+          "match": "(?<![a-zA-Z0-9_])-[a-zA-Z_-][a-zA-Z0-9_-]*"
         }
       ]
     },
