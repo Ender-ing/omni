@@ -1,5 +1,6 @@
 {
-    "$note": "NEVER update this file in the .GITHUB directory!!!",
+    "$note-1": "NEVER update this file in the .GITHUB directory!!!",
+    "$note-2": "Names can include all the following characters: [a-zA-Z0-9_-]",
     "$ref-1": "https://github.com/chriscamicas/abl-tmlanguage",
     "$ref-2": "https://github.com/microsoft/vscode/tree/main/extensions/javascript",
     "$ref-3": "https://macromates.com/manual/en/",
@@ -50,19 +51,19 @@
         "patterns": [
           {
             "name": "keyword.control.omniarium",
-            "match": "\\b(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)\\b"
+            "match": "(?<![a-zA-Z0-9_])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "keyword.control.memory.omniarium",
-            "match": "\\b(lend|borrow|delete|call|new|self|type|traits)\\b"
+            "match": "(?<![a-zA-Z0-9_])(lend|borrow|delete|call|new|self|type|traits)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "keyword.control.lib.omniarium",
-            "match": "\\b(import|export|from|inject)\\b"
+            "match": "(?<![a-zA-Z0-9_])(import|export|from|inject)(?![a-zA-Z0-9_-])"
           },
           {
-            "match": "\\b(return|break|continue|throw)\\b",
-            "name": "keyword.control.flow.omniarium"
+            "name": "keyword.control.flow.omniarium",
+            "match": "(?<![a-zA-Z0-9_])(return|break|continue|throw)(?![a-zA-Z0-9_-])"
           }
         ]
       },
@@ -91,19 +92,19 @@
         "patterns": [
           {
             "name": "entity.name.type.omniarium",
-            "match": "\\b(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)\\b"
+            "match": "(?<![a-zA-Z0-9_])(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean|Error)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "entity.name.type.class.omniarium",
-            "match": "\\b[A-Z][a-zA-Z0-9_-]*\\b"
+            "match": "(?<![a-zA-Z0-9_])([A-Z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "keyword.boolean.omniarium",
-            "match": "\\b(true|false)\\b"
+            "match": "(?<![a-zA-Z0-9_])(true|false)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "constant.language.omniarium",
-            "match": "\\b(empty)\\b"
+            "match": "(?<![a-zA-Z0-9_])(empty)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "string.quoted.single.omniarium",
@@ -111,7 +112,7 @@
           },
           {
             "name": "constant.numeric.omniarium",
-            "match": "\\b\\d+(\\.\\d+)?\\b"
+            "match": "(?<![a-zA-Z0-9_])(\\d+(\\.\\d+)?)(?![a-zA-Z0-9_-])"
           },
           {
             "name": "keyword.constant.omniarium",
@@ -127,7 +128,7 @@
         "patterns": [
           {
             "name": "entity.name.function.omniarium",
-            "match": "\\b[a-z][a-zA-Z0-9_-]*\\b(?=\\s*\\()"
+            "match": "(?<![a-zA-Z0-9_])([a-z_][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])(?=\\s*\\()"
           },
           {
             "name": "punctuation.parenthesis.open.function.omniarium",
@@ -143,7 +144,7 @@
         "patterns": [
           {
             "name": "variable.other.omniarium",
-            "match": "\\b[a-z][a-zA-Z0-9_-]*\\b"
+            "match": "(?<![a-zA-Z0-9_])([a-z_][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
           }
         ]
       },
@@ -151,7 +152,7 @@
         "patterns": [
           {
             "name": "entity.name.tag.omniarium",
-            "match": "@[\\w-]+"
+            "match": "@[\\w_-]+"
           }
         ]
       },
