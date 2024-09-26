@@ -320,12 +320,12 @@ type Custom-Type {
 
     // The "self" keyword can be used to manage the element's creation!
     self (Integer a) {
-        this.a = a;
+        self.a = a;
     }
 
     // Take care of deallocating memory!
     delete () {
-        delete this.a;
+        delete self.a;
     }
 
     // Do something when the value of the variable is called!
