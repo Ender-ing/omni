@@ -1,6 +1,9 @@
 {
     "name": "omniarium",
+    "displayName": "Omniarium",
+    "description": "All you need to start working with the Omniarium programming language!",
     "version": "0.0.1",
+    "icon": "./icons/plain.png",
     "engines": {
         "vscode": ">=0.9.0-pre.1"
     },

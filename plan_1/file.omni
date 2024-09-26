@@ -21,11 +21,11 @@
 // context separation (e.g. && or || conditions)
 
 // Import platform filters
-import @web, @java as @android from standard.target;
+import @javascript as @web, @java as @android from standard.targets;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
-import x, y, z from custom-lib;
+import x, -y, z from custom-lib;
 
 // And custom libraries can have inner paths of their own
 import Type-X, Type-Y, Type-Z from custom-lib.types;
@@ -50,15 +50,14 @@ export Integer a = 0;
  *
  * Filters are used to restrict a value's existence within the code tree!
  * Should a filter return a Boolean false state, whatever value or code block that comes
- * after said filter will be replaced with an 'empty' value. ('empty' acts the same as 'null')
+ * after said filter will be replaced with an 'empty' value. ('empty' acts the same as 'null')'
  *
 **/
+// [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
+// variables, but they must be statically defined!)
 filter @my-filter {
-    // This filter includes this code if the target is either web or Java!
-    @web @android
-    return true;
-    // else...
-    return false;
+    // This filter includes this code if the target is either javascript or Java!
+    return ((@web true) != empty || (@android true) != empty);
 }
 
 // [NOTE] The symbol "#" is used to access transpiler compile-time values!
@@ -138,11 +137,11 @@ c += " I'm here to help you!";
 // Arrays
 import Array, Byte, Char from standard.types;
 
-Array<Byte> bytes = new Array<Byte>(10); // a 'Byte' array with 10 items
-Array<Byte,> double-bytes = new Array<Byte,>(10, 20); // a 'Byte' matrix with 10 rows and 20 columns
+Array<Byte> bytes = new Array<Byte> (10); // a 'Byte' array with 10 items
+Array<Byte,> double-bytes = new Array<Byte,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
 
 // The 'self' keyword refers to the type of the variable that is being defined!
-Array<Byte,> double-bytes-2 = new self(10, 20); // Note that you can use the 'self' keyword to shorten the written code!
+Array<Byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
 
 /**
  *
@@ -151,9 +150,9 @@ Array<Byte,> double-bytes-2 = new self(10, 20); // Note that you can use the 'se
  *
 **/
 @web
-import get-dom-element-by-id, DOM-Element from standard.target.web;
+import -get-dom-element-by-id, DOM-Element from standard.targets.javascript;
 @android
-import get-java-element-by-id, Java-View from standard.target.java;
+import -get-java-element-by-id, Java-View from standard.targets.java;
 
 // [NOTE] "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
 // a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
@@ -192,30 +191,30 @@ type My-Type {
 // You may use aliases with type definitions, variables, constants, and functions!
 // [NOTE] The "is" keyword is mainly intended for use within library files!
 // It is not recommended to use this keyword in normal project files!
-type Elm-Obj is @web DOM-Element, @java Java-View;
+class Elm-Obj is @web DOM-Element, @java Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
 String original-string = "Hi!";
 String string-alias is original-string;
-String origi (Integer num) {
+String -original-function (Integer num) {
     return "My number is '{num}'!"
 }
-String function-alias (Integer my-number) is original-function; // Note that the alias function input variables' names
+String -function-alias (Integer my-number) is -original-function; // Note that the alias function input variables' names
                                             // can differ, but their types and other related attributes should
                                             // remain the same!
 
 
 // Functions!
-Elm-Obj get-element (String id) {
+Elm-Obj -get-element (String id) {
     Elm-Obj elm;
     @web
     {
-        elm = get-dom-element-by-id (id);
+        elm = -get-dom-element-by-id (id);
     }
     @android
     {
         // Java code
         // ...
-        elm = get-java-element-by-id (id);
+        elm = -get-java-element-by-id (id);
         /**
          *
          * You can inject native code into the result of your target platform!
@@ -231,10 +230,10 @@ Elm-Obj get-element (String id) {
 
 // [NOTE] function definitions are root-exclusive!
 
-Integer my-func () {
+Integer -my-func () {
     // All this code above enables us to use one function
     // to write code for both targets @web and @android
-    const Elm-Obj my-elm = get-element ("my-id");
+    const Elm-Obj my-elm = -get-element ("my-id");
     Integer r;
 
     if (my-elm != empty) {
@@ -262,21 +261,21 @@ default my-func;
 
 // You may define a function that doesn't return values as follows
 // (notice that the Any & Void types are NOT supported)
-empty-func (Integer a) {
+-empty-func (Integer a) {
     // do something with 'a'...
 }
 
 /**
  *
- * By default, any simple standard variable (with a simple standard type) received
+ * By default, a simple standard variable (with a simple standard type) received
  * in a function is duplicated, meaning that the function uses a variable that does
  * not share the same address as the input value!
  * 
- * But custom types and big data types (objects) are not duplicated, unless you indicate so!
+ * But custom types and big data types (classes) are not duplicated, they must be lent!
  *
 **/
 
-add-one (borrow Integer num) {
+-add-one (borrow Integer num) {
     // You can borrow the variable itself without causing duplication!
     num++;
     // Note that borrowed variables (a.k.a. non-duplicate variables) are only freed
@@ -286,46 +285,50 @@ add-one (borrow Integer num) {
 }
 Integer test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
-add-one (lend test-num);
+-add-one (lend test-num);
 // [NOTE] depending on your targeted language, the using of borrowing and lending may result in
 // increased memory usage! So use this carefully! (e.g. if you borrow an integer, the final
 // JavaScript code variable may hold the value inside an array, depening in the original code)
 
-type Custom-Type {
-    // Each type must make use of the 'traits' keyword
-    // to define the behaviour of a custom data type and functions!
-    traits {
-        large-memory-use false; // If this is set to 'true', the variable will never
-                                    // be duplicated when passed outside of its creation
-                                    // scope, but the user will be required to make use
-                                    // of the 'borrow' and 'lend' keywords in order to
-                                    // pass this variable to other functions!
-                                    // The default value is 'true'!
-                                    // This trait can be used on types!
-        deprecated false; // If this is set to 'true', the use will be warned when
-                        // they used this data type in their code!
-                        // The default value is 'false'!
-                        // This trait can be used on types and functions!
-        library-exclusive false; // If this is set to 'true', the user will be warned that this feature
-                                // was intended only for building libraries and such.
-                                // The default value is 'false'!
-                                // This trait can be used on types and functions!
-    }
+// You can add traits and warnings to functions use the filters feature!
+// [NOTE] Filters that start with an exclamation marks ("!") will not act as filters!
+// These filters are transpiler-defined, and are seen more as trait markers!)
+// @!deprecated             The user will be warned about this code being deprecated!
+// @!library-exclusive      The user will be warned about use outside libraries!
+// @!static                 The user will be warned about the use of any dynamic/run-time values
+//                          and code within the code block!
+@!deprecated @!library-exclusive @!static
+object Custom-Type {
+    // Values used by this type/class!
+    Integer b; // Can be only accessed within non-exposed object functions              - protected
+    expose Integer a; // Can access this value directly (custom-var.a)                  - static
+    local Integer d; // Cannot be inherited by new object types!                        - private
+    expose local Integer e; // You can combine these keywords!
 
-    // Values used by this type!
-    Integer a;
-
-    // Functions that start with the symbol "~" are type event functions!
+    // Functions that make use of certain keywords are type/class event functions!
     // These functions are used to manage the behaviour of the data type!
 
-    // The "self" keyword can be used to manage the element's creation!
+    // The "self" keyword can be used to manage the object's creation!
     self (Integer a) {
-        this.a = a;
+        self.a = a;
+    }
+    self (Integer a, Integer b) {
+        self.a = a;
+        self.b = b;
+    }
+
+    expose Integer -asddda () {
+        // Some function that doesn't reply on unexposed values!
+    }
+
+    // Define type-related functions!
+    Integer -get-a () {
+        return self.a;
     }
 
     // Take care of deallocating memory!
     delete () {
-        delete this.a;
+        delete self.a;
     }
 
     // Do something when the value of the variable is called!
@@ -342,17 +345,16 @@ type Custom-Type {
         // ...
     }
 }
-custom-add-one (Custom-Type obj) {
-    obj.a++;
-}
-Custom-Type test-custom = new Custom-Type(0);
-// Normally, the value of an integer inside a custom type should change!
-// But because a this data type's "large-memory-use" trait is set to false, the value will not change
-// unless it is borrowed!
-custom-add-one (test-custom);
+Custom-Type test-custom = new self(0);
+Integer my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
+
+-some-custom-function (lend test-custom);
+// If you need to pass an object to a function, you must lend it to it! 
+// Otherwise, you must clone it!
+-some-custom-function (clone test-custom);
 
 // [NOTE] Careful! You can't actually call functions on the root-level of the code tree!
-// You need to call functions from within the initial function!
+// You need to call functions from within the initial function! This is just a demo!
 
 /**
  *
@@ -365,7 +367,7 @@ try {
     // the 'catch' block!
 
     // ...
-    throw new Error("My error message!");
+    throw new Error ("My error message!");
 } catch (Error e) {
     // handle error!
     // ...
@@ -419,7 +421,9 @@ while (true) {
 // of the code tree!
 
 // a full code-statement:
-// (<Filter...>?) ... ({...}|CONTEXT_SEPARATION|;)
+// ([@!<Trait>, @!<Trait>, ... @<Filter>?]?) ... ({...}|CONTEXT_SEPARATION|;)
+// [NOTE] Only one filter can be present at a time at the start of a code-statement,
+// and it always comes last right before the start of the code-statement's content!
 
 // [NOTE] Tabs, whitespace, and new lines are always ignored while parsing! As such,
 // a 'code line' must always end with either a semi-colon (;) or a code block ({...})!
