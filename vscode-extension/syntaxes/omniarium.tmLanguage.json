@@ -41,7 +41,7 @@
           "match": "\\/\\/.*$"
         },
         {
-          "name": "comment.block.c.omniarium",
+          "name": "comment.block.documentation.omniarium",
           "begin": "\\/\\*",
           "end": "\\*\\/"
         }
@@ -155,8 +155,16 @@
     "filters": {
       "patterns": [
         {
-          "name": "entity.name.tag.omniarium",
-          "match": "@[\\w_-]+"
+          "name": "meta.preprocessor",
+          "match": "((@[\\w_-]+))",
+          "captures": {
+            "0": {
+              "name": "constant.character.escape"
+            },
+            "1": {
+              "name": "emphasis.omniarium"
+            }
+          }
         }
       ]
     },
