@@ -27,6 +27,9 @@
       },
       {
         "include": "#filters"
+      },
+      {
+        "include": "#operators"
       }
     ],
     "repository": {
@@ -71,6 +74,16 @@
           {
             "name": "constant.character.escape.omniarium",
             "match": "\\\\."
+          },
+          {
+            "name": "constant.character.escape.curly.omniarium",
+            "begin": "{",
+            "end": "}",
+            "patterns": [
+              {
+                "include": "$self"
+              }
+            ]
           }
         ]
       },
@@ -87,6 +100,10 @@
           {
             "name": "keyword.boolean.omniarium",
             "match": "\\b(true|false)\\b"
+          },
+          {
+            "name": "constant.language.omniarium",
+            "match": "\\b(empty)\\b"
           },
           {
             "name": "string.quoted.single.omniarium",
@@ -135,6 +152,22 @@
           {
             "name": "entity.name.tag.omniarium",
             "match": "@[\\w-]+"
+          }
+        ]
+      },
+      "operators": {
+        "patterns": [
+          {
+            "name": "keyword.operator.omniarium", 
+            "match": "\\+|-|\\*|/|%|==|!=|>|<|>=|<=|&&|\\|\\||!|=" 
+          },
+          {
+            "name": "keyword.operator.omniarium", 
+            "match": "," 
+          },
+          {
+            "name": "keyword.operator.new.omniarium", 
+            "match": "@" 
           }
         ]
       }
