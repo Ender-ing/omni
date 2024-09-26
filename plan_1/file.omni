@@ -55,7 +55,7 @@ export Integer a = 0;
 **/
 // [NOTE] Filter blocks only allow use of static values in conditions!
 filter @my-filter {
-    // This filter includes this code if the target is either web or Java!
+    // This filter includes this code if the target is either javascript or Java!
     return ((@web true) != empty || (@android true) != empty);
     // REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER!
     // REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER!
