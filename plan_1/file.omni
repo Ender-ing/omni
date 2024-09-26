@@ -53,14 +53,11 @@ export Integer a = 0;
  * after said filter will be replaced with an 'empty' value. ('empty' acts the same as 'null')'
  *
 **/
-// [NOTE] Filter blocks only allow use of static values in conditions!
+// [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
+// variables, but they must be statically defined!)
 filter @my-filter {
     // This filter includes this code if the target is either javascript or Java!
     return ((@web true) != empty || (@android true) != empty);
-    // REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER!
-    // REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER!
-    // REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER! REMEMBER!
-    // Highlight normal variables here in red!
 }
 
 // [NOTE] The symbol "#" is used to access transpiler compile-time values!
@@ -274,7 +271,7 @@ default my-func;
  * in a function is duplicated, meaning that the function uses a variable that does
  * not share the same address as the input value!
  * 
- * But custom types and big data types (classes) are not duplicated, unless you indicate so!
+ * But custom types and big data types (classes) are not duplicated, they must be lent!
  *
 **/
 
@@ -296,21 +293,17 @@ Integer test-num;
 // You can add traits and warnings to functions use the filters feature!
 // [NOTE] Filters that start with an exclamation marks ("!") will not act as filters!
 // These filters are transpiler-defined, and are seen more as trait markers!)
-@!deprecated @!library-exclusive
-class Custom-Type {
-    // Each class/type must make use of the 'traits' keyword
-    // to define the behaviour of a custom data type and functions!
-    trait deprecated false; // If this is set to 'true', the use will be warned when
-                        // they used this data type in their code!
-                        // The default value is 'false'!
-                        // This trait can be used on types and functions!
-    trait library-exclusive false; // If this is set to 'true', the user will be warned that this feature
-                                // was intended only for building libraries and such.
-                                // The default value is 'false'!
-                                // This trait can be used on types and functions!
-
+// @!deprecated             The user will be warned about this code being deprecated!
+// @!library-exclusive      The user will be warned about use outside libraries!
+// @!static                 The user will be warned about the use of any dynamic/run-time values
+//                          and code within the code block!
+@!deprecated @!library-exclusive @!static
+object Custom-Type {
     // Values used by this type/class!
-    Integer a;
+    Integer b; // Can be only accessed within non-exposed object functions              - protected
+    expose Integer a; // Can access this value directly (custom-var.a)                  - static
+    local Integer d; // Cannot be inherited by new object types!                        - private
+    expose local Integer e; // You can combine these keywords!
 
     // Functions that make use of certain keywords are type/class event functions!
     // These functions are used to manage the behaviour of the data type!
@@ -318,6 +311,14 @@ class Custom-Type {
     // The "self" keyword can be used to manage the object's creation!
     self (Integer a) {
         self.a = a;
+    }
+    self (Integer a, Integer b) {
+        self.a = a;
+        self.b = b;
+    }
+
+    expose Integer -asddda () {
+        // Some function that doesn't reply on unexposed values!
     }
 
     // Define type-related functions!
@@ -344,18 +345,16 @@ class Custom-Type {
         // ...
     }
 }
--custom-add-one (Custom-Type obj) {
-    obj.a++;
-}
 Custom-Type test-custom = new self(0);
-Integer my-a = test-custom.-get-a (); // You can use type functions like this!
-// Normally, the value of an integer inside a custom type should change!
-// But because a this data type's "large-memory-use" trait is set to false, the value will not change
-// unless it is borrowed!
--custom-add-one (test-custom);
+Integer my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
+
+-some-custom-function (lend test-custom);
+// If you need to pass an object to a function, you must lend it to it! 
+// Otherwise, you must clone it!
+-some-custom-function (clone test-custom);
 
 // [NOTE] Careful! You can't actually call functions on the root-level of the code tree!
-// You need to call functions from within the initial function!
+// You need to call functions from within the initial function! This is just a demo!
 
 /**
  *
