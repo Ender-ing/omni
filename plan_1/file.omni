@@ -34,7 +34,7 @@ import Type-X, Type-Y, Type-Z from custom-lib.types;
 
 // All data that is meant to be imported using the "import" statement needs to be exported using
 // the "export" statement within the library file!
-export Integer a = 0;
+export Integer- a = 0;
 
 // [NOTE] "export" statements are root-exclusive!
 
@@ -107,17 +107,56 @@ filter @custom-target {
  * Notice that an empty Omni code file does not include any types by default!
  * 
  * List of planned types:
- * Numbers: Byte, Short, Integer, Long, Float, Double,
- * Text: String, Char,
- * Bool: Boolean,
+ * Numbers: Byte-, Short-, Integer-, Long-, Float-, Double-,
+ * Text: String, Char-,
+ * Bool: Boolean-,
  * Error Handling: Error,
+ *
+ * All types that end with a dash are automatically duplicated when passed to functions,
+ * or when used as values for new variables!
+ * (If you wish to modify their values inside the function, or make another reference for
+ * them, you must refer or cede them!)
+ *
+ * (Note that due to the need for a semi-consistent memory behavior between different language targets,
+ * the compiler may use types different from the original language's basic types!)
  *
 **/
 
 // Standard types
-import String, Integer from standard.types;
+import String, Integer- from standard.types;
 
-Integer a = 0;
+Integer- a = 0;
+
+-some-function (Integer- my-a) {
+    // ...
+    // You can do everything, except for deleting the variable!
+    // Any changes made here will affect the original variable!
+    my-a = 1;
+}
+-some-function-1 (follow Integer- my-a) {
+    // ...
+    // You can do everything, except for deleting the variable!
+    // Any changes made here will affect the original variable!
+    my-a = 1;
+}
+-some-function-2 (assume Integer- my-a) {
+    // ...
+    // The value is not duplicated, and the original value will be deleted after this function is done,
+    // and this function will have full control over this value!
+    my-a = 1;
+    // If you wish to delete this variable, you may do so before the end of the function's zone!
+}
+
+-some-function (a); // The value of 'a' is still "0"!
+-some-function-1 (link a); // The value of 'a' is "2" now!
+-some-function-2 (cede a); // The value of 'a' did indeed change, but it has been deleted now!
+
+// If you wish to reuse the 'a' name for a variable, you can do so now! (because you already ceded the variable!)
+Integer- a = 10;
+
+Integer- a-ref = follow link a; // This is effectively a run-time alias for the same variable!
+a-ref = 0; // Now, the value of 'a' is '0'!
+
 String b = "The value of integer 'a' is '{a}'!";
 // The value of the string b should be "The value of integer 'a' is '0'!"
 // This is the recommended syntax in order to merge and make variable-dependent strings!
@@ -135,13 +174,13 @@ c += " I'm here to help you!";
 // that may require modification of an already-existing string!
 
 // Arrays
-import Array, Byte, Char from standard.types;
+import Array, Byte-, Char from standard.types;
 
-Array<Byte> bytes = new Array<Byte> (10); // a 'Byte' array with 10 items
-Array<Byte,> double-bytes = new Array<Byte,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
+Array<Byte-> bytes = new Array<Byte-> (10); // a 'Byte' array with 10 items
+Array<Byte-,> double-bytes = new Array<Byte-,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
 
 // The 'self' keyword refers to the type of the variable that is being defined!
-Array<Byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
+Array<Byte-,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
 
 /**
  *
@@ -168,22 +207,7 @@ import -get-java-element-by-id, Java-View from standard.targets.java;
  *
 **/
 
-// [NOTE TO SELF] YOU NEED TO RETHINK TYPES AND CLASSES!
-// - Must support inheritance to enable more complex logic!
-// - Must distinguish between primitive types, and class types!
-
-type My-Type {
-    String val;
-    Char val2;
-    self () {
-        // Write code for when this type is defined!
-    }
-    delete () {
-        // Write code for when this type is deleted/freed!
-    }
-}
-
-// [NOTE] "type" statements are root-exclusive!
+// [NOTE] "prototype" statements are root-exclusive!
 
 // You may define type aliases like this:
 // An alias, set by the "is" keyword, does not exist on runtime! It is only processed at as a placeholder
@@ -191,14 +215,14 @@ type My-Type {
 // You may use aliases with type definitions, variables, constants, and functions!
 // [NOTE] The "is" keyword is mainly intended for use within library files!
 // It is not recommended to use this keyword in normal project files!
-class Elm-Obj is @web DOM-Element, @java Java-View;
+prototype Elm-Obj is @web DOM-Element, @java Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
 String original-string = "Hi!";
 String string-alias is original-string;
-String -original-function (Integer num) {
+String -original-function (Integer- num) {
     return "My number is '{num}'!"
 }
-String -function-alias (Integer my-number) is -original-function; // Note that the alias function input variables' names
+String -function-alias (Integer- my-number) is -original-function; // Note that the alias function input variables' names
                                             // can differ, but their types and other related attributes should
                                             // remain the same!
 
@@ -230,11 +254,11 @@ Elm-Obj -get-element (String id) {
 
 // [NOTE] function definitions are root-exclusive!
 
-Integer -my-func () {
+Integer- -my-func () {
     // All this code above enables us to use one function
     // to write code for both targets @web and @android
-    const Elm-Obj my-elm = -get-element ("my-id");
-    Integer r;
+    final Elm-Obj my-elm = -get-element ("my-id");
+    Integer- r;
 
     if (my-elm != empty) {
         r = 0;
@@ -261,7 +285,7 @@ default my-func;
 
 // You may define a function that doesn't return values as follows
 // (notice that the Any & Void types are NOT supported)
--empty-func (Integer a) {
+-empty-func (Integer- a) {
     // do something with 'a'...
 }
 
@@ -271,11 +295,11 @@ default my-func;
  * in a function is duplicated, meaning that the function uses a variable that does
  * not share the same address as the input value!
  * 
- * But custom types and big data types (classes) are not duplicated, they must be lent!
+ * But custom types and big data types (objects) are not duplicated, they must be lent!
  *
 **/
 
--add-one (borrow Integer num) {
+-add-one (borrow Integer- num) {
     // You can borrow the variable itself without causing duplication!
     num++;
     // Note that borrowed variables (a.k.a. non-duplicate variables) are only freed
@@ -283,7 +307,7 @@ default my-func;
     // If you try to free the borrowed variable here, this will result in an error!
     delete num; // This will prevent your program from being compiled!
 }
-Integer test-num;
+Integer- test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
 -add-one (lend test-num);
 // [NOTE] depending on your targeted language, the using of borrowing and lending may result in
@@ -297,32 +321,33 @@ Integer test-num;
 // @!library-exclusive      The user will be warned about use outside libraries!
 // @!static                 The user will be warned about the use of any dynamic/run-time values
 //                          and code within the code block!
+// [NOTE] You may use the "final" keyword to make this class immutable!
 @!deprecated @!library-exclusive @!static
-object Custom-Type {
-    // Values used by this type/class!
-    Integer b; // Can be only accessed within non-exposed object functions              - protected
-    expose Integer a; // Can access this value directly (custom-var.a)                  - static
-    local Integer d; // Cannot be inherited by new object types!                        - private
-    expose local Integer e; // You can combine these keywords!
+prototype Custom-Type {
+    // Values used by this type/object!
+    Integer- b; // Can be only accessed within non-exposed object functions              - protected
+    expose Integer- a; // Can access this value directly (custom-var.a)                  - static
+    local Integer- d; // Cannot be inherited by new object types!                        - private
+    expose local Integer- e; // You can combine these keywords!
 
-    // Functions that make use of certain keywords are type/class event functions!
+    // Functions that make use of certain keywords are type/object event functions!
     // These functions are used to manage the behaviour of the data type!
 
     // The "self" keyword can be used to manage the object's creation!
-    self (Integer a) {
+    self (Integer- a) {
         self.a = a;
     }
-    self (Integer a, Integer b) {
+    self (Integer- a, Integer- b) {
         self.a = a;
         self.b = b;
     }
 
-    expose Integer -asddda () {
+    expose Integer- -asddda () {
         // Some function that doesn't reply on unexposed values!
     }
 
     // Define type-related functions!
-    Integer -get-a () {
+    Integer- -get-a () {
         return self.a;
     }
 
@@ -337,21 +362,24 @@ object Custom-Type {
         // do so here!
     }
 
-    // Define custom behaviour on lending and borrowing
-    lend () {
-        // ...
-    }
-    borrow () {
-        // ...
-    }
+    // ...
 }
 Custom-Type test-custom = new self(0);
-Integer my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
+Integer- my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
 
--some-custom-function (lend test-custom);
-// If you need to pass an object to a function, you must lend it to it! 
-// Otherwise, you must clone it!
--some-custom-function (clone test-custom);
+// You can pass objects to functions without having to do anything fancy!
+// Any changes made to the object inside the function will also modify the
+// original value!
+-some-custom-Function (Custom-Type test) {
+    // Anything you do here will affect the original object's value!
+}
+-some-custom-Function (test-custom);
+
+Custom-Type test-custom-1 = test-custom; // This is basically the same object,
+                                        // you are not making a duplicate here!
+Custom-Type test-custom-2 = clone test-custom; // You can clone objects like this!
+// [NOTE] The transpiler will fail builds that pass non-duplicatable types
+// 
 
 // [NOTE] Careful! You can't actually call functions on the root-level of the code tree!
 // You need to call functions from within the initial function! This is just a demo!
@@ -382,7 +410,7 @@ try {
  *
 **/
 
-for (Integer i = 0; i < 10; i++) {
+for (Integer- i = 0; i < 10; i++) {
     // If statement
     if (...) {
         //
