@@ -1,6 +1,5 @@
 {
-  "$note-1": "NEVER update this file in the .GITHUB directory!!!",
-  "$note-2": "Names can include all the following characters: [a-zA-Z0-9_-]",
+  "$note": "Names can include all the following characters: [a-zA-Z0-9_-]",
   "$ref-1": "https://github.com/chriscamicas/abl-tmlanguage",
   "$ref-2": "https://github.com/microsoft/vscode/tree/main/extensions/javascript",
   "$ref-3": "https://macromates.com/manual/en/",
