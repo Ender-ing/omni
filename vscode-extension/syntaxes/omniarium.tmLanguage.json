@@ -70,7 +70,45 @@
         {
           "name": "comment.block.documentation.omniarium",
           "begin": "\\/\\*",
-          "end": "\\*\\/"
+          "end": "\\*\\/",
+          "patterns": [
+            {
+              "name": "constant.language.comment.omniarium",
+              "match": "\\s(@[\\w-]+)\\s+([a-z]([a-zA-Z_-]+)?)",
+              "captures": {
+                "1": {
+                  "name": "strong.omniarium"
+                },
+                "2": {
+                  "name": "variable.comment.omniarium"
+                }
+              }
+            },
+            {
+              "name": "constant.language.comment.omniarium",
+              "match": "\\s(@[\\w-]+)\\s+([A-Z]([a-zA-Z_-]+)?)",
+              "captures": {
+                "1": {
+                  "name": "strong.omniarium"
+                },
+                "2": {
+                  "name": "entity.name.type.comment.omniarium"
+                }
+              }
+            },
+            {
+              "name": "constant.language.comment.omniarium",
+              "match": "\\s(@[\\w-]+)\\s+(-([a-zA-Z_-]+)?)",
+              "captures": {
+                "1": {
+                  "name": "strong.omniarium"
+                },
+                "2": {
+                  "name": "entity.name.function.call.omniarium"
+                }
+              }
+            }
+          ]
         }
       ]
     },
