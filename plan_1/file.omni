@@ -455,3 +455,18 @@ while (true) {
 
 // [NOTE] Tabs, whitespace, and new lines are always ignored while parsing! As such,
 // a 'code line' must always end with either a semi-colon (;) or a code block ({...})!
+
+/**
+ *
+ * Note that you can use multi-linear comments to document variables, types, and functions!
+ *
+ * @smth-1 abc
+ * Something about this variable...
+ *
+ * @smth-1 Abc
+ * Something about this type...
+ * 
+ * @smth-1 -abc
+ * Something about this function...
+ *
+**/
