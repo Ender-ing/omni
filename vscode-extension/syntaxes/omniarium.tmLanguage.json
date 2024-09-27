@@ -83,7 +83,7 @@
         },
         {
           "name": "keyword.control.memory.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(lend|borrow|clone|delete|call|new|object)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(link|follow|cede|assume|clone|delete|call|new|prototype|final)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.control.lib.omniarium",
@@ -124,7 +124,7 @@
       "patterns": [
         {
           "name": "entity.name.type.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(Byte|Short|Integer|Long|Float|Double|String|Char|Boolean)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(Byte-|Short-|Integer-|Long-|Float-|Double-|Char-|String|Boolean-)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.boolean.omniarium",
