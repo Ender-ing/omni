@@ -1,55 +1,105 @@
 {
+	"Documentation Comment": {
+		"prefix": ["/*", "comment", "documentation"],
+		"body": [
+			"/**",
+			" *",
+			" * $TM_SELECTED_TEXT$0",
+			" *",
+			"**/"
+		],
+		"description": "Documentation Comment"
+	},
+	"Variable Documentation Comment": {
+		"prefix": ["comment-variable", "documentation-variable"],
+		"body": [
+			"/**",
+			" *",
+			" * @variable ${1:variable}",
+			" * \t\t$TM_SELECTED_TEXT$0",
+			" *",
+			"**/"
+		],
+		"description": "Variable Documentation Comment"
+	},
+	"Function Documentation Comment": {
+		"prefix": ["comment-function", "documentation-function"],
+		"body": [
+			"/**",
+			" *",
+			" * @function -${1:function}",
+			" * \t\t$TM_SELECTED_TEXT$0",
+			" *",
+			"**/"
+		],
+		"description": "Function Documentation Comment"
+	},
+	"Type Documentation Comment": {
+		"prefix": ["comment-type", "documentation-type"],
+		"body": [
+			"/**",
+			" *",
+			" * @type ${1:Type}",
+			" * \t\t$TM_SELECTED_TEXT$0",
+			" *",
+			"**/"
+		],
+		"description": "Type Documentation Comment"
+	},
 	"Import Statement": {
 		"prefix": "import",
 		"body": [
-			"import { $0 } from \"${1:module}\";"
+			"import ${0:component} from ${1:module};"
 		],
-		"description": "Import external module"
+		"description": "Import statement"
 	},
-	"X Function": {
-		"prefix": "x",
+	"Import Standard Statement": {
+		"prefix": "import-standard",
 		"body": [
-			"x($1);",
-			"$0"
+			"import ${0:component} from standard.${1:module};"
 		],
-		"description": "X function description"
+		"description": "Import standard statement"
 	},
-	"Keyword Use": {
-		"prefix": "keyword-x",
+	"Export Statement": {
+		"prefix": "export",
 		"body": [
-			"keyword-x ????(\"$1\");",
-			"$0"
+			"export ${1:component};$0"
 		],
-		"description": "Keyword description"
+		"description": "Export statement"
 	},
-	"For Loop": {
-		"prefix": "for",
+	"Filter Statement": {
+		"prefix": "filter",
 		"body": [
-			"for (Integer ${1:index} = 0; ${1:index} < ${2:array}.length; ${1:index}++) {",
+			"filter @${1:name} {",
 			"\t$TM_SELECTED_TEXT$0",
 			"}"
 		],
-		"description": "For Loop"
+		"description": "Filter statement"
 	},
-	"For-In Loop": {
-		"prefix": "forin",
+	"Function Declaration": {
+		"prefix": "function",
 		"body": [
-			"for (Integer ${1:key} in ${2:object}) {",
-			"\tif (Object.prototype.hasOwnProperty.call(${2:object}, ${1:key})) {",
-			"\t\t$TM_SELECTED_TEXT$0",
-			"\t}",
-			"}"
-		],
-		"description": "For-In Loop"
-	},
-	"Y Statement": {
-		"prefix": "y-statement",
-		"body": [
-			"y-statement ${1:name}(${2:params}) {",
+			"-${1:name} (${2:Type arg}) {",
 			"\t$TM_SELECTED_TEXT$0",
 			"}"
 		],
-		"description": "Y Statement"
+		"description": "Function declaration"
+	},
+	"Typed Function Declaration": {
+		"prefix": "function-type",
+		"body": [
+			"${2:Type} -${1:name} (${3:Type arg}) {",
+			"\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "Function declaration (with return type)"
+	},
+	"Return Statement": {
+		"prefix": "return",
+		"body": [
+			"return ${1:name};$0"
+		],
+		"description": "Return statement"
 	},
 	"If Statement": {
 		"prefix": "if",
@@ -58,7 +108,7 @@
 			"\t$TM_SELECTED_TEXT$0",
 			"}"
 		],
-		"description": "If Statement"
+		"description": "If statement"
 	},
 	"If-Else Statement": {
 		"prefix": "ifelse",
@@ -69,13 +119,140 @@
 			"\t",
 			"}"
 		],
-		"description": "If-Else Statement"
+		"description": "If-Else statement"
+	},
+	"Else-If Statement": {
+		"prefix": "elseif",
+		"body": [
+			"else if (${1:condition}) {",
+			"\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "Else-If statement"
+	},
+	"Else Statement": {
+		"prefix": "else",
+		"body": [
+			"else {",
+			"\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "Else statement"
+	},
+	"Switch Statement": {
+		"prefix": "switch",
+		"body": [
+			"switch (${1:variable}) {",
+			"\tcase ${2:value}:",
+			"\t\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "Switch statement"
+	},
+	"Define variable": {
+		"prefix": "variable",
+		"body": [
+			"${2:Type} ${1:name}$0;"
+		],
+		"description": "Define variable"
+	},
+	"Define variable with new": {
+		"prefix": "variable-new",
+		"body": [
+			"${2:Type} ${1:name} = new self (${3:arguments});$0"
+		],
+		"description": "Define variable with new statement"
+	},
+	"Define variable with value": {
+		"prefix": "variable-value",
+		"body": [
+			"${2:Type} ${1:name} = $TM_SELECTED_TEXT$0;"
+		],
+		"description": "Define variable with a value"
 	},
 	"New Statement": {
 		"prefix": "new",
 		"body": [
-			"${2:type} ${1:name} = new ${2:type}(${3:arguments});$0"
+			"new ${1:Type} (${2:arguments})$0"
 		],
 		"description": "New Statement"
+	},
+	"New Self Statement": {
+		"prefix": "new-self",
+		"body": [
+			"new self (${1:arguments})$0"
+		],
+		"description": "New self statement"
+	},
+	"Prototype Statement": {
+		"prefix": "prototype",
+		"body": [
+			"prototype ${1:Type} {",
+			"\tself (${2:Type arg}) {",
+			"\t\t$TM_SELECTED_TEXT$0;",
+			"\t\treturn self;",
+			"\t}",
+			"}"
+		],
+		"description": "Prototype declaration"
+	},
+	"Try-Catch Statement": {
+		"prefix": "try-catch",
+		"body": [
+			"try {",
+			"\t$TM_SELECTED_TEXT$0",
+			"} catch (${1:Error error}) {",
+			"\t",
+			"}"
+		],
+		"description": "Try-Catch statement"
+	},
+	"Throw Statement": {
+		"prefix": "throw",
+		"body": [
+			"throw new ${1:Error} ($TM_SELECTED_TEXT$0);"
+		],
+		"description": "Throw statement"
+	},
+	"For Loop": {
+		"prefix": "for",
+		"body": [
+			"for (Integer- ${1:index} = 0; ${1:index} < ${2:0}; ${1:index}++) {",
+			"\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "For Loop"
+	},
+	"While Loop": {
+		"prefix": "while",
+		"body": [
+			"while (${1:condition}) {",
+			"\t$TM_SELECTED_TEXT$0",
+			"}"
+		],
+		"description": "While Loop"
+	},
+	"Do-While Loop": {
+		"prefix": "do-while",
+		"body": [
+			"do {",
+			"\t$TM_SELECTED_TEXT$0",
+			"} while (${1:condition});"
+		],
+		"description": "Do-While Loop"
+	},
+	"Break Statement": {
+		"prefix": "break",
+		"body": [
+			"break;$0"
+		],
+		"description": "Break statement"
+	},
+	"Continue Statement": {
+		"prefix": "continue",
+		"body": [
+			"continue;$0"
+		],
+		"description": "Continue statement"
 	}
 }
