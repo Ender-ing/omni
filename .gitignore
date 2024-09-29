@@ -29,7 +29,7 @@
 ## NodeJS ignore list
 node_modules
 
-## VSCode ignore list
+## Visual Studio list
 *.vsix
 
 ## Temporary files
