@@ -26,6 +26,12 @@
 *.out
 *.app
 
+## NodeJS ignore list
+node_modules
+
+## VSCode ignore list
+*.vsix
+
 ## Temporary files
 *.tmp
 *.tmp.*
