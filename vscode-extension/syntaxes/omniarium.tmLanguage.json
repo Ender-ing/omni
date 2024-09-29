@@ -225,7 +225,7 @@
       "patterns": [
         {
           "name": "meta.preprocessor",
-          "match": "(((@|@!)[\\w_-]+))",
+          "match": "(((@|@!|@\\?)[\\w_-]+))",
           "captures": {
             "1": {
               "name": "constant.character.escape"
