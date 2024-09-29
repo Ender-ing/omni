@@ -1,17 +1,22 @@
 # MIT License
 
-This MIT License applies to the Omniarium transpiler - all the source code,
-libraries, and executables directly related to translating Omniarium code into
-target code -, the documentation of the Omniarium transpiler - any user
-manuals, tutorials, or reference guides explaining how to use the transpiler or
-the inner workings of the transpiler -, the Omniarium programming
-language - encompassing the aggregation of the syntax, semantics, and features
-of the language itself -, and the documentation of the Omniarium programming
-language - any materials explaining the concepts, keywords, and overall
-structure of the language -, but does not extend to any software created using
-the Omniarium programming language. As such, when using the term "Software",
-one should assume all of the aforementioned included elements to be part of
-said term.
+This MIT License applies to:
+
+- The Omniarium transpiler - all the source code, libraries, and executables
+directly related to translating Omniarium code into target code -
+- The documentation of the Omniarium transpiler - any user manuals, tutorials,
+or reference guides explaining how to use the transpiler or the inner workings
+of the transpiler -
+- The Omniarium programming language - encompassing the aggregation of the
+syntax, semantics, and features of the language itself -
+- The documentation of the Omniarium programming language - any materials
+explaining the concepts, keywords, and overall structure of the language -
+- The extension(s) made to help users with the use of the Omniarium programming
+language
+
+but DOES NOT extend to any software or works created using the Omniarium
+programming language. As such, when using the term "Software", one should assume
+all of the aforementioned included elements to be part of said term.
 
 Copyright (c) 2024 Ender.ing (<https://github.com/Ender-ing/omni>),
                    0xENDER (<https://github.com/0xENDER>)
@@ -60,3 +65,6 @@ trademark rights.
 If you are contributing code that is subject to a different license, please
 clearly indicate the license in your contribution and provide any necessary
 permissions for its use.
+
+Any contributions made without explicit statements are assumed to fall under
+this license!
