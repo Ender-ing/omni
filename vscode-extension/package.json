@@ -1,31 +1,71 @@
 {
     "name": "omniarium",
+    "main": "scripts/extension.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
     "version": "0.0.1",
-    "icon": "./icons/plain.png",
+    "icon": "icons/plain.png",
     "engines": {
-        "vscode": ">=0.9.0-pre.1"
+        "vscode": ">=1.93.0"
     },
     "publisher": "0xENDER",
     "contributes": {
-        "languages": [{
-            "id": "omniarium",
-            "aliases": ["Omniarium", "Omni"],
-            "extensions": [".omni"],
-            "icon": {
-                "light": "./icons/light.png",
-                "dark": "./icons/dark.png"
+        "languages": [
+            {
+                "id": "omniarium",
+                "aliases": [
+                    "Omniarium",
+                    "Omni"
+                ],
+                "extensions": [
+                    ".omni"
+                ],
+                "icon": {
+                    "light": "icons/light.png",
+                    "dark": "icons/dark.png"
+                },
+                "formatter": {
+                    "scheme": "file",
+                    "language": "omniarium"
+                }
             }
-        }],
-        "grammars": [{
-            "language": "omniarium",
-            "scopeName": "source.omniarium",
-            "path": "./syntaxes/omniarium.tmLanguage.json"
-        }],
-        "snippets": [{
-            "language": "omniarium",
-            "path": "./snippets/omniarium.code-snippets.json"
-        }]
+        ],
+        "grammars": [
+            {
+                "language": "omniarium",
+                "scopeName": "source.omniarium",
+                "path": "./syntaxes/omniarium.tmLanguage.json"
+            }
+        ],
+        "snippets": [
+            {
+                "language": "omniarium",
+                "path": "./snippets/omniarium.code-snippets.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "omniarium.msg",
+                "title": "Show a test Omniarium Hello Message!",
+                "category": "Omniarium"
+            }
+        ]
+    },
+    "activationEvents": [
+        "onLanguage:omniarium",
+        "onCommand:omniarium.activate",
+        "workspaceContains:**/.omni.manifest"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Ender-ing/omni.git"
+    },
+    "scripts": {
+        "build": "tsc",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.93.0",
+        "vscode": "^1.1.34"
     }
 }
