@@ -21,7 +21,7 @@
 // context separation (e.g. && or || conditions)
 
 // Import platform filters
-import @javascript as @web, @java as @android from standard.targets;
+import @?javascript as @web, @?java as @android from standard.targets;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
@@ -87,7 +87,7 @@ filter @my-filter {
 
 // [NOTE] You can use filters only at the start of a code-statement
 
-// [NOTE] Your library should be based on one of the available language targets! (like @java or such)
+// [NOTE] Your library should be based on one of the available language targets! (@?target)
 // Should your specific library require the implementation of a new language target (say a new
 // programming language), do not mix it with your niche project-specific needs! Make a independent
 // custom language target from scratch, then base your library on that language target!
@@ -196,7 +196,7 @@ import -get-java-element-by-id, Java-View from standard.targets.java;
 // [NOTE] "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
 // a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
 // the source filters and such!
-// ideally, a ready-for-use library that is intended to help with a spicific collection of source targets should not
+// Ideally, a ready-for-use library that is intended to help with a spicific collection of source targets should not
 // require the user to make use of any source target filters in their projects!
 
 /**
@@ -215,7 +215,7 @@ import -get-java-element-by-id, Java-View from standard.targets.java;
 // You may use aliases with type definitions, variables, constants, and functions!
 // [NOTE] The "is" keyword is mainly intended for use within library files!
 // It is not recommended to use this keyword in normal project files!
-prototype Elm-Obj is @web DOM-Element, @java Java-View;
+prototype Elm-Obj is @web DOM-Element, @android Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
 String original-string = "Hi!";
 String string-alias is original-string;
@@ -336,6 +336,7 @@ prototype Custom-Type {
     // The "self" keyword can be used to manage the object's creation!
     self (Integer- a) {
         self.a = a;
+        return self;
     }
     self (Integer- a, Integer- b) {
         self.a = a;
@@ -396,7 +397,7 @@ try {
 
     // ...
     throw new Error ("My error message!");
-} catch (Error e) {
+} catch (Error error) {
     // handle error!
     // ...
 }
@@ -470,3 +471,4 @@ while (true) {
  * Something about this function...
  *
 **/
+
