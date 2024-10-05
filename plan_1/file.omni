@@ -30,11 +30,18 @@ import x, -y, z from custom-lib;
 // And custom libraries can have inner paths of their own
 import Type-X, Type-Y, Type-Z from custom-lib.types;
 
+// You may import all code from a library like this!
+import * from custom-lib.types;
+
+// You may also use a prefix keyword to import all code from a library!
+import * as my-handle from custom-lib.types;
+my-handle.Type-X; // You'd have to use the custom handle you used in the declaration!
+
 // [NOTE] "import" statements are root-exclusive!
 
 // All data that is meant to be imported using the "import" statement needs to be exported using
 // the "export" statement within the library file!
-export Integer- a = 0;
+export integer a = 0;
 
 // [NOTE] "export" statements are root-exclusive!
 
@@ -60,8 +67,8 @@ filter @my-filter {
     return ((@web true) != empty || (@android true) != empty);
 }
 
-// [NOTE] The symbol "#" is used to access transpiler compile-time values!
-// Defined compile-time values are always strings!
+// [NOTE] The symbol "#" is used to access transpiler transpile-time values!
+// Defined transpile-time values are always strings!
 
 // This is another way to implement this filter
 filter @my-filter {
@@ -79,8 +86,8 @@ filter @my-filter {
 
 // [NOTE] "filter" statements are root-exclusive!
 
-// [NOTE] "filter" statements are only processed at compile-time! Any variables
-// used inside the filter's initial definition code block need to be defined at compile-time!
+// [NOTE] "filter" statements are only processed at transpile-time! Any variables
+// used inside the filter's initial definition code block need to be defined at transpile-time!
 
 @my-filter
 "hiiii";
@@ -107,39 +114,39 @@ filter @custom-target {
  * Notice that an empty Omni code file does not include any types by default!
  * 
  * List of planned types:
- * Numbers: Byte-, Short-, Integer-, Long-, Float-, Double-,
- * Text: String, Char-,
- * Bool: Boolean-,
+ * Numbers: byte, short, integer, long, float, double,
+ * Text: String, char,
+ * Bool: boolean,
  * Error Handling: Error,
  *
- * All types that end with a dash are automatically duplicated when passed to functions,
- * or when used as values for new variables!
+ * All types that don't start with a capital letter are primitive types, and are automatically
+ * duplicated when passed to functions or when used as values for new variables!
  * (If you wish to modify their values inside the function, or make another reference for
  * them, you must refer or cede them!)
  *
  * (Note that due to the need for a semi-consistent memory behavior between different language targets,
- * the compiler may use types different from the original language's basic types!)
+ * the transpiler may use types different from the original language's basic types!)
  *
 **/
 
 // Standard types
-import String, Integer- from standard.types;
+import String, integer from standard.types;
 
-Integer- a = 0;
+integer a = 0;
 
--some-function (Integer- my-a) {
+-some-function (integer my-a) {
     // ...
     // You can do everything, except for deleting the variable!
     // Any changes made here will affect the original variable!
     my-a = 1;
 }
--some-function-1 (follow Integer- my-a) {
+-some-function-1 (follow integer my-a) {
     // ...
     // You can do everything, except for deleting the variable!
     // Any changes made here will affect the original variable!
     my-a = 1;
 }
--some-function-2 (assume Integer- my-a) {
+-some-function-2 (assume integer my-a) {
     // ...
     // The value is not duplicated, and the original value will be deleted after this function is done,
     // and this function will have full control over this value!
@@ -152,9 +159,9 @@ Integer- a = 0;
 -some-function-2 (cede a); // The value of 'a' did indeed change, but it has been deleted now!
 
 // If you wish to reuse the 'a' name for a variable, you can do so now! (because you already ceded the variable!)
-Integer- a = 10;
+integer a = 10;
 
-Integer- a-ref = follow link a; // This is effectively a run-time alias for the same variable!
+integer a-ref = follow link a; // This is effectively a run-time alias for the same variable!
 a-ref = 0; // Now, the value of 'a' is '0'!
 
 String b = "The value of integer 'a' is '{a}'!";
@@ -174,18 +181,18 @@ c += " I'm here to help you!";
 // that may require modification of an already-existing string!
 
 // Arrays
-import Array, Byte-, Char from standard.types;
+import Array, byte, Char from standard.types;
 
-Array<Byte-> bytes = new Array<Byte-> (10); // a 'Byte' array with 10 items
-Array<Byte-,> double-bytes = new Array<Byte-,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
+Array<byte> bytes = new Array<byte> (10); // a 'Byte' array with 10 items
+Array<byte,> double-bytes = new Array<byte,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
 
 // The 'self' keyword refers to the type of the variable that is being defined!
-Array<Byte-,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
+Array<byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
 
 /**
  *
  * Filters can be used to write functions that do the same
- * thing on all different compilation targets!
+ * thing on all different transpilation targets!
  *
 **/
 @web
@@ -219,13 +226,16 @@ prototype Elm-Obj is @web DOM-Element, @android Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
 String original-string = "Hi!";
 String string-alias is original-string;
-String -original-function (Integer- num) {
+String -original-function (integer num) {
     return "My number is '{num}'!"
 }
-String -function-alias (Integer- my-number) is -original-function; // Note that the alias function input variables' names
+String -function-alias (integer my-number) is -original-function; // Note that the alias function input variables' names
                                             // can differ, but their types and other related attributes should
                                             // remain the same!
 
+
+// In order to inject target code, you need to tell the transpiler the type of the injected code
+import * as inject-target from standard.injects.targets;
 
 // Functions!
 Elm-Obj -get-element (String id) {
@@ -245,20 +255,33 @@ Elm-Obj -get-element (String id) {
          * (NEVER inject code without a target filter!)
          *
         **/
-        inject {
+        String x = "hahaha";
+        inject {{
             // you can inject native Java code!
-        }
+            // You must prefix variables, functions, and types with the symbol: "~"
+            // If you do not use a prefix, the names of these elements will most likely not follow their corresponding
+            // elements in your code!
+
+            String y = "nananana";
+            final char[] X = ~x.toCharArray(); // Note that since "x" was defined using Omni code, you need to use the
+                                            // prefix "~". (because the name 'x' may not be the actual final name for the
+                                            // original variable!)
+            final char[] Y = y.toCharArray();
+            for(int i = 0; i < x.length; i++);
+            ~String z = ~x; // You may use this prefix with any element that may have a different name in the final
+                            // target code!
+        }} as inject-target.java;
     }
     return elm;
 }
 
 // [NOTE] function definitions are root-exclusive!
 
-Integer- -my-func () {
+integer -my-func () {
     // All this code above enables us to use one function
     // to write code for both targets @web and @android
     final Elm-Obj my-elm = -get-element ("my-id");
-    Integer- r;
+    integer r;
 
     if (my-elm != empty) {
         r = 0;
@@ -285,7 +308,7 @@ default my-func;
 
 // You may define a function that doesn't return values as follows
 // (notice that the Any & Void types are NOT supported)
--empty-func (Integer- a) {
+-empty-func (integer a) {
     // do something with 'a'...
 }
 
@@ -299,15 +322,15 @@ default my-func;
  *
 **/
 
--add-one (borrow Integer- num) {
+-add-one (borrow integer num) {
     // You can borrow the variable itself without causing duplication!
     num++;
     // Note that borrowed variables (a.k.a. non-duplicate variables) are only freed
     // at the end of their original scope!
     // If you try to free the borrowed variable here, this will result in an error!
-    delete num; // This will prevent your program from being compiled!
+    delete num; // This will prevent your program from being transpiled!
 }
-Integer- test-num;
+integer test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
 -add-one (lend test-num);
 // [NOTE] depending on your targeted language, the using of borrowing and lending may result in
@@ -325,30 +348,30 @@ Integer- test-num;
 @!deprecated @!library-exclusive @!static
 prototype Custom-Type {
     // Values used by this type/object!
-    Integer- b; // Can be only accessed within non-exposed object functions              - protected
-    expose Integer- a; // Can access this value directly (custom-var.a)                  - static
-    local Integer- d; // Cannot be inherited by new object types!                        - private
-    expose local Integer- e; // You can combine these keywords!
+    integer b; // Can be only accessed within non-exposed object functions              - protected
+    expose integer a; // Can access this value directly (custom-var.a)                  - static
+    local integer d; // Cannot be inherited by new object types!                        - private
+    expose local integer e; // You can combine these keywords!
 
     // Functions that make use of certain keywords are type/object event functions!
     // These functions are used to manage the behaviour of the data type!
 
     // The "self" keyword can be used to manage the object's creation!
-    self (Integer- a) {
+    self (integer a) {
         self.a = a;
         return self;
     }
-    self (Integer- a, Integer- b) {
+    self (integer a, integer b) {
         self.a = a;
         self.b = b;
     }
 
-    expose Integer- -asddda () {
+    expose integer -asddda () {
         // Some function that doesn't reply on unexposed values!
     }
 
     // Define type-related functions!
-    Integer- -get-a () {
+    integer -get-a () {
         return self.a;
     }
 
@@ -366,7 +389,7 @@ prototype Custom-Type {
     // ...
 }
 Custom-Type test-custom = new self(0);
-Integer- my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
+integer my-a = test-custom.-get-a (); // You can use type functions like this when a value is 'private'!
 
 // You can pass objects to functions without having to do anything fancy!
 // Any changes made to the object inside the function will also modify the
@@ -411,14 +434,14 @@ try {
  *
 **/
 
-for (Integer- i = 0; i < 10; i++) {
+for (integer i = 0; i < 10; i++) {
     // If statement
     if (...) {
         //
         break;
     } else if (...) {
         //
-        continue;
+        continue;keyword.boolean.omniarium
     } else {
         //
     }
@@ -464,11 +487,44 @@ while (true) {
  * @smth-1 abc
  * Something about this variable...
  *
- * @smth-1 Abc
+ * @smth-2 Abc
  * Something about this type...
  * 
- * @smth-1 -abc
+ * @smth-3 -abc
  * Something about this function...
+ *
+ * @smth-4 #abc
+ * Something about this constant...
+ *
+ * @smth-5 $abc
+ * Something about this constant...
+ *
+ * @smth-6 integer
+ * Something about this primitive type...
+ *
+ * @smth-7 true
+ * Something about this value...
+ *
+ * @smth-8 empty
+ * Something about this value...
+ *
+ * @smth-9 123
+ * Something about this value...
+ *
+ * @smth-10 "abc"
+ * Something about this value...
+ *
+ * @smth-11 'a'
+ * Something about this value...
+ *
+ * @smth-12 @aaaaa
+ * Something about this filter...
+ *
+ * @smth-13 @?aaaaa
+ * Something about this filter...
+ *
+ * @smth-14 @!aaaaa
+ * Something about this filter...
  *
 **/
 
