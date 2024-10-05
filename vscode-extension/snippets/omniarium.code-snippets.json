@@ -254,5 +254,14 @@
 			"continue;$0"
 		],
 		"description": "Continue statement"
+	},
+	"Inject Statement": {
+		"prefix": "inject",
+		"body": [
+			"inject {{",
+			"\t$TM_SELECTED_TEXT$0",
+			"}} as ${1:target};"
+		],
+		"description": "Inject statement"
 	}
 }
