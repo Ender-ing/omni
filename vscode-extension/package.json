@@ -53,8 +53,9 @@
     },
     "activationEvents": [
         "onLanguage:omniarium",
-        "onCommand:omniarium.activate",
-        "workspaceContains:**/.omni.manifest"
+        "workspaceContains:**/.omni.manifest",
+        "workspaceContains:**/.omni.ini",
+        "workspaceContains:**/*.omni"
     ],
     "repository": {
         "type": "git",
