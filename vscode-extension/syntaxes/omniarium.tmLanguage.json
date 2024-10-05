@@ -24,6 +24,9 @@
           "include": "#keywords"
         },
         {
+          "include": "#injects"
+        },
+        {
           "include": "#objects"
         },
         {
@@ -223,7 +226,7 @@
         },
         {
           "name": "keyword.control.lib.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(import|export|from|inject)(?![a-zA-Z0-9_-])"
+          "match": "(?<![a-zA-Z0-9_])(import|export|from)(?![a-zA-Z0-9_-])"
         },
         {
           "name": "keyword.control.class.omniarium",
@@ -232,6 +235,41 @@
         {
           "name": "keyword.control.flow.omniarium",
           "match": "(?<![a-zA-Z0-9_])(return|break|continue|throw)(?![a-zA-Z0-9_-])"
+        }
+      ]
+    },
+    "injects": {
+      "patterns": [
+        {
+          "begin": "(?<![a-zA-Z0-9_])(inject)(?![a-zA-Z0-9_-])\\s*(\\{\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.inject.omniarium"
+            },
+            "2": {
+              "name": "punctuation.section.embedded.begin.omniarium"
+            }
+          },
+          "end": "(\\}\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.section.embedded.end.omniarium"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.omniarium",
+              "match": "~[a-zA-Z0-9_-]*"
+            },
+            {
+              "name": "string.regexp.inject.omniarium",
+              "match": ".+?"
+            }
+          ]
+        },
+        {
+          "name": "keyword.control.inject.omniarium",
+          "match": "(?<![a-zA-Z0-9_])(inject)(?![a-zA-Z0-9_-])"
         }
       ]
     },

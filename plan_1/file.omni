@@ -255,14 +255,22 @@ Elm-Obj -get-element (String id) {
          * (NEVER inject code without a target filter!)
          *
         **/
-        inject {
+        String x = "hahaha";
+        inject {{
             // you can inject native Java code!
-            // You must prefix variables with the string: "__var_"
-            // You must prefix functions with the string: "__fun_"
-            // You must prefix types/classes with the string: "__typ_"
+            // You must prefix variables, functions, and types with the symbol: "~"
             // If you do not use a prefix, the names of these elements will most likely not follow their corresponding
             // elements in your code!
-        } as inject-target.java;
+
+            String y = "nananana";
+            final char[] X = ~x.toCharArray(); // Note that since "x" was defined using Omni code, you need to use the
+                                            // prefix "~". (because the name 'x' may not be the actual final name for the
+                                            // original variable!)
+            final char[] Y = y.toCharArray();
+            for(int i = 0; i < x.length; i++);
+            ~String z = ~x; // You may use this prefix with any element that may have a different name in the final
+                            // target code!
+        }} as inject-target.java;
     }
     return elm;
 }
