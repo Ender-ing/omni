@@ -46,6 +46,9 @@
           "include": "#strings"
         },
         {
+          "include": "#regex"
+        },
+        {
           "include": "#types"
         },
         {
@@ -291,6 +294,29 @@
               "include": "$self"
             }
           ]
+        }
+      ]
+    },
+    "regex": {
+      "begin": "/",
+      "beginCaptures": {
+        "0": {
+          "name": "string.regexp.omniarium"
+        }
+      },
+      "end": "(/)([a-z]*)",
+      "endCaptures": {
+        "1": {
+          "name": "string.regexp.omniarium"
+        },
+        "2": {
+          "name": "keyword.other.flags.omniarium"
+        }
+      },
+      "patterns": [
+        {
+          "name": "string.regexp.omniarium",
+          "match": "(\\\\.|[^\/\\\\])*" 
         }
       ]
     },
