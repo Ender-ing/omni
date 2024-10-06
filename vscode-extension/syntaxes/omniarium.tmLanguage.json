@@ -298,13 +298,13 @@
               "name": "keyword.control.inject.omniarium"
             },
             "2": {
-              "name": "punctuation.section.embedded.begin.omniarium"
+              "name": "keyword.operator.begin.omniarium"
             }
           },
           "end": "(\\}\\})",
           "endCaptures": {
             "1": {
-              "name": "punctuation.section.embedded.end.omniarium"
+              "name": "keyword.operator.end.omniarium"
             }
           },
           "patterns": [
