@@ -1,5 +1,5 @@
 {
-  "$note": "Names can include all the following characters: [a-zA-Z0-9_-]",
+  "$note": "Names can include all the following characters: [\\w-]",
   "$ref-1": "https://github.com/chriscamicas/abl-tmlanguage",
   "$ref-2": "https://github.com/microsoft/vscode/tree/main/extensions/javascript",
   "$ref-3": "https://macromates.com/manual/en/",
@@ -152,7 +152,7 @@
             },
             {
               "name": "constant.language.comment.constant.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([#\\$]([a-zA-Z_-]+)?)",
+              "match": "\\s(@[\\w-]+)\\s+([#\\$]([\\w-]+)?)",
               "captures": {
                 "1": {
                   "name": "strong.omniarium"
@@ -179,7 +179,7 @@
             },
             {
               "name": "constant.language.comment.variable.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([a-z]([a-zA-Z_-]+)?)",
+              "match": "\\s(@[\\w-]+)\\s+([a-z]([\\w-]+)?)",
               "captures": {
                 "1": {
                   "name": "strong.omniarium"
@@ -191,7 +191,7 @@
             },
             {
               "name": "constant.language.comment.class.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([A-Z]([a-zA-Z_-]+)?)",
+              "match": "\\s(@[\\w-]+)\\s+([A-Z]([\\w-]+)?)",
               "captures": {
                 "1": {
                   "name": "strong.omniarium"
@@ -203,7 +203,7 @@
             },
             {
               "name": "constant.language.comment.function.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+(-([a-zA-Z_-]+)?)",
+              "match": "\\s(@[\\w-]+)\\s+(-([a-zA-Z_-][\\w-]+)?)",
               "captures": {
                 "1": {
                   "name": "strong.omniarium"
@@ -221,30 +221,30 @@
       "patterns": [
         {
           "name": "keyword.control.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)(?![\\w-])"
         },
         {
           "name": "keyword.control.memory.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(link|follow|cede|assume|clone|delete|call|new|prototype|final)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(link|follow|cede|assume|clone|delete|call|new|prototype|final)(?![\\w-])"
         },
         {
           "name": "keyword.control.lib.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(import|export|from)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(import|export|from)(?![\\w-])"
         },
         {
           "name": "keyword.control.class.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(expose|local)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(expose|local)(?![\\w-])"
         },
         {
           "name": "keyword.control.flow.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(return|break|continue|throw)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(return|break|continue|throw)(?![\\w-])"
         }
       ]
     },
     "injects": {
       "patterns": [
         {
-          "begin": "(?<![a-zA-Z0-9_])(inject)(?![a-zA-Z0-9_-])\\s*(\\{\\{)",
+          "begin": "(?<![\\w])(inject)(?![\\w-])\\s*(\\{\\{)",
           "beginCaptures": {
             "1": {
               "name": "keyword.control.inject.omniarium"
@@ -262,7 +262,7 @@
           "patterns": [
             {
               "name": "constant.character.escape.omniarium",
-              "match": "(?<!\\\\)~[a-zA-Z0-9_-]*"
+              "match": "(?<!\\\\)~[\\w-]*"
             },
             {
               "name": "constant.character.escape.omniarium",
@@ -276,7 +276,7 @@
         },
         {
           "name": "keyword.control.inject.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(inject)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(inject)(?![\\w-])"
         }
       ]
     },
@@ -328,19 +328,19 @@
       "patterns": [
         {
           "name": "keyword.type.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(byte|short|integer|long|float|double|char|boolean)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(byte|short|integer|long|float|double|char|boolean)(?![\\w-])"
         },
         {
           "name": "entity.name.type.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(Error|String)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(Error|String)(?![\\w-])"
         },
         {
           "name": "keyword.boolean.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(true|false)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(true|false)(?![\\w-])"
         },
         {
           "name": "constant.language.null.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(empty)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(empty)(?![\\w-])"
         },
         {
           "name": "string.quoted.single.omniarium",
@@ -348,11 +348,11 @@
         },
         {
           "name": "constant.numeric.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(\\d+(\\.\\d+)?)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(\\d+(\\.\\d+)?)(?![\\w-])"
         },
         {
           "name": "keyword.constant.user.omniarium",
-          "match": "\\$[a-z][a-zA-Z0-9_-]*"
+          "match": "\\$[a-z][\\w-]*"
         },
         {
           "name": "keyword.constant.omniarium",
@@ -364,15 +364,15 @@
       "patterns": [
         {
           "name": "entity.name.type.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(Error)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(Error)(?![\\w-])"
         },
         {
           "name": "entity.name.type.class.omniarium",
-          "match": "(?<![a-zA-Z0-9_])([A-Z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])([A-Z][\\w-]*)(?![\\w-])"
         },
         {
           "name": "keyword.control.self.omniarium",
-          "match": "(?<![a-zA-Z0-9_])(self)(?![a-zA-Z0-9_-])"
+          "match": "(?<![\\w])(self)(?![\\w-])"
         }
       ]
     },
@@ -380,7 +380,7 @@
       "patterns": [
         {
           "name": "entity.name.function.call.omniarium",
-          "match": "(?<![a-zA-Z0-9_])-[a-zA-Z_-][a-zA-Z0-9_-]*"
+          "match": "(?<![\\w])-[a-zA-Z_-][\\w-]*"
         }
       ]
     },
@@ -388,7 +388,7 @@
       "patterns": [
         {
           "name": "variable.other.omniarium",
-          "match": "\\b([a-z][a-zA-Z0-9_-]*)(?![a-zA-Z0-9_-])"
+          "match": "\\b([a-z][\\w-]*)(?![\\w-])"
         }
       ]
     },
