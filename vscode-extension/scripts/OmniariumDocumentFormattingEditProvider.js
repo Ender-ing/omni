@@ -48,8 +48,19 @@ class OmniariumDocumentFormattingEditProvider {
         let line = document.lineAt(lineNumber);
         while (line) {
             if (!line.isEmptyOrWhitespace) {
+                // Tabs
                 const indentEdit = vscode.TextEdit.insert(line.range.start, tab);
                 edits.push(indentEdit);
+                // To-do:
+                // - Remove non-padding extra whitespace
+                // - Add lists of symbols that need this padding: "1"
+                //   - Remove whitespace before and after dots
+                // - Add lists of symbols that need this padding: " 1"
+                //   - Add whitespace at the start of opening brackets & remove whitespace at the end of opening brackets
+                // - Add lists of symbols that need this padding: "1 "
+                //   - Remove whitespace at the start of closing brackets & add whitespace at the end of closing brackets
+                //   - Remove whitespace before commas and add whitespace after commas
+                // - Add lists of symbols that need this padding: " 1 "
             }
             lineNumber++;
             line = document.lineAt(lineNumber);

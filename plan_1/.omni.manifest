@@ -1,4 +1,10 @@
-// Each project that needs to be compiled must include a configuration file!
+/**
+ *
+ * Omniarium project manifest!
+ *
+ * Each project that needs to be compiled must include this configuration file!
+ *
+**/
 {
     // Basic info about your project
     "name": "...", // Name your project (make sure it's unique)
@@ -32,12 +38,16 @@
     },
     // build-related info
     "build": {
+        "minify": false, // State if you'd like your code to be minified! (whitespace & similar symbols are filtered)
+        "random-names": false, // State if you'd like the names of your functions, variables, and classes/types to be
+                            // randomised or not! (random names are set to be as short as possible)
         // Specify the desired compilation targets
-        // Notice you can only import libraries that support all your targets!
+        // Notice that you can only import libraries that support all your targets!
         "targets": {
             // The name of each object here would be the ID of your target
             "...": {
                 // Any additional requirements for this target need to be included here!
+                // You may also overwrite some global "build" settings here!
             }
         }
     }

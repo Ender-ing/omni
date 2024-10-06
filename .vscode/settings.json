@@ -21,5 +21,11 @@
         "**/.git/**": true,
         "**/node_modules/**": true,
         "**/.vscode0/**": true
+    },
+    // File associations
+    "files.associations": {
+        "*.omni.manifest": "jsonc",
+        "*.omni.ini": "ini",
+        "*.omni": "omniarium"
     }
 }
