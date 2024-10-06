@@ -319,11 +319,11 @@ default my-func;
  * in a function is duplicated, meaning that the function uses a variable that does
  * not share the same address as the input value!
  * 
- * But custom types and big data types (objects) are not duplicated, they must be lent!
+ * But custom types and big data types (objects) are not duplicated!
  *
 **/
 
--add-one (borrow integer num) {
+-add-one (follow integer num) {
     // You can borrow the variable itself without causing duplication!
     num++;
     // Note that borrowed variables (a.k.a. non-duplicate variables) are only freed
@@ -333,7 +333,7 @@ default my-func;
 }
 integer test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
--add-one (lend test-num);
+-add-one (link test-num);
 // [NOTE] depending on your targeted language, the using of borrowing and lending may result in
 // increased memory usage! So use this carefully! (e.g. if you borrow an integer, the final
 // JavaScript code variable may hold the value inside an array, depening in the original code)
