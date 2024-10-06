@@ -266,6 +266,7 @@ Elm-Obj -get-element (String id) {
             final char[] X = ~x.toCharArray(); // Note that since "x" was defined using Omni code, you need to use the
                                             // prefix "~". (because the name 'x' may not be the actual final name for the
                                             // original variable!)
+            // You may use the backslash character to escape this prefix "\~aa"!
             final char[] Y = y.toCharArray();
             for(int i = 0; i < x.length; i++);
             ~String z = ~x; // You may use this prefix with any element that may have a different name in the final

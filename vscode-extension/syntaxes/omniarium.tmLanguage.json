@@ -262,7 +262,11 @@
           "patterns": [
             {
               "name": "constant.character.escape.omniarium",
-              "match": "~[a-zA-Z0-9_-]*"
+              "match": "(?<!\\\\)~[a-zA-Z0-9_-]*"
+            },
+            {
+              "name": "constant.character.escape.omniarium",
+              "match": "\\\\~"
             },
             {
               "name": "string.regexp.inject.omniarium",
