@@ -55,9 +55,11 @@ export integer a = 0;
 
 /**
  *
+ * @info
+ *
  * Filters are used to restrict a value's existence within the code tree!
  * Should a filter return a Boolean false state, whatever value or code block that comes
- * after said filter will be replaced with an 'empty' value. ('empty' acts the same as 'null')'
+ * after said filter will be replaced with an [empty] value. ([empty] acts the same as 'null')'
  *
 **/
 // [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
@@ -108,16 +110,18 @@ filter @custom-target {
 
 /**
  *
+ * @info
+ *
  * The standard library shall include standard types, which can
  * handle all the supported target sources.
  *
  * Notice that an empty Omni code file does not include any types by default!
  * 
  * List of planned types:
- * Numbers: byte, short, integer, long, float, double,
- * Text: String, char,
- * Bool: boolean,
- * Error Handling: Error,
+ * Numbers: [byte], [short], [integer], [long], [float], [double],
+ * Text: [String], [char],
+ * Bool: [boolean],
+ * Error Handling: [Error],
  *
  * All types that don't start with a capital letter are primitive types, and are automatically
  * duplicated when passed to functions or when used as values for new variables!
@@ -191,6 +195,8 @@ Array<byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 's
 
 /**
  *
+ * @info
+ *
  * Filters can be used to write functions that do the same
  * thing on all different transpilation targets!
  *
@@ -207,6 +213,8 @@ import -get-java-element-by-id, Java-View from standard.targets.java;
 // require the user to make use of any source target filters in their projects!
 
 /**
+ *
+ * @info
  *
  * Omni code values are typed, and this can be a problem when dealing with
  * more than one target platform. For that, you may define a type
@@ -251,25 +259,31 @@ Elm-Obj -get-element (String id) {
         elm = -get-java-element-by-id (id);
         /**
          *
+         * @info
+         *
          * You can inject native code into the result of your target platform!
          * (NEVER inject code without a target filter!)
+         *
+         * @caution
+         * 
+         * Code-injection should be a last resort!
          *
         **/
         String x = "hahaha";
         inject {{
             // you can inject native Java code!
-            // You must prefix variables, functions, and types with the symbol: "~"
-            // If you do not use a prefix, the names of these elements will most likely not follow their corresponding
+            // You must contain variables, functions, and types with the symbol: "~"
+            // If you do not do so, the names of these elements will most likely not follow their corresponding
             // elements in your code!
 
-            String y = "nananana";
-            final char[] X = ~x.toCharArray(); // Note that since "x" was defined using Omni code, you need to use the
-                                            // prefix "~". (because the name 'x' may not be the actual final name for the
+            String y = "nananana"; // This may cause problems in your final code, as this name may already be reserved!
+            final char[] X = ~x~.toCharArray(); // Note that since "x" was defined using Omni code, you need to use the
+                                            // symbol "~". (because the name 'x' may not be the actual final name for the
                                             // original variable!)
-            // You may use the backslash character to escape this prefix "\~aa"!
+            // You may use the backslash character to escape this prefix "\~10"!
             final char[] Y = y.toCharArray();
             for(int i = 0; i < x.length; i++);
-            ~String z = ~x; // You may use this prefix with any element that may have a different name in the final
+            ~String~ z = ~x~; // You may use this prefix with any element that may have a different name in the final
                             // target code!
         }} as inject-target.java;
     }
@@ -314,6 +328,8 @@ default my-func;
 }
 
 /**
+ *
+ * @info
  *
  * By default, a simple standard variable (with a simple standard type) received
  * in a function is duplicated, meaning that the function uses a variable that does
@@ -411,7 +427,13 @@ Custom-Type test-custom-2 = clone test-custom; // You can clone objects like thi
 
 /**
  *
+ * @info
+ *
  * Error handling is done using the "try" and "catch" statements!
+ *
+ * @caution
+ *
+ * The combination of your target languages may prevent you from using this feature!
  *
 **/
 
@@ -430,6 +452,8 @@ try {
 // of the code tree!
 
 /**
+ *
+ * @info
  *
  * Loops and conditional statements!
  *

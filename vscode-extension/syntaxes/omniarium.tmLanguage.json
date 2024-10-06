@@ -309,8 +309,16 @@
           },
           "patterns": [
             {
+              "name": "invalid.illegal.name.omniarium",
+              "match": "(?<!\\\\)~(([0-9])|([-]+[0-9]))[\\w-]+(?<!~)"
+            },
+            {
               "name": "constant.character.escape.omniarium",
-              "match": "(?<!\\\\)~[\\w-]*"
+              "match": "(?<!\\\\)~[\\w-]+(?<!\\\\)~"
+            },
+            {
+              "name": "invalid.illegal.unclosed.omniarium",
+              "match": "(?<!\\\\)~[\\w-]+(?<!~)"
             },
             {
               "name": "constant.character.escape.omniarium",
