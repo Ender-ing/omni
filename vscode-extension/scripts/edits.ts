@@ -36,6 +36,7 @@ export function encloseOpenings(event: vscode.TextDocumentChangeEvent) {
     const editor = vscode.window.activeTextEditor;
     if (editor && event.contentChanges.length > 0) {
         const change = event.contentChanges[0]; // Assuming single change for simplicity
+        // ^^ Uhhh, you need to take care of that... ^^
 
         // Check if the change is an insertion of an opening bracket/quote
         const openingChars = ['{', '(', '<', '[']; // Customize as needed
