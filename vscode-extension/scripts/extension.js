@@ -33,11 +33,20 @@ exports.activate = activate;
 const vscode = __importStar(require("vscode"));
 const commands = __importStar(require("./commands"));
 const OmniariumDocumentFormattingEditProvider_1 = require("./OmniariumDocumentFormattingEditProvider");
+const edits_1 = require("./edits");
 // Activate the extension!
 function activate(context) {
     // Register commands!
     context.subscriptions.push(commands.msg);
-    // Code Formatting!
+    // Register code formatter!
     const formatter = new OmniariumDocumentFormattingEditProvider_1.OmniariumDocumentFormattingEditProvider();
-    context.subscriptions.push(vscode.languages.registerDocumentFormattingEditProvider('omniarium', formatter));
+    context.subscriptions.push(
+    // Register the ".omni" file extension
+    vscode.languages.registerDocumentFormattingEditProvider('omni', formatter));
+    // Register editor functions
+    context.subscriptions.push(
+    // Keep track of highlighted text
+    edits_1.observeEditorSelectionChange, 
+    // Manage live-edits
+    edits_1.observeDocumentTextChange);
 }
