@@ -485,46 +485,88 @@ while (true) {
  *
  * Note that you can use multi-linear comments to document variables, types, and functions!
  *
- * @smth-1 abc
+ * @smth-1 abc or [abc]
  * Something about this variable...
  *
- * @smth-2 Abc
+ * @smth-2 Abc or [Abc]
  * Something about this type...
  * 
- * @smth-3 -abc
+ * @smth-3 -abc or [-abc]
  * Something about this function...
  *
- * @smth-4 #abc
+ * @smth-4 #abc or [#abc]
  * Something about this constant...
  *
- * @smth-5 $abc
+ * @smth-5 $abc or [$abc]
  * Something about this constant...
  *
- * @smth-6 integer
+ * @smth-6 integer or [integer]
  * Something about this primitive type...
  *
- * @smth-7 true
+ * @smth-7 true or [true]
  * Something about this value...
  *
- * @smth-8 empty
+ * @smth-8 empty or [empty]
  * Something about this value...
  *
- * @smth-9 123
+ * @smth-9 123 or [123]
  * Something about this value...
  *
- * @smth-10 "abc"
+ * @smth-10 "abc" or ["abc"]
  * Something about this value...
  *
- * @smth-11 'a'
+ * @smth-11 'a' or ['a']
  * Something about this value...
  *
- * @smth-12 @aaaaa
+ * @smth-12 @aaaaa or [@aaaaa]
  * Something about this filter...
  *
- * @smth-13 @?aaaaa
+ * @smth-13 @?aaaaa or [@?aaaaa]
  * Something about this filter...
  *
- * @smth-14 @!aaaaa
+ * @smth-14 @!aaaaa or [@!aaaaa]
  * Something about this filter...
+ *
+**/
+
+
+// documentation for an Omni function
+/**
+ *
+ * @legal
+ * (state copyright/license - if applicable)
+ *
+ * @summary
+ * (What is the use of this function?)
+ *
+ * @input
+ * <[Type-1]> [argument-1]: (What is this argument? What is it used for?
+ *                       excess text goes here!)
+ *
+ * <[Type-2]> [argument-2]: (What is this argument? What is it used for?
+ *                       excess text goes here!)
+ *
+ * @output
+ * <[Type]>: (What is the output?
+ *           excess text goes here!)
+ *
+ * @Example
+ * (Example code)
+ *
+**/
+// All functions shall start with this!
+// (you may remove unused sections)
+
+
+/**
+ *
+ * @summary
+ * This is the main function. It's executed at the start the program
+ *
+ * @output
+ * <[integer]>: Used to signal the exit state of the program
+ *        [0] - success
+ *        other - failure
+ * -
  *
 **/

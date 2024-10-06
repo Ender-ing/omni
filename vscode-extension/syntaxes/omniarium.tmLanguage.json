@@ -80,9 +80,12 @@
           "patterns": [
             {
               "name": "constant.language.comment.type.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+((byte|short|integer|long|float|double|char|boolean))",
+              "match": "(?<![\\w])(@[\\w-]+)(?![\\w-])",
               "captures": {
                 "1": {
+                  "name": "strong.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
                 "2": {
@@ -91,125 +94,170 @@
               }
             },
             {
-              "name": "constant.language.comment.value.boolean.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+((true|false))",
+              "name": "constant.language.comment.type.omniarium",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((byte|short|integer|long|float|double|char|boolean))(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "keyword.type.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
+                "1": {
+                  "name": "strong.omniarium"
+                }
+              }
+            },
+            {
+              "name": "constant.language.comment.value.boolean.omniarium",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((true|false))(\\]?)",
+              "captures": {
+                "5": {
                   "name": "keyword.boolean.omniarium"
+                },
+                "7": {
+                  "name": "strong.omniarium"
+                },
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.value.null.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+((empty))",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((empty))(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "constant.language.null.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "constant.language.null.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.value.char.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+('(.*?)')",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))('(.*?)')(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "string.quoted.single.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "string.quoted.single.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.value.string.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+(\"(.*?)\")",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(\"(.*?)\")(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "string.quoted.double.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "string.quoted.double.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.value.numeric.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+((\\d+(\\.\\d+)?))",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((\\d+(\\.\\d+)?))(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "constant.numeric.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "constant.numeric.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.constant.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([#\\$]([\\w-]+)?)",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([#\\$]([\\w-]+)?)(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "keyword.constant.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "keyword.constant.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.filter.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+((((@|@!|@\\?)[\\w_-]+)))",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((((@|@!|@\\?)[\\w_-]+)))(\\]?)",
               "captures": {
-                "1": {
-                  "name": "strong.omniarium"
-                },
-                "2": {
+                "5": {
                   "name": "constant.character.escape"
                 },
-                "3": {
+                "6": {
                   "name": "emphasis.omniarium"
+                },
+                "7": {
+                  "name": "strong.omniarium"
+                },
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.variable.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([a-z]([\\w-]+)?)",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([a-z]([\\w-]+)?)(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "variable.comment.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "variable.comment.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.class.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+([A-Z]([\\w-]+)?)",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([A-Z]([\\w-]+)?)(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "entity.name.type.comment.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "entity.name.type.comment.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             },
             {
               "name": "constant.language.comment.function.omniarium",
-              "match": "\\s(@[\\w-]+)\\s+(-([a-zA-Z_-][\\w-]+)?)",
+              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(-([a-zA-Z_-][\\w-]+)?)(\\]?)",
               "captures": {
-                "1": {
+                "5": {
+                  "name": "entity.name.function.call.omniarium"
+                },
+                "7": {
                   "name": "strong.omniarium"
                 },
-                "2": {
-                  "name": "entity.name.function.call.omniarium"
+                "1": {
+                  "name": "strong.omniarium"
                 }
               }
             }
