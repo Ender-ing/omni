@@ -8,6 +8,7 @@
 {
     // Basic info about your project
     "name": "...", // Name your project (make sure it's unique)
+
     "type": "product", // "product": used to indicate normal projects (like an app or a game)
                     // "library": used to indicate libraries (code meant for others to use to make their
                     // own final products)
@@ -16,12 +17,14 @@
                     // [NOTE] The standard library would be defined as a "library", but it will make use of
                     // "implementation" libraries
                     // in order to offer standard functions that work for all basic source targets!
+
+    // If the type of the project is a "library", you must also include a unique "scope" name!
+    // "scope": "scope-name",
+
     // You may add your own custom library to the libraries' scope!
     // Notice that the "standard" scope is occupied by the compiler, and any attempts to overwrite it will result
     // in a compilation failure! Notice that if you also attempt to overwrite any other already-existing scopes,
     // the compiler will throw an error!
-    // If the type of the project is a library, you must also include a unique "scope" name!
-    // "scope": "scope-name",
     "libraries": {
         "my-lib": {
             // Note that any extra paths within a scope should point to a folder contained within that specific
@@ -39,12 +42,20 @@
     // build-related info
     "build": {
         "minify": false, // State if you'd like your code to be minified! (whitespace & similar symbols are filtered)
+
         "random-names": false, // State if you'd like the names of your functions, variables, and classes/types to be
                             // randomised or not! (random names are set to be as short as possible)
+
+        // If the type of the project is a "library", you must also include the "implementations" field!
+        // "implementations": ["es-14", "java-se", "cpp-20"], // List all the basic implementations used by the library!
+
         // Specify the desired compilation targets
         // Notice that you can only import libraries that support all your targets!
         "targets": {
             // The name of each object here would be the ID of your target
+            // (a.k.a. the name of the filter you're targeting)
+            // Note that you can use the names of the basic implementation filters here instead of the name of an
+            // abstracting target!
             "...": {
                 // Any additional requirements for this target need to be included here!
                 // You may also overwrite some global "build" settings here!
