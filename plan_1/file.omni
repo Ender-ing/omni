@@ -92,6 +92,10 @@ filter @my-filter {
     return ($using-subdomain-a == "true" || $using-subdomain-b == "true");
 }
 
+// Note that the name "$include" is reserved by the compiler!
+$include; // This will result in build failure!
+
+
 // [NOTE] "filter" statements are root-exclusive!
 
 // [NOTE] "filter" statements are only processed at transpile-time! Any variables
