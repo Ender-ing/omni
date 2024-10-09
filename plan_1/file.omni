@@ -63,10 +63,16 @@ export integer a = 0;
  *
 **/
 // [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
-// variables, but they must be statically defined!)
+// variables, but they must be staticaconstant.regexp.comment.mark.omniariumlly defined!)
 filter @my-filter {
     // This filter includes this code if the target is either javascript or Java!
     return ((@web true) != empty || (@android true) != empty);
+}
+
+// For example, the standard library may offer a global catch-all filter for multiple versions of one
+// target language!
+filter @javascript {
+    return ((@?es2017 true) != empty || (@?es2020 true) != empty);
 }
 
 // [NOTE] The symbol "#" is used to access transpiler transpile-time values!
@@ -594,3 +600,127 @@ while (true) {
  * -
  *
 **/
+
+/**
+ *
+ * @info
+ * TMLanguage uses a list of default highlighting types!
+ * Below is a list of the default highlighting types that you may use to highlight elements!
+ *
+ * @note
+ * In order to see the colourisation of these IDs, you must include the "#debug" repository!
+ *
+**/
+
+comment.omniarium
+comment.block.omniarium
+comment.block.documentation.omniarium
+comment.line.omniarium
+comment.line.double-dash.omniarium
+comment.line.double-slash.omniarium
+comment.line.number-sign.omniarium
+comment.line.percentage.omniarium
+constant.omniarium
+constant.character.omniarium
+constant.character.escape.omniarium
+constant.language.omniarium
+constant.numeric.omniarium
+constant.other.omniarium
+constant.regexp.omniarium
+constant.rgb-value.omniarium
+constant.sha.git-rebase.omniarium
+emphasis.omniarium
+entity.omniarium
+entity.name.omniarium
+entity.name.class.omniarium
+entity.name.function.omniarium
+entity.name.method.omniarium
+entity.name.section.omniarium
+entity.name.selector.omniarium
+entity.name.tag.omniarium
+entity.name.type.omniarium
+entity.other.omniarium
+entity.other.attribute-name.omniarium
+entity.other.inherited-class.omniarium
+header.omniarium
+invalid.omniarium
+invalid.deprecated.omniarium
+invalid.illegal.omniarium
+keyword.omniarium
+keyword.control.omniarium
+keyword.control.less.omniarium
+keyword.operator.omniarium
+keyword.operator.new.omniarium
+keyword.other.omniarium
+keyword.other.unit.omniarium
+markup.omniarium
+markup.bold.omniarium
+markup.changed.omniarium
+markup.deleted.omniarium
+markup.heading.omniarium
+markup.inline.raw.omniarium
+markup.inserted.omniarium
+markup.italic.omniarium
+markup.list.omniarium
+markup.list.numbered.omniarium
+markup.list.unnumbered.omniarium
+markup.other.omniarium
+markup.punctuation.list.beginning.omniarium
+markup.punctuation.quote.beginning.omniarium
+markup.quote.omniarium
+markup.raw.omniarium
+markup.underline.omniarium
+markup.underline.link.omniarium
+meta.omniarium
+meta.cast.omniarium
+meta.parameter.type.variable.omniarium
+meta.preprocessor.omniarium
+meta.preprocessor.numeric.omniarium
+meta.preprocessor.string.omniarium
+meta.return-type.omniarium
+meta.selector.omniarium
+meta.structure.dictionary.key.python.omniarium
+meta.tag.omniarium
+meta.type.annotation.omniarium
+meta.type.name.omniarium
+metatag.php.omniarium
+storage.omniarium
+storage.modifier.omniarium
+storage.modifier.import.java.omniarium
+storage.modifier.package.java.omniarium
+storage.type.omniarium
+storage.type.cs.omniarium
+storage.type.java.omniarium
+string.omniarium
+string.html.omniarium
+string.interpolated.omniarium
+string.jade.omniarium
+string.other.omniarium
+string.quoted.omniarium
+string.quoted.double.omniarium
+string.quoted.other.omniarium
+string.quoted.single.omniarium
+string.quoted.triple.omniarium
+string.regexp.omniarium
+string.unquoted.omniarium
+string.xml.omniarium
+string.yaml.omniarium
+strong.omniarium
+support.omniarium
+support.class.omniarium
+support.constant.omniarium
+support.function.omniarium
+support.function.git-rebase.omniarium
+support.other.omniarium
+support.property-value.omniarium
+support.type.omniarium
+support.type.property-name.omniarium
+support.type.property-name.css.omniarium
+support.type.property-name.less.omniarium
+support.type.property-name.scss.omniarium
+support.variable.omniarium
+variable.omniarium
+variable.language.omniarium
+variable.name.omniarium
+variable.other.omniarium
+variable.parameter.omniarium
