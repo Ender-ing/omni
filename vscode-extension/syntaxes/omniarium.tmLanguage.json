@@ -411,6 +411,10 @@
           "match": "(?<![\\w])(\\d+(\\.\\d+)?)(?![\\w-])"
         },
         {
+          "name": "invalid.illegal.constant.user.reserved.omniarium",
+          "match": "\\$include"
+        },
+        {
           "name": "keyword.constant.user.omniarium",
           "match": "\\$[a-z][\\w-]*"
         },
