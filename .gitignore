@@ -35,3 +35,8 @@ node_modules
 ## Temporary files
 *.tmp
 *.tmp.*
+
+## Omniarium ignore list (NOTE/REMAINDER)
+
+# Output folder
+.omni.out

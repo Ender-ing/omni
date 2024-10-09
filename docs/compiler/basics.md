@@ -5,6 +5,21 @@
 
 ## Random notes
 
+### `.omni.out` folder
+
+This folder contains all files generated on transpilation:
+
+- **.omni.out** _(folder)_
+
+  - **\[target_name]** _(folder)_
+    Contains all final files for a specific target!
+
+  - **core** _(folder)_
+    Contains all procedural files used to represent the logic of the code!
+
+  - **.ini** _(file)_
+    The final consolidated .ini file - a consolidation of `.omni.ini` and its included files!
+
 ### JS primitive type reference
 
 This Omni code:
