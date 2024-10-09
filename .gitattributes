@@ -1,3 +1,4 @@
+# Omniarium files
 *.omni linguist-language=omniarium
 *.omni.ini linguist-language=INI
 *.omni.manifest linguist-language=JSONC
