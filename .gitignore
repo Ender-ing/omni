@@ -32,6 +32,9 @@ node_modules
 ## Visual Studio list
 *.vsix
 
+# Duplicated LICENSE file
+vscode-extension/LICENSE
+
 ## Temporary files
 *.tmp
 *.tmp.*
