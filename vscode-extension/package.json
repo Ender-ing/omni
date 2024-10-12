@@ -1,10 +1,10 @@
 {
     "name": "omniarium",
     "main": "scripts/extension.js",
-    "browser": "scripts/extension.js",
+    "browser": "scripts/extension.browser.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
