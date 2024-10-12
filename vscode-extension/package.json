@@ -3,7 +3,7 @@
     "main": "scripts/extension.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "icon": "icons/plain.png",
     "engines": {
         "vscode": ">=1.93.0"
@@ -55,6 +55,14 @@
                     "Omniarium Regex",
                     "Omni Regex"
                 ]
+            },
+            {
+                "id": "jsonc",
+                "extensions": [".omni.manifest", ".omni.local"]
+            },
+            {
+                "id": "ini",
+                "extensions": [".omni.ini"]
             }
         ],
         "grammars": [
@@ -78,6 +86,10 @@
             {
                 "language": "omniarium",
                 "path": "./snippets/omniarium.code-snippets.json"
+            },
+            {
+                "language": "omniarium-markdown",
+                "path": "./snippets/omniarium.markdown.code-snippets.json"
             }
         ],
         "commands": [
@@ -101,7 +113,9 @@
     },
     "scripts": {
         "build": "tsc",
-        "package": "vsce package"
+        "copy-license": "if [ \"$OSTYPE\" == \"linux-gnu\" ]; then cp ../LICENSE* .; else copy ../LICENSE* .; fi",
+        "delete-license": "if [ \"$OSTYPE\" == \"linux-gnu\" ]; then rm LICENSE* .; else del LICENSE*; fi",
+        "package": "npm run delete-license && npm run copy-license && tsc && ../ && vsce package && npm run delete-license"
     },
     "devDependencies": {
         "@types/vscode": "^1.93.0",
