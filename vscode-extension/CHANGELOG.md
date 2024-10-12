@@ -1,8 +1,13 @@
 # CHANGELOG
 
+## 0.0.9
+
++ Fix the image
+
 ## 0.0.8
 
 + Add website link
++ Add an image
 
 ## 0.0.7
 

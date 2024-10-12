@@ -3,7 +3,7 @@
 This extension provides language support for Omniarium, Omniarium Layers, and Omniarium Regex
 within VS Code.
 
-![Omni highlighting](./images/highlighting.png)
+![Omni highlighting](https://raw.githubusercontent.com/Ender-ing/omni/refs/heads/main/vscode-extension/images/highlighting.png)
 
 > [!NOTE]
 > This is an extension for a language concept, the
