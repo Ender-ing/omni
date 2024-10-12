@@ -397,7 +397,7 @@ integer -my-func () {
 }
 
 // Run my-func() on start!
-default my-func;
+default -my-func;
 
 // @note : "default" statement, outside of a switch case, is root-exclusive!
 // @note : "default" statement, outside of a switch case, is a one-time use statement!
@@ -579,7 +579,7 @@ while (true) {
 // of the code tree!
 
 // a full code-statement:
-// ([@!<Trait>, @!<Trait>, ... @<Filter>?]?) ... ({...}|CONTEXT_SEPARATION|;)
+// ([@!trait], [@!trait], ... [@filter]?)? ... ({...}|CONTEXT_SEPARATION|;)
 // @note : Only one filter can be present at a time at the start of a code-statement,
 // and it always comes last right before the start of the code-statement's content!
 
