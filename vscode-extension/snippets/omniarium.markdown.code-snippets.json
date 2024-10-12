@@ -1,0 +1,45 @@
+{
+	"Documentation Comment": {
+		"prefix": ["<!--", "comment", "documentation"],
+		"body": [
+			"<!-- $TM_SELECTED_TEXT$0 -->"
+		],
+		"description": "Documentation Comment"
+	},
+	"Big Documentation Comment": {
+		"prefix": ["<!--\n", "comment-big", "documentation-big"],
+		"body": [
+			"<!--",
+			"",
+			"\t$TM_SELECTED_TEXT$0",
+			"",
+			"-->"
+		],
+		"description": "Big Documentation Comment"
+	},
+	"Add Element": {
+		"prefix": ["<", "element"],
+		"body": [
+			"<${1:Element}${2: property}>",
+            "\t$TM_SELECTED_TEXT$0",
+            "</${1:Element}>"
+		],
+		"description": "Add an Element"
+	},
+	"Add Element With Property": {
+		"prefix": ["<?", "element-prop"],
+		"body": [
+			"<${1:Element} ${2:property}=${3:\"value\"}>",
+            "\t$TM_SELECTED_TEXT$0",
+            "</${1:Element}>"
+		],
+		"description": "Add an Element with a Property"
+	},
+	"Add Closed Element": {
+		"prefix": ["</", "element-closed"],
+		"body": [
+			"<${1:Element} $TM_SELECTED_TEXT${0: property}/>"
+		],
+		"description": "Add a closed Element"
+	}
+}
