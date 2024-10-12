@@ -77,7 +77,13 @@
       "patterns": [
         {
           "name": "comment.line.double-slash.omniarium",
-          "match": "\\/\\/.*$"
+          "begin": "//",
+          "end": "\\\n",
+          "patterns": [
+            {
+              "include": "#comment-highlights"
+            }
+          ]
         },
         {
           "name": "comment.block.documentation.omniarium",
@@ -85,186 +91,193 @@
           "end": "\\*\\/",
           "patterns": [
             {
-              "name": "constant.regexp.comment.mark.omniarium",
-              "match": "(?<![\\w])(@[^\\s]+)(?![\\w-])",
-              "captures": {
-                "1": {
-                  "name": "strong.omniarium"
-                },
-                "2": {
-                  "name": "keyword.type.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((byte|short|integer|long|float|double|char|boolean))(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "keyword.type.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.value.boolean.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((true|false))(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "keyword.boolean.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.value.null.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((empty))(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "constant.language.null.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.value.char.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))('(.*?)')(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "string.quoted.single.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.value.string.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(\"(.*?)\")(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "string.quoted.double.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.value.numeric.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((\\d+(\\.\\d+)?))(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "constant.numeric.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.constant.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([#\\$]([\\w-]+)?)(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "keyword.constant.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.filter.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((((@|@!|@\\?)[\\w-]+)))(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "constant.character.escape"
-                },
-                "6": {
-                  "name": "emphasis.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.variable.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([a-z]([\\w-]+)?)(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "variable.comment.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.class.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([A-Z]([\\w-]+)?)(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "entity.name.type.comment.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
-            },
-            {
-              "name": "constant.regexp.comment.mark.function.omniarium",
-              "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(-([a-zA-Z_-][\\w-]+)?)(\\]?)",
-              "captures": {
-                "5": {
-                  "name": "entity.name.function.call.omniarium"
-                },
-                "7": {
-                  "name": "strong.omniarium"
-                },
-                "1": {
-                  "name": "strong.omniarium"
-                }
-              }
+              "include": "#comment-highlights"
             }
           ]
+        }
+      ]
+    },
+    "comment-highlights":{
+      "patterns": [
+        {
+          "name": "constant.regexp.comment.mark.omniarium",
+          "match": "(?<![\\w])(@[^\\s]+)(?![\\w-])",
+          "captures": {
+            "1": {
+              "name": "strong.omniarium"
+            },
+            "2": {
+              "name": "keyword.type.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((byte|short|integer|long|float|double|char|boolean))(\\]?)",
+          "captures": {
+            "5": {
+              "name": "keyword.type.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.value.boolean.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((true|false))(\\]?)",
+          "captures": {
+            "5": {
+              "name": "keyword.boolean.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.value.null.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((empty))(\\]?)",
+          "captures": {
+            "5": {
+              "name": "constant.language.null.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.value.char.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))('(.*?)')(\\]?)",
+          "captures": {
+            "5": {
+              "name": "string.quoted.single.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.value.string.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(\"(.*?)\")(\\]?)",
+          "captures": {
+            "5": {
+              "name": "string.quoted.double.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.value.numeric.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((\\d+(\\.\\d+)?))(\\]?)",
+          "captures": {
+            "5": {
+              "name": "constant.numeric.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.constant.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([#\\$]([\\w-]+)?)(\\]?)",
+          "captures": {
+            "5": {
+              "name": "keyword.constant.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.filter.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))((((@|@!|@\\?)[\\w-]+)))(\\]?)",
+          "captures": {
+            "5": {
+              "name": "constant.character.escape"
+            },
+            "6": {
+              "name": "emphasis.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.variable.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([a-z]([\\w-]+)?)(\\]?)",
+          "captures": {
+            "5": {
+              "name": "variable.comment.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.class.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))([A-Z]([\\w-]+)?)(\\]?)",
+          "captures": {
+            "5": {
+              "name": "entity.name.type.comment.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
+        },
+        {
+          "name": "constant.regexp.comment.mark.function.omniarium",
+          "match": "(((\\s@[\\w-]+)\\s+)|(\\[))(-([a-zA-Z_-][\\w-]+)?)(\\]?)",
+          "captures": {
+            "5": {
+              "name": "entity.name.function.call.omniarium"
+            },
+            "7": {
+              "name": "strong.omniarium"
+            },
+            "1": {
+              "name": "strong.omniarium"
+            }
+          }
         }
       ]
     },
