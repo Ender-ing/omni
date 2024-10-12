@@ -11,7 +11,8 @@ Here is the full changelog:
 + Add Omni code snippets
 + Improve Omni code highlighting
 + Bug fixes
-+ Add a license
++ Add LICENSE
++ Update README.md
 
 ## 0.0.1
 
