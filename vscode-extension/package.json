@@ -58,7 +58,7 @@
             },
             {
                 "id": "jsonc",
-                "extensions": [".omni.manifest", ".omni.local"]
+                "extensions": [".omni.manifest", ".omni.loc"]
             },
             {
                 "id": "ini",
