@@ -16,6 +16,11 @@ functionalities. The `standard` library will only include the bare minimum funct
 enable the source code to be compiled to all the supported target lnaguages. Other than the standard
 library, there will be a collection of community-created libraries for specific use cases!
 
+> [!NOTE]
+> You may install the VSCode extension from
+> [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Endering.omniarium)
+> for code highlighting and formatting!
+
 ## Transpiler
 
 Omni will need a transpiler, a *source-to-source translator/compiler*, to convert Omni code into a

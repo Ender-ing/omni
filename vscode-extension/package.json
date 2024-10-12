@@ -4,7 +4,8 @@
     "browser": "scripts/extension.browser.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.6",
+    "version": "0.0.8",
+    "preview": true,
     "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
@@ -131,6 +132,7 @@
         "type": "git",
         "url": "https://github.com/Ender-ing/omni.git"
     },
+    "homepage": "https://omni.ender.ing/",
     "categories": [
         "Programming Languages",
         "Snippets",
