@@ -1,0 +1,42 @@
+{
+  "$note": "Names can include all the following characters: [\\w-]",
+  "$ref-1": "https://github.com/chriscamicas/abl-tmlanguage",
+  "$ref-2": "https://github.com/microsoft/vscode/tree/main/extensions/javascript",
+  "$ref-3": "https://macromates.com/manual/en/",
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Omniarium Regex",
+  "scopeName": "source.omniarium.regexp",
+  "patterns": [
+    {
+      "include": "#root-order"
+    }
+  ],
+  "repository": {
+    "root-order": {
+      "patterns": [
+        {
+          "include": "#static"
+        },
+        {
+          "include": "#unhighlighted"
+        }
+      ]
+    },
+    "static": {
+      "patterns": [
+        {
+          "name": "string.regexp.omniarium.regexp",
+          "match": "(\\\\.|[^\/\\\\])*" 
+        }
+      ]
+    },
+    "unhighlighted": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.unhighlighted.omniarium.regexp",
+          "match": "."
+        }
+      ]
+    }
+  }
+}
