@@ -2,6 +2,12 @@
 
 Here is the full changelog:
 
+## 0.0.4
+
++ Update activation conditions
++ Add search keywords
++ Update package script
+
 ## 0.0.3
 
 + Update file extension icons
