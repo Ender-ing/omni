@@ -25,7 +25,7 @@
     // File associations
     "files.associations": {
         "*.omni.manifest": "jsonc",
-        "*.omni.local": "jsonc",
+        "*.omni.loc": "jsonc",
         "*.omni.ini": "ini",
         "*.omni.lyr": "omniarium-markdown",
         "*.omni": "omniarium"
