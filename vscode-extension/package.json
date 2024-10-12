@@ -4,7 +4,8 @@
     "browser": "scripts/extension.browser.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.6",
+    "version": "0.0.7",
+    "preview": true,
     "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
