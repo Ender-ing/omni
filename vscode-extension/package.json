@@ -8,7 +8,7 @@
     "engines": {
         "vscode": ">=1.93.0"
     },
-    "publisher": "0xENDER",
+    "publisher": "Endering",
     "contributes": {
         "languages": [
             {
