@@ -3,4 +3,4 @@
 *.omni.lyr linguist-language=omniarium-markdown
 *.omni.ini linguist-language=INI
 *.omni.manifest linguist-language=JSONC
-*.omni.local linguist-language=JSONC
+*.omni.loc linguist-language=JSONC
