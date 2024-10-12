@@ -3,12 +3,12 @@
     "main": "scripts/extension.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.1",
-    "icon": "icons/plain.png",
+    "version": "0.0.3",
+    "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
     },
-    "publisher": "0xENDER",
+    "publisher": "Endering",
     "contributes": {
         "languages": [
             {
@@ -21,12 +21,63 @@
                     ".omni"
                 ],
                 "icon": {
-                    "light": "icons/light.png",
-                    "dark": "icons/dark.png"
+                    "light": "icons/omni.svg",
+                    "dark": "icons/omni.svg"
                 },
                 "formatter": {
                     "scheme": "file",
                     "language": "omniarium"
+                }
+            },
+            {
+                "id": "omniarium-markdown",
+                "aliases": [
+                    "Omniarium Markdown",
+                    "Omni Markdown",
+                    "Omni MD",
+                    "Omni Lyr"
+                ],
+                "extensions": [
+                    ".omni.lyr"
+                ],
+                "icon": {
+                    "light": "icons/omni-md.svg",
+                    "dark": "icons/omni-md.svg"
+                },
+                "formatter": {
+                    "scheme": "file",
+                    "language": "omniarium-markdown"
+                }
+            },
+            {
+                "id": "omniarium-regexp",
+                "aliases": [
+                    "Omniarium Regex",
+                    "Omni Regex"
+                ]
+            },
+            {
+                "id": "jsonc",
+                "extensions": [".omni.loc"],
+                "icon": {
+                    "light": "icons/omni-loc.svg",
+                    "dark": "icons/omni-loc.svg"
+                }
+            },
+            {
+                "id": "jsonc",
+                "extensions": [".omni.manifest"],
+                "icon": {
+                    "light": "icons/omni-manifest.svg",
+                    "dark": "icons/omni-manifest.svg"
+                }
+            },
+            {
+                "id": "ini",
+                "extensions": [".omni.ini"],
+                "icon": {
+                    "light": "icons/omni-ini.svg",
+                    "dark": "icons/omni-ini.svg"
                 }
             }
         ],
@@ -35,12 +86,26 @@
                 "language": "omniarium",
                 "scopeName": "source.omniarium",
                 "path": "./syntaxes/omniarium.tmLanguage.json"
+            },
+            {
+                "language": "omniarium-markdown",
+                "scopeName": "source.omniarium.markdown",
+                "path": "./syntaxes/omniarium.markdown.tmLanguage.json"
+            },
+            {
+                "language": "omniarium-regexp",
+                "scopeName": "source.omniarium.regexp",
+                "path": "./syntaxes/omniarium.regexp.tmLanguage.json"
             }
         ],
         "snippets": [
             {
                 "language": "omniarium",
                 "path": "./snippets/omniarium.code-snippets.json"
+            },
+            {
+                "language": "omniarium-markdown",
+                "path": "./snippets/omniarium.markdown.code-snippets.json"
             }
         ],
         "commands": [
@@ -55,15 +120,23 @@
         "onLanguage:omniarium",
         "workspaceContains:**/.omni.manifest",
         "workspaceContains:**/.omni.ini",
+        "workspaceContains:**/.omni.lyr",
         "workspaceContains:**/*.omni"
     ],
     "repository": {
         "type": "git",
         "url": "https://github.com/Ender-ing/omni.git"
     },
+    "categories": [
+        "Programming Languages",
+        "Snippets",
+        "Formatters"
+    ],
     "scripts": {
         "build": "tsc",
-        "package": "vsce package"
+        "win-copy-license": "xcopy /y ..\\LICENSE .",
+        "win-delete-license": "del LICENSE",
+        "package": "npm run win-delete-license && npm run win-copy-license && tsc && vsce package && npm run win-delete-license"
     },
     "devDependencies": {
         "@types/vscode": "^1.93.0",

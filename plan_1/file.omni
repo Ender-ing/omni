@@ -1,16 +1,17 @@
 /**
  *
  * This is a language syntax draft for Omniarium
+ * (.omni - Omniarium)
  *
 **/
 
-// [NOTE] Omniarium is not an independent programming language! It is strictly used to 
+// @note : Omniarium is not an independent programming language! It is strictly used to 
 // generate high-level code specific to the user's project!
 
-// [NOTE] You may define your own project libraries and import them using the "import" statement!
+// @note : You may define your own project libraries and import them using the "import" statement!
 // To add a path for your library, you may use your project file (.omni.manifest) to include them.
 
-// [NOTE] The "standard" library's only use is to help users generate code for common development
+// @note : The "standard" library's only use is to help users generate code for common development
 // targets - like plain web, or plain C++.
 // You may even make use of the language just to write more memory-conscious code for a specific
 // target!
@@ -37,20 +38,20 @@ import * from custom-lib.types;
 import * as my-handle from custom-lib.types;
 my-handle.Type-X; // You'd have to use the custom handle you used in the declaration!
 
-// [NOTE] "import" statements are root-exclusive!
+// @note : "import" statements are root-exclusive!
 
 // All data that is meant to be imported using the "import" statement needs to be exported using
 // the "export" statement within the library file!
 export integer a = 0;
 
-// [NOTE] "export" statements are root-exclusive!
+// @note : "export" statements are root-exclusive!
 
-// [NOTE] Variables defined in the root-level of the code tree are global variables!
+// @note : Variables defined in the root-level of the code tree are global variables!
 // Global variables are only accessible to the code within the same file, unless they are exported!
 
-// [NOTE] Variables are only accessible to scopes/levels within the same, or a deeper, scope/level
+// @note : Variables are only accessible to scopes/levels within the same, or a deeper, scope/level
 
-// [NOTE] Variables are automatically freed from memory at the end of the scope/level they were
+// @note : Variables are automatically freed from memory at the end of the scope/level they were
 // defined in!
 
 /**
@@ -58,12 +59,12 @@ export integer a = 0;
  * @info
  *
  * Filters are used to restrict a value's existence within the code tree!
- * Should a filter return a Boolean false state, whatever value or code block that comes
+ * Should a filter return a [boolean] false state, whatever value or code block that comes
  * after said filter will be replaced with an [empty] value. ([empty] acts the same as 'null')'
  *
 **/
-// [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
-// variables, but they must be staticaconstant.regexp.comment.mark.omniariumlly defined!)
+// @note : Filter blocks only allow use of static code values in conditions! (You may make use of
+// variables, but they must be statically defined!)
 filter @my-filter {
     // This filter includes this code if the target is either javascript or Java!
     return ((@web true) != empty || (@android true) != empty);
@@ -75,7 +76,7 @@ filter @javascript {
     return ((@?es2017 true) != empty || (@?es2020 true) != empty);
 }
 
-// [NOTE] The symbol "#" is used to access transpiler transpile-time values!
+// @note : The symbol "#" is used to access transpiler transpile-time values!
 // Defined transpile-time values are always strings!
 
 // This is another way to implement this filter
@@ -84,7 +85,7 @@ filter @my-filter {
     return (#target.is-web == "true" || #target.is-java == "true");
 }
 
-// [NOTE] The symbol "$" is used to access user-defined variables (stored in .omni.ini)
+// @note : The symbol "$" is used to access user-defined variables (stored in .omni.ini)
 
 // You may use a filter in your project like this!
 filter @my-filter {
@@ -96,17 +97,17 @@ filter @my-filter {
 $include; // This will result in build failure!
 
 
-// [NOTE] "filter" statements are root-exclusive!
+// @note : "filter" statements are root-exclusive!
 
-// [NOTE] "filter" statements are only processed at transpile-time! Any variables
+// @note : "filter" statements are only processed at transpile-time! Any variables
 // used inside the filter's initial definition code block need to be defined at transpile-time!
 
 @my-filter
 "hiiii";
 
-// [NOTE] You can use filters only at the start of a code-statement
+// @note : You can use filters only at the start of a code-statement
 
-// [NOTE] Your library should be based on one of the available language targets! (@?target)
+// @note : Your library should be based on one of the available language targets! (@?target)
 // Should your specific library require the implementation of a new language target (say a new
 // programming language), do not mix it with your niche project-specific needs! Make a independent
 // custom language target from scratch, then base your library on that language target!
@@ -129,8 +130,10 @@ filter @custom-target {
  * 
  * List of planned types:
  * Numbers: [byte], [short], [integer], [long], [float], [double],
- * Text: [String], [char],
+ * Text: [String], [char], [Regex]
  * Bool: [boolean],
+ * Data: [File]
+ * Graphical: [Layer]
  * Error Handling: [Error],
  *
  * All types that don't start with a capital letter are primitive types, and are automatically
@@ -207,6 +210,74 @@ Array<byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 's
  *
  * @info
  *
+ * Files can be manipulated using the [File] data type!
+ *
+**/
+
+import File from standard.types;
+
+File my-file = new self ("path/to/file.txt", File.mode.read-only);
+
+/**
+ *
+ * @info
+ *
+ * Layers are part of the standard version! You may use them to create visual
+ * layouts for your project's UI!
+ *
+**/
+
+import Layer from standard.types;
+
+// You can load a layer file from an outside source!
+Layer my-layout = new self ("FILE_NAME.omni.lyr");
+
+// Or you can directly define a layer in your code!
+Layer my-own-layout = lyr<>
+    <!--
+        This is a language syntax draft for Omniarium layout files!
+        (.omni.lyr)
+    -->
+    <Element property1="1" property2="2">
+        <Element property1={?value-name} />
+        <!-- This is how you call a value from a resource file! -->
+        <Element property1={$value-name} />
+        <!-- This is how you call a value from a .ini file!
+            Note that .ini calls will result in a warning, as these
+            values are not meant for this kind of usage! -->
+        <Element property1={value-name} />
+        <!-- This is how you call a value from your code!
+            (This is basically a value injection!) -->
+        <!-- You can use filters with elements too! -->
+        <!-- But you need to define these filters in your source code! -->
+        <Element @web value="...">
+            This is a platform-specific element!
+        </Element>
+        <Element @android value="...">
+            This is a platform-specific element!
+        </Element>
+    </Element>
+</>;
+// Note that direct-definition requires you to start the layer with the symbols
+// "lyr<>" and end it with "</>"!
+
+/**
+ *
+ * @info
+ * 
+ * [String] manipulation can be done with the help of regular expression ([Regex]) strings!
+ *
+**/
+
+import Regex from standard.types;
+Regex my-regex = rex/@[^\s]+/g;
+
+// More on this soon...
+
+/**
+ *
+ * @info
+ *
  * Filters can be used to write functions that do the same
  * thing on all different transpilation targets!
  *
@@ -216,7 +287,7 @@ import -get-dom-element-by-id, DOM-Element from standard.targets.javascript;
 @android
 import -get-java-element-by-id, Java-View from standard.targets.java;
 
-// [NOTE] "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
+// @note : "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
 // a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
 // the source filters and such!
 // Ideally, a ready-for-use library that is intended to help with a spicific collection of source targets should not
@@ -232,13 +303,13 @@ import -get-java-element-by-id, Java-View from standard.targets.java;
  *
 **/
 
-// [NOTE] "prototype" statements are root-exclusive!
+// @note : "prototype" statements are root-exclusive!
 
 // You may define type aliases like this:
 // An alias, set by the "is" keyword, does not exist on runtime! It is only processed at as a placeholder
 // for the true type!
 // You may use aliases with type definitions, variables, constants, and functions!
-// [NOTE] The "is" keyword is mainly intended for use within library files!
+// @note : The "is" keyword is mainly intended for use within library files!
 // It is not recommended to use this keyword in normal project files!
 prototype Elm-Obj is @web DOM-Element, @android Java-View;
 // In this case, the first valid type in the list will be used as the 'true type' for the alias
@@ -300,7 +371,7 @@ Elm-Obj -get-element (String id) {
     return elm;
 }
 
-// [NOTE] function definitions are root-exclusive!
+// @note : function definitions are root-exclusive!
 
 integer -my-func () {
     // All this code above enables us to use one function
@@ -322,14 +393,14 @@ integer -my-func () {
 
     return r;
 
-    // [NOTE] Global variables are freed when this function is done executing!
+    // @note : Global variables are freed when this function is done executing!
 }
 
 // Run my-func() on start!
 default my-func;
 
-// [NOTE] "default" statement, outside of a switch case, is root-exclusive!
-// [NOTE] "default" statement, outside of a switch case, is a one-time use statement!
+// @note : "default" statement, outside of a switch case, is root-exclusive!
+// @note : "default" statement, outside of a switch case, is a one-time use statement!
 
 // You may define a function that doesn't return values as follows
 // (notice that the Any & Void types are NOT supported)
@@ -360,18 +431,18 @@ default my-func;
 integer test-num;
 // The value of 'test-num' should change, because you lent the original variable to the function!
 -add-one (link test-num);
-// [NOTE] depending on your targeted language, the using of borrowing and lending may result in
+// @note : depending on your targeted language, the using of borrowing and lending may result in
 // increased memory usage! So use this carefully! (e.g. if you borrow an integer, the final
 // JavaScript code variable may hold the value inside an array, depening in the original code)
 
 // You can add traits and warnings to functions use the filters feature!
-// [NOTE] Filters that start with an exclamation marks ("!") will not act as filters!
+// @note : Filters that start with an exclamation marks ("!") will not act as filters!
 // These filters are transpiler-defined, and are seen more as trait markers!)
 // @!deprecated             The user will be warned about this code being deprecated!
 // @!library-exclusive      The user will be warned about use outside libraries!
 // @!static                 The user will be warned about the use of any dynamic/run-time values
 //                          and code within the code block!
-// [NOTE] You may use the "final" keyword to make this class immutable!
+// @note : You may use the "final" keyword to make this class immutable!
 @!deprecated @!library-exclusive @!static
 prototype Custom-Type {
     // Values used by this type/object!
@@ -429,10 +500,10 @@ integer my-a = test-custom.-get-a (); // You can use type functions like this wh
 Custom-Type test-custom-1 = test-custom; // This is basically the same object,
                                         // you are not making a duplicate here!
 Custom-Type test-custom-2 = clone test-custom; // You can clone objects like this!
-// [NOTE] The transpiler will fail builds that pass non-duplicatable types
+// @note : The transpiler will fail builds that pass non-duplicatable types
 // 
 
-// [NOTE] Careful! You can't actually call functions on the root-level of the code tree!
+// @note : Careful! You can't actually call functions on the root-level of the code tree!
 // You need to call functions from within the initial function! This is just a demo!
 
 /**
@@ -458,7 +529,7 @@ try {
     // ...
 }
 
-// [NOTE] You can't use the "try" and "catch" satements in the root level
+// @note : You can't use the "try" and "catch" satements in the root level
 // of the code tree!
 
 /**
@@ -504,15 +575,15 @@ while (true) {
     // ...
 }
 
-// [NOTE] You can't use "for" and "while" loops in the root level
+// @note : You can't use "for" and "while" loops in the root level
 // of the code tree!
 
 // a full code-statement:
 // ([@!<Trait>, @!<Trait>, ... @<Filter>?]?) ... ({...}|CONTEXT_SEPARATION|;)
-// [NOTE] Only one filter can be present at a time at the start of a code-statement,
+// @note : Only one filter can be present at a time at the start of a code-statement,
 // and it always comes last right before the start of the code-statement's content!
 
-// [NOTE] Tabs, whitespace, and new lines are always ignored while parsing! As such,
+// @note : Tabs, whitespace, and new lines are always ignored while parsing! As such,
 // a 'code line' must always end with either a semi-colon (;) or a code block ({...})!
 
 /**
@@ -574,7 +645,7 @@ while (true) {
  * (What is the use of this function?)
  *
  * @input
- * <[Type-1]> [argument-1]: (What is this argument? What is it used for?
+ * <[Type-1]]> [argument-1]: (What is this argument? What is it used for?
  *                       excess text goes here!)
  *
  * <[Type-2]> [argument-2]: (What is this argument? What is it used for?

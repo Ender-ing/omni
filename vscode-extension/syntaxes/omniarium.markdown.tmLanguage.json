@@ -1,0 +1,161 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Omniarium Layer",
+  "scopeName": "source.omniarium.markdown",
+  "patterns": [
+    {
+      "include": "#root-order"
+    }
+  ],
+  "repository": {
+    "root-order": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#elements"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#filters"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#unhighlighted"
+        }
+      ]
+    },
+    "elements": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.empty.omniarium.markdown",
+          "match": "<>"
+        },
+        {
+          "name": "invalid.illegal.empty.omniarium.markdown",
+          "match": "</>"
+        }
+      ]
+    },
+    "unhighlighted": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.unhighlighted.omniarium.markdown",
+          "match": "."
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.documentation.omniarium.markdown",
+          "begin": "<!--",
+          "end": "-->",
+          "patterns": [
+            {
+              "name": "constant.regexp.comment.mark.omniarium.markdown",
+              "match": "(?<![\\w])(@[^\\s]+)(?![\\w-])",
+              "captures": {
+                "1": {
+                  "name": "strong.omniarium.markdown"
+                },
+                "2": {
+                  "name": "keyword.type.omniarium.markdown"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.omniarium.markdown",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.omniarium.markdown",
+          "match": "\\\\."
+        },
+        {
+          "name": "constant.character.escape.curly.omniarium.markdown",
+          "begin": "{",
+          "end": "}",
+          "patterns": [
+            {
+              "include": "$self"
+            }
+          ]
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.omniarium.markdown",
+          "match": "<|>|/|=|{|}"
+        }
+      ]
+    },
+    "filters": {
+      "patterns": [
+        {
+          "name": "meta.preprocessor.omniarium.markdown",
+          "match": "(((@!|@\\?|@)[\\w-]+))(?=[\\[\\s,{(])",
+          "captures": {
+            "1": {
+              "name": "constant.character.escape.omniarium.markdown"
+            },
+            "2": {
+              "name": "emphasis.omniarium.markdown"
+            }
+          }
+        },
+        {
+          "name": "meta.preprocessor.omniarium.markdown",
+          "match": "(filter)\\s+(((@!|@\\?)[\\w-]+))",
+          "captures": {
+            "1": {
+              "name": "keyword.control.filter.omniarium.markdown"
+            },
+            "2": {
+              "name": "invalid.illegal.declaration.filter.omniarium.markdown"
+            },
+            "3": {
+              "name": "emphasis.omniarium.markdown"
+            }
+          }
+        },
+        {
+          "name": "meta.preprocessor.omniarium.markdown",
+          "match": "(((@!|@\\?|@)([^\\s]+)))",
+          "captures": {
+            "1": {
+              "name": "invalid.illegal.filter.omniarium.markdown"
+            },
+            "2": {
+              "name": "emphasis.omniarium.markdown"
+            }
+          }
+        },
+        {
+          "name": "meta.preprocessor.omniarium.markdown",
+          "match": "((@([^\\w\\!\\?_-])[\\w-]+))",
+          "captures": {
+            "1": {
+              "name": "invalid.illegal.filter.omniarium.markdown"
+            },
+            "2": {
+              "name": "emphasis.omniarium.markdown"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
