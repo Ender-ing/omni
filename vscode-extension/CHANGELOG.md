@@ -2,6 +2,10 @@
 
 Here is the full changelog:
 
+## 0.0.6
+
++ Fix Browser extension
+
 ## 0.0.5
 
 + Fix package script
