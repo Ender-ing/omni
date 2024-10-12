@@ -270,7 +270,7 @@ Layer my-own-layout = lyr<>
 **/
 
 import Regex from standard.types;
-Regex my-regex = rex/.../g;
+Regex my-regex = rex/@[^\s]+/g;
 
 // More on this soon...
 
