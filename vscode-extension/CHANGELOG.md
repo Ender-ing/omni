@@ -2,6 +2,17 @@
 
 Here is the full changelog:
 
+## 0.0.2
+
++ Add basic file associations
++ Add Omni Regex highlighting
++ Add Omni layer snippets
++ Add Omni layer highlighting
++ Add Omni code snippets
++ Improve Omni code highlighting
++ Bug fixes
++ Add a license
+
 ## 0.0.1
 
 + Add test command
