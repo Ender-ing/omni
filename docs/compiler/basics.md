@@ -16,6 +16,7 @@ This folder contains all files generated on transpilation:
 
   - **core** _(folder)_
     Contains all procedural files used to represent the logic of the code!
+    _(This file is used to generate all final target files, not just one!)_
 
   - **.ini** _(file)_
     The final consolidated .ini file - a consolidation of `.omni.ini` and its included files!
