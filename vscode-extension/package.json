@@ -113,8 +113,8 @@
     },
     "scripts": {
         "build": "tsc",
-        "copy-license": "if command -v cp > /dev/null 2>&1; then cp ../LICENSE* .; else copy ../LICENSE* .; fi",
-        "delete-license": "if command -v rm > /dev/null 2>&1; then rm LICENSE*; else del LICENSE*; fi",
+        "copy-license": "copy ../LICENSE .",
+        "delete-license": "del LICENSE",
         "package": "npm run delete-license && npm run copy-license && tsc && ../ && vsce package && npm run delete-license"
     },
     "devDependencies": {
