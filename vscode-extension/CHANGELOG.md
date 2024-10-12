@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.0.8
+
++ Add website link
+
 ## 0.0.7
 
 + Add preview tag
