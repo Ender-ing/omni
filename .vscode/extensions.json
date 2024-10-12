@@ -2,6 +2,7 @@
 // manage and configure extensions specific to your project.
 {
     "recommendations": [
+        "endering.omniarium",
         "ms-vscode.cpptools-extension-pack",
         "pedro-w.tmlanguage"
     ]
