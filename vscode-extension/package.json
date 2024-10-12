@@ -120,8 +120,7 @@
         "build": "tsc",
         "win-copy-license": "xcopy /y ..\\LICENSE .",
         "win-delete-license": "del LICENSE",
-        "package": "npm run win-delete-license && npm run win-copy-license && tsc && vsce package && npm run win-delete-license",
-        "publish": "vsce login endering && vsce publish"
+        "package": "npm run win-delete-license && npm run win-copy-license && tsc && vsce package && npm run win-delete-license"
     },
     "devDependencies": {
         "@types/vscode": "^1.93.0",
