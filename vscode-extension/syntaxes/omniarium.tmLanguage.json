@@ -49,6 +49,9 @@
           "include": "#strings"
         },
         {
+          "include": "#markdown"
+        },
+        {
           "include": "#regex"
         },
         {
@@ -362,9 +365,12 @@
       ]
     },
     "regex": {
-      "begin": "/",
+      "begin": "(rex)(/)",
       "beginCaptures": {
-        "0": {
+        "1": {
+          "name": "keyword.other.flags.omniarium"
+        },
+        "2": {
           "name": "string.regexp.omniarium"
         }
       },
@@ -379,8 +385,29 @@
       },
       "patterns": [
         {
-          "name": "string.regexp.omniarium",
-          "match": "(\\\\.|[^\/\\\\])*" 
+          "include": "source.omniarium.regexp"
+        }
+      ]
+    },
+    "markdown": {
+      "begin": "(lyr)(<>)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.flags.omniarium"
+        },
+        "2": {
+          "name": "keyword.operator.markdown.start.omniarium"
+        }
+      },
+      "end": "(</>)",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.operator.markdown.end.omniarium"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.omniarium.markdown"
         }
       ]
     },
