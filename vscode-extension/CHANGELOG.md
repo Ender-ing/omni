@@ -2,6 +2,11 @@
 
 Here is the full changelog:
 
+## 0.0.5
+
++ Fix package script
++ Add browser support
+
 ## 0.0.4
 
 + Update activation conditions
