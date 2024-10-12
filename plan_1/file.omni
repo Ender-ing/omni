@@ -1,6 +1,7 @@
 /**
  *
  * This is a language syntax draft for Omniarium
+ * (.omni - Omniarium)
  *
 **/
 
@@ -58,12 +59,12 @@ export integer a = 0;
  * @info
  *
  * Filters are used to restrict a value's existence within the code tree!
- * Should a filter return a Boolean false state, whatever value or code block that comes
+ * Should a filter return a [boolean] false state, whatever value or code block that comes
  * after said filter will be replaced with an [empty] value. ([empty] acts the same as 'null')'
  *
 **/
 // [NOTE] Filter blocks only allow use of static code values in conditions! (You may make use of
-// variables, but they must be staticaconstant.regexp.comment.mark.omniariumlly defined!)
+// variables, but they must be statically defined!)
 filter @my-filter {
     // This filter includes this code if the target is either javascript or Java!
     return ((@web true) != empty || (@android true) != empty);
@@ -129,8 +130,10 @@ filter @custom-target {
  * 
  * List of planned types:
  * Numbers: [byte], [short], [integer], [long], [float], [double],
- * Text: [String], [char],
+ * Text: [String], [char], [Regex]
  * Bool: [boolean],
+ * Data: [File]
+ * Graphical: [Layer]
  * Error Handling: [Error],
  *
  * All types that don't start with a capital letter are primitive types, and are automatically
@@ -202,6 +205,74 @@ Array<byte,> double-bytes = new Array<byte,> (10, 20); // a 'Byte' matrix with 1
 
 // The 'self' keyword refers to the type of the variable that is being defined!
 Array<byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 'self' keyword to shorten the written code!
+
+/**
+ *
+ * @info
+ *
+ * Files can be manipulated using the [File] data type!
+ *
+**/
+
+import File from standard.types;
+
+File my-file = new self ("path/to/file.txt", File.mode.read-only);
+
+/**
+ *
+ * @info
+ *
+ * Layers are part of the standard version! You may use them to create visual
+ * layouts for your project's UI!
+ *
+**/
+
+import Layer from standard.types;
+
+// You can load a layer file from an outside source!
+Layer my-layout = new self ("FILE_NAME.omni.lyr");
+
+// Or you can directly define a layer in your code!
+Layer my-own-layout = lyr<>
+    <!--
+        This is a language syntax draft for Omniarium layout files!
+        (.omni.lyr)
+    -->
+    <Element property1="1" property2="2">
+        <Element property1={?value-name} />
+        <!-- This is how you call a value from a resource file! -->
+        <Element property1={$value-name} />
+        <!-- This is how you call a value from a .ini file!
+            Note that .ini calls will result in a warning, as these
+            values are not meant for this kind of usage! -->
+        <Element property1={value-name} />
+        <!-- This is how you call a value from your code!
+            (This is basically a value injection!) -->
+        <!-- You can use filters with elements too! -->
+        <!-- But you need to define these filters in your source code! -->
+        <Element @web value="...">
+            This is a platform-specific element!
+        </Element>
+        <Element @android value="...">
+            This is a platform-specific element!
+        </Element>
+    </Element>
+</>;
+// Note that direct-definition requires you to start the layer with the symbols
+// "lyr<>" and end it with "</>"!
+
+/**
+ *
+ * @info
+ * 
+ * [String] manipulation can be done with the help of regular expression ([Regex]) strings!
+ *
+**/
+
+import Regex from standard.types;
+Regex my-regex = rex/.../g;
+
+// More on this soon...
 
 /**
  *
@@ -574,7 +645,7 @@ while (true) {
  * (What is the use of this function?)
  *
  * @input
- * <[Type-1]> [argument-1]: (What is this argument? What is it used for?
+ * <[Type-1]]> [argument-1]: (What is this argument? What is it used for?
  *                       excess text goes here!)
  *
  * <[Type-2]> [argument-2]: (What is this argument? What is it used for?
