@@ -4,7 +4,7 @@
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
     "version": "0.0.2",
-    "icon": "icons/plain.png",
+    "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
     },
@@ -21,8 +21,8 @@
                     ".omni"
                 ],
                 "icon": {
-                    "light": "icons/light.png",
-                    "dark": "icons/dark.png"
+                    "light": "icons/omni.svg",
+                    "dark": "icons/omni.svg"
                 },
                 "formatter": {
                     "scheme": "file",
@@ -41,8 +41,8 @@
                     ".omni.lyr"
                 ],
                 "icon": {
-                    "light": "icons/markdown/light.png",
-                    "dark": "icons/markdown/dark.png"
+                    "light": "icons/omni-md.svg",
+                    "dark": "icons/omni-md.svg"
                 },
                 "formatter": {
                     "scheme": "file",
@@ -58,11 +58,27 @@
             },
             {
                 "id": "jsonc",
-                "extensions": [".omni.manifest", ".omni.loc"]
+                "extensions": [".omni.loc"],
+                "icon": {
+                    "light": "icons/omni-loc.svg",
+                    "dark": "icons/omni-loc.svg"
+                }
+            },
+            {
+                "id": "jsonc",
+                "extensions": [".omni.manifest"],
+                "icon": {
+                    "light": "icons/omni-manifest.svg",
+                    "dark": "icons/omni-manifest.svg"
+                }
             },
             {
                 "id": "ini",
-                "extensions": [".omni.ini"]
+                "extensions": [".omni.ini"],
+                "icon": {
+                    "light": "icons/omni-ini.svg",
+                    "dark": "icons/omni-ini.svg"
+                }
             }
         ],
         "grammars": [
