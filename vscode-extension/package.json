@@ -28,6 +28,33 @@
                     "scheme": "file",
                     "language": "omniarium"
                 }
+            },
+            {
+                "id": "omniarium-markdown",
+                "aliases": [
+                    "Omniarium Markdown",
+                    "Omni Markdown",
+                    "Omni MD",
+                    "Omni Lyr"
+                ],
+                "extensions": [
+                    ".omni.lyr"
+                ],
+                "icon": {
+                    "light": "icons/markdown/light.png",
+                    "dark": "icons/markdown/dark.png"
+                },
+                "formatter": {
+                    "scheme": "file",
+                    "language": "omniarium-markdown"
+                }
+            },
+            {
+                "id": "omniarium-regexp",
+                "aliases": [
+                    "Omniarium Regex",
+                    "Omni Regex"
+                ]
             }
         ],
         "grammars": [
@@ -35,6 +62,16 @@
                 "language": "omniarium",
                 "scopeName": "source.omniarium",
                 "path": "./syntaxes/omniarium.tmLanguage.json"
+            },
+            {
+                "language": "omniarium-markdown",
+                "scopeName": "source.omniarium.markdown",
+                "path": "./syntaxes/omniarium.markdown.tmLanguage.json"
+            },
+            {
+                "language": "omniarium-regexp",
+                "scopeName": "source.omniarium.regexp",
+                "path": "./syntaxes/omniarium.regexp.tmLanguage.json"
             }
         ],
         "snippets": [
@@ -55,6 +92,7 @@
         "onLanguage:omniarium",
         "workspaceContains:**/.omni.manifest",
         "workspaceContains:**/.omni.ini",
+        "workspaceContains:**/.omni.lyr",
         "workspaceContains:**/*.omni"
     ],
     "repository": {
