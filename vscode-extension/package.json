@@ -1,9 +1,10 @@
 {
     "name": "omniarium",
     "main": "scripts/extension.js",
+    "browser": "scripts/extension.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"
@@ -147,7 +148,7 @@
         "win-copy-license": "xcopy /y ..\\LICENSE .",
         "win-delete-vsix": "del omniarium-*.vsix",
         "win-delete-license": "del LICENSE",
-        "package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && tsc && vsce package && npm run win-delete-license"
+        "package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && npm run build && vsce package && npm run win-delete-license"
     },
     "devDependencies": {
         "@types/vscode": "^1.93.0",
