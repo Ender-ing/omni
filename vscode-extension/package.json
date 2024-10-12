@@ -3,7 +3,7 @@
     "main": "scripts/extension.js",
     "displayName": "Omniarium",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "icon": "icons/omni.png",
     "engines": {
         "vscode": ">=1.93.0"

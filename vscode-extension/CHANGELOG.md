@@ -2,6 +2,10 @@
 
 Here is the full changelog:
 
+## 0.0.3
+
++ Update file extension icons
+
 ## 0.0.2
 
 + Add basic file associations
