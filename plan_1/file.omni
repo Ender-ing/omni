@@ -21,21 +21,27 @@
 // code-statement: any code that ends with a semicolon, a code block (scope), or a
 // context separation (e.g. && or || conditions)
 
+// Import project files
+import * as my-local-code from source.file2; // The path of this would be
+                                            // "/project_folder/file2.omni"
+// @note : Your local project files and libraries need to follow the same
+// naming scheme as normal variable identifiers!
+
 // Import platform filters
 import @?javascript as @web, @?java as @android from standard.targets;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
-import x, -y, z from custom-lib;
+import x, -y, z from library.custom-lib;
 
 // And custom libraries can have inner paths of their own
-import Type-X, Type-Y, Type-Z from custom-lib.types;
+import Type-X, Type-Y, Type-Z from library.custom-lib.types;
 
 // You may import all code from a library like this!
-import * from custom-lib.types;
+import * from library.custom-lib.types;
 
 // You may also use a prefix keyword to import all code from a library!
-import * as my-handle from custom-lib.types;
+import * as my-handle from library.custom-lib.types;
 my-handle.Type-X; // You'd have to use the custom handle you used in the declaration!
 
 // @note : "import" statements are root-exclusive!
