@@ -21,6 +21,14 @@ library, there will be a collection of community-created libraries for specific 
 > [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=Endering.omniarium)
 > for code highlighting and formatting!
 
+## Grammar
+
+For more info on the current grammar for the language, check the [ANTLR grammar file](./plan_1/omni.grammar.g4)!
+
+> [!NOTE]
+> Naturally, the grammar of the language could change as the language is being revised!
+> You may contribute to this file as you please!
+
 ## Transpiler
 
 Omni will need a transpiler, a *source-to-source translator/compiler*, to convert Omni code into a

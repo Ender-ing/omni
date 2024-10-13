@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.0
+
++ Update import syntax
++ Fix highlight emphasis types
+
 ## 0.0.9
 
 + Fix the image
