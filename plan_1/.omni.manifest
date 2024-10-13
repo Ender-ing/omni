@@ -9,6 +9,8 @@
     // Basic info about your project
     "name": "...", // Name your project (make sure it's unique)
 
+    "start": "file.omni", // Set the start file!
+
     "type": "product", // "product": used to indicate normal projects (like an app or a game)
                     // "library": used to indicate libraries (code meant for others to use to make their
                     // own final products)
