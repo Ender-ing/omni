@@ -161,9 +161,10 @@ importRootLevelStatements
     ;
 
 ////////////////////////////////////
+// Code Archive!
 // From this point up, you'll only encounter incomplete/incorrect code
 ////////////////////////////////////
-
+/*
 // Import statement
 
 importStatement
@@ -351,3 +352,4 @@ newExpression
 cloneExpression
     : CLONE IDENTIFIER
     ;
+*/
