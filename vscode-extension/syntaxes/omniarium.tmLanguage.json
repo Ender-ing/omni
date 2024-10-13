@@ -27,6 +27,9 @@
           "include": "#keywords"
         },
         {
+          "include": "#imports"
+        },
+        {
           "include": "#injects"
         },
         {
@@ -302,6 +305,68 @@
         {
           "name": "keyword.control.flow.omniarium",
           "match": "(?<![\\w])(return|break|continue|throw)(?![\\w-])"
+        }
+      ]
+    },
+    "imports": {
+      "patterns": [
+        {
+          "begin": "(?<![\\w])((source|standard|library))(?![\\w-])",
+          "beginCaptures": {
+            "1": {
+              "name": "storage.library.path.omniarium"
+            },
+            "2": {
+              "name": "emphasis.omniarium"
+            }
+          },
+          "end": "(;)",
+          "endCaptures": {
+            "1": {
+              "name": "keyword.operator.end.omniarium"
+            }
+          },
+          "patterns": [
+            {
+              "name": "storage.library.path.omniarium",
+              "match": "\\b([a-z][\\w-]*)(?![\\w-])",
+              "captures": {
+                "1": {
+                  "name": "emphasis.omniarium"
+                }
+              }
+            },
+            {
+              "name": "invalid.illegal.library.path.omniarium",
+              "match": "(?<![\\w])(source|standard|library)(?![\\w-])"
+            },
+            {
+              "name": "invalid.illegal.library.path.omniarium",
+              "match": "\\.\\.(.+?)",
+              "captures": {
+                "1": {
+                  "name": "emphasis.omniarium"
+                }
+              }
+            },
+            {
+              "name": "keyword.operator.library.separator.omniarium",
+              "match": "\\."
+            },
+            {
+              "name": "invalid.illegal.library.path.omniarium",
+              "match": ".+?"
+            }
+          ]
+        },
+        {
+          "name": "storage.library.path.omniarium",
+          "match": "(?<![\\w])((source|standard|library))(?![\\w-])",
+          "captures": {
+            "1": {
+              "name": "emphasis.omniarium"
+            }
+          }
         }
       ]
     },
@@ -762,7 +827,7 @@
           "match": "markup\\.inserted\\.omniarium"
         },
         {
-          "name": "markup.italic.omniarium",
+          "name": "emphasis.omniarium",
           "match": "markup\\.italic\\.omniarium"
         },
         {
