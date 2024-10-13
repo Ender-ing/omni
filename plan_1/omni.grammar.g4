@@ -106,7 +106,7 @@ LITERAL_CHAR                            :
     SYMBOL_SINGLE_QUOTE
         ( ~[SYMBOL_SINGLE_QUOTE\\] | SYMBOL_BACKSLASH . )*
     SYMBOL_SINGLE_QUOTE
-    ;*/
+    ;
 
 // Identifiers
 IDENTIFIER_PRIMITIVE_TYPE               :
@@ -145,19 +145,19 @@ importScope
 // Root level statements
 
 globalRootLevelStatements
-    : importStatement
-    | filterStatement
-    | prototypeStatement
-    | functionDefinition
-    | variableDeclaration SEMI
+    : 'importStatement'
+    | 'filterStatement'
+    | 'prototypeStatement'
+    | 'functionDefinition'
+    | 'variableDeclaration' SYMBOL_SEMICOLON
     ;
 
 sourceRootLevelStatements
-    : defaultStatement
+    : 'defaultStatement'
     ;
 
 importRootLevelStatements
-    : exportStatement
+    : 'exportStatement'
     ;
 
 ////////////////////////////////////

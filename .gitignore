@@ -32,6 +32,9 @@ node_modules
 ## Visual Studio list
 *.vsix
 
+## ANTLR List
+.antlr
+
 # Duplicated LICENSE file
 vscode-extension/LICENSE
 
