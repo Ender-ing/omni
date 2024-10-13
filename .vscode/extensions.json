@@ -4,6 +4,7 @@
     "recommendations": [
         "endering.omniarium",
         "ms-vscode.cpptools-extension-pack",
+        "ncthbrt.antlr4",
         "pedro-w.tmlanguage"
     ]
 }
