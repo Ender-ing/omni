@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.2?
+
++ Fix char string highlighting
+
 ## 0.1.1
 
 + Update import syntax

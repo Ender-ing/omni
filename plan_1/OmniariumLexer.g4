@@ -23,7 +23,7 @@ fragment EXPONENT
     : ('e' | 'E' ) (SYMBOL_PLUS | SYMBOL_MINUS)? DIGIT+
     ; /* Number exponent syntax */
 fragment ESCAPE_SEQUENCE
-    : SYMBOL_BACKSLASH [btnfr"'\\/]
+    : SYMBOL_BACKSLASH [btnfrs"'\\/]
     ; /* All supported string/char escape sequences */
 
 // Comments
