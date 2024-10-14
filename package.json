@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "build-vscode": "cd vscode-extension && npm run build",
+        "package-vscode": "cd vscode-extension && npm run package"
+    }
+}

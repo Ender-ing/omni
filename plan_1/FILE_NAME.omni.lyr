@@ -1,14 +1,17 @@
+@beta
+lyr<>
 <!--
     This is a language syntax draft for Omniarium layout files!
     (.omni.lyr)
+    Notice that you must start and end this file the same way you'd start and end a literal
+    definition within normal omni code (lyr<>...</>)
+    Notice that you may use filters on the whole lyr<> block and define other lyr<> blocks!
 -->
 <Element property1="1" property2="2">
     <Element property1={?value-name} /> <!-- This is how you call a value from a resource file! -->
     <Element property1={$value-name} /> <!-- This is how you call a value from a .ini file!
                                         Note that .ini calls will result in a warning, as these
                                         values are not meant for this kind of usage! -->
-    <Element property1={value-name} /> <!-- This is how you call a value from your code!
-                                        (This is basically a value injection!) -->
     <!-- You can use filters with elements too! -->
     <!-- But you need to define these filters in your source code! -->
     <Element @web value="...">
@@ -17,4 +20,11 @@
     <Element @android value="...">
         This is a platform-specific element!
     </Element>
+    <!-- You may import other layers by using the path of the layer as the name for an element! -->
+    <source.path.to.layer />
 </Element>
+</>
+@alpha
+lyr<>
+    ...
+</>

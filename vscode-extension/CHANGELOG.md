@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.1.1
+
++ Update import syntax
++ Fix numbers highlighting
+
 ## 0.1.0
 
 + Update import syntax

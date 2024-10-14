@@ -22,26 +22,26 @@
 // context separation (e.g. && or || conditions)
 
 // Import project files
-import * as my-local-code from source.file2; // The path of this would be
+import * as my-local-code from source/file2; // The path of this would be
                                             // "/project_folder/file2.omni"
 // @note : Your local project files and libraries need to follow the same
 // naming scheme as normal variable identifiers!
 
 // Import platform filters
-import @?javascript as @web, @?java as @android from standard.targets;
+import @?javascript as @web, @?java as @android from standard/targets;
 // Note that the "as" keyword will change the name of the imported component in the generated code!
 
 // All custom libraries can be accessed by starting the package path with the word "library" 
-import x, -y, z from library.custom-lib;
+import x, -y, z from library/custom-lib;
 
 // And custom libraries can have inner paths of their own
-import Type-X, Type-Y, Type-Z from library.custom-lib.types;
+import Type-X, Type-Y, Type-Z from library/custom-lib/types;
 
 // You may import all code from a library like this!
-import * from library.custom-lib.types;
+import * from library/custom-lib/types;
 
 // You may also use a prefix keyword to import all code from a library!
-import * as my-handle from library.custom-lib.types;
+import * as my-handle from library/custom-lib/types;
 my-handle.Type-X; // You'd have to use the custom handle you used in the declaration!
 
 // @note : "import" statements are root-exclusive!
@@ -153,7 +153,7 @@ filter @custom-target {
 **/
 
 // Standard types
-import String, integer from standard.types;
+import String, float, integer from standard/types;
 
 integer a = 0;
 
@@ -181,6 +181,19 @@ integer a = 0;
 -some-function-1 (link a); // The value of 'a' is "2" now!
 -some-function-2 (cede a); // The value of 'a' did indeed change, but it has been deleted now!
 
+// Exponent numbers are always treated as float/double literals!
+float a = 0e-5; // 0
+a = 0e+5; // 0
+a = 5e1; // 50
+a = 175e-2; // 1.75
+a = 1e3; // 1000
+a = 1e-3; // 0.001
+a = 1E3; // 1000
+a = 1.3E3; // 1000
+a = infinity;
+a = (- infinity);
+a = NaN;
+
 // If you wish to reuse the 'a' name for a variable, you can do so now! (because you already ceded the variable!)
 integer a = 10;
 
@@ -204,7 +217,7 @@ c += " I'm here to help you!";
 // that may require modification of an already-existing string!
 
 // Arrays
-import Array, byte, Char from standard.types;
+import Array, byte, Char from standard/types;
 
 Array<byte> bytes = new Array<byte> (10); // a 'Byte' array with 10 items
 Array<byte,> double-bytes = new Array<byte,> (10, 20); // a 'Byte' matrix with 10 rows and 20 columns
@@ -220,7 +233,7 @@ Array<byte,> double-bytes-2 = new self (10, 20); // Note that you can use the 's
  *
 **/
 
-import File from standard.types;
+import File from standard/types;
 
 File my-file = new self ("path/to/file.txt", File.mode.read-only);
 
@@ -233,10 +246,10 @@ File my-file = new self ("path/to/file.txt", File.mode.read-only);
  *
 **/
 
-import Layer from standard.types;
+import Layer from standard/types;
 
 // You can load a layer file from an outside source!
-Layer my-layout = new self ("FILE_NAME.omni.lyr");
+Layer my-layout = new self (source/path/to/layer.omni.lyr);
 
 // Or you can directly define a layer in your code!
 Layer my-own-layout = lyr<>
@@ -275,7 +288,7 @@ Layer my-own-layout = lyr<>
  *
 **/
 
-import Regex from standard.types;
+import Regex from standard/types;
 Regex my-regex = rex/@[^\s]+/g;
 
 // More on this soon...
@@ -289,9 +302,9 @@ Regex my-regex = rex/@[^\s]+/g;
  *
 **/
 @web
-import -get-dom-element-by-id, DOM-Element from standard.targets.javascript;
+import -get-dom-element-by-id, DOM-Element from standard/targets/javascript;
 @android
-import -get-java-element-by-id, Java-View from standard.targets.java;
+import -get-java-element-by-id, Java-View from standard/targets/java;
 
 // @note : "Good" Omni Libraries (not source 'implementation') should aim to reduce the need for the user to specify
 // a target filter as much as possible! Only the standard library and implementation libraries are meant to make use of
@@ -330,7 +343,7 @@ String -function-alias (integer my-number) is -original-function; // Note that t
 
 
 // In order to inject target code, you need to tell the transpiler the type of the injected code
-import * as inject-target from standard.injects.targets;
+import * as inject-target from standard/injects/targets;
 
 // Functions!
 Elm-Obj -get-element (String id) {
