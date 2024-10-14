@@ -153,7 +153,7 @@ filter @custom-target {
 **/
 
 // Standard types
-import String, integer from standard/types;
+import String, float, integer from standard/types;
 
 integer a = 0;
 
@@ -180,6 +180,19 @@ integer a = 0;
 -some-function (a); // The value of 'a' is still "0"!
 -some-function-1 (link a); // The value of 'a' is "2" now!
 -some-function-2 (cede a); // The value of 'a' did indeed change, but it has been deleted now!
+
+// Exponent numbers are always treated as float/double literals!
+float a = 0e-5; // 0
+a = 0e+5; // 0
+a = 5e1; // 50
+a = 175e-2; // 1.75
+a = 1e3; // 1000
+a = 1e-3; // 0.001
+a = 1E3; // 1000
+a = 1.3E3; // 1000
+a = infinity;
+a = (- infinity);
+a = NaN;
 
 // If you wish to reuse the 'a' name for a variable, you can do so now! (because you already ceded the variable!)
 integer a = 10;
