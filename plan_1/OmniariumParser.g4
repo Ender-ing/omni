@@ -18,8 +18,8 @@ options {
 //// Parser Rules
 
 start
-    : { __CPP_isImportFile() }? importScope
-    | { __CPP_isLayerFile() }? layerScope
+    : { __RIDE_PARSER_isImportFile() }? importScope
+    | { __RIDE_PARSER_isLayerFile() }? layerScope
     | sourceScope
     ;
 
@@ -33,9 +33,17 @@ importScope
     : ( globalRootLevelStatements | importRootLevelStatements )*
     ; /* This is the scope of any imported file! */
 
-layerScope
+layerScope                                                                      // Current literal tokenisation needs revision
     : ( layerRootLevelStatements )*
     ; /* This is the scope of a layer file / layer text! */
+
+independentScope
+    :
+    ; /* This is the scope within curely brackets ({...}) */
+
+injectScope                                                                     // Current literal tokenisation needs revision
+    :
+    ; /* This is the scope of an inject statement! */
 
 // Root level statements
 

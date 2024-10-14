@@ -15,7 +15,16 @@ fragment WHITESPACE
     ;
 fragment STANDARD_NAME_CHARS
     : [a-zA-Z0-9_-]
+    ; /* All supported name characters */
+fragment DIGIT
+    : [0-9]
     ;
+fragment EXPONENT
+    : ('e' | 'E' ) (SYMBOL_PLUS | SYMBOL_MINUS)? DIGIT+
+    ; /* Number exponent syntax */
+fragment ESCAPE_SEQUENCE
+    : SYMBOL_BACKSLASH [btnfr"'\\/]
+    ; /* All supported string/char escape sequences */
 
 // Comments
 COMMENT_BLOCK
@@ -33,6 +42,10 @@ COMMENT_NODE
 //// TOKENS
 
 // Literals
+LITERAL_EMPTY
+    : 'empty' 
+    ;
+
 LITERAL_BOOLEAN_TRUE
     : 'true' 
     ;
@@ -43,32 +56,62 @@ LITERAL_BOOLEAN
     : LITERAL_BOOLEAN_TRUE
     | LITERAL_BOOLEAN_FALSE
     ;
-LITERAL_EMPTY
-    : 'empty' 
+
+LITERAL_NAN
+    : 'NaN' 
     ;
-LITERAL_FLOAT  // This might not be working as expected!
-    : [0-9]+ '.' [0-9]+
+LITERAL_INFINITY                                                                // Bad selector
+    : SYMBOL_MINUS? 'infinity'
     ;
 LITERAL_DECIMAL
-    : [0-9]+
+    : SYMBOL_MINUS? DIGIT+
     ;
-LITERAL_STRING // This might be broken!
+LITERAL_FLOAT
+    :   SYMBOL_MINUS? DIGIT+ SYMBOL_DOT DIGIT* EXPONENT?                        // -3.14, 0.1, 2.0e-5
+    |   SYMBOL_MINUS? SYMBOL_DOT DIGIT+ EXPONENT?                               // -.14, .5
+    |   SYMBOL_MINUS? DIGIT+ EXPONENT                                           // 1e10, -2E-5
+    ;
+LITERAL_NUMBER
+    : LITERAL_NAN
+    | LITERAL_INFINITY
+    | LITERAL_DECIMAL
+    | LITERAL_FLOAT
+    ;
+
+LITERAL_STRING                                                                  // Needs further tokenisation
     : SYMBOL_DOUBLE_QUOTE
-            ( ~["\\] | SYMBOL_BACKSLASH . )*
+            ( ESCAPE_SEQUENCE | ~( '\\' | '"' ) )*
         SYMBOL_DOUBLE_QUOTE
     ;
-LITERAL_CHAR // This might be broken!
+LITERAL_CHAR
     : SYMBOL_SINGLE_QUOTE
-            ( ~['\\] | SYMBOL_BACKSLASH . )*
+            ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )*
         SYMBOL_SINGLE_QUOTE
     ;
+
+LITERAL_REGEXP
+    : 'rex/' ( ESCAPE_SEQUENCE | ~( '/' ) )* '/'
+    ;
+LITERAL_MARKDOWN_LAYER                                                          // Needs further tokenisation
+    : SYMBOL_MARKDOWN_LAYER_OPEN
+            ( ~'<' ~'/' ~'>' )*
+        SYMBOL_MARKDOWN_LAYER_CLOSE
+    ;
+LITERAL_INJECT_QUOTE                                                            // Needs further tokenisation
+    : SYMBOL_INJECT_QUOTE_OPEN
+            ( '\\{{' | ~'}' ~'}' )*
+        SYMBOL_INJECT_QUOTE_CLOSE
+    ;
+
 LITERAL
     : LITERAL_BOOLEAN
     | LITERAL_EMPTY
-    | LITERAL_DECIMAL
-    | LITERAL_FLOAT
+    | LITERAL_NUMBER
     | LITERAL_STRING
     | LITERAL_CHAR
+    | LITERAL_REGEXP
+    | LITERAL_MARKDOWN_LAYER
+    | LITERAL_INJECT_QUOTE
     ;
 
 // Identifiers
@@ -301,4 +344,16 @@ SYMBOL_BACKSLASH
     ;
 SYMBOL_UNDERSCORE
     : '_' 
+    ;
+SYMBOL_MARKDOWN_LAYER_OPEN
+    : 'lyr<>'
+    ;
+SYMBOL_MARKDOWN_LAYER_CLOSE
+    : '</>'
+    ;
+SYMBOL_INJECT_QUOTE_OPEN
+    : '{{'
+    ;
+SYMBOL_INJECT_QUOTE_CLOSE
+    : '}}'
     ;
