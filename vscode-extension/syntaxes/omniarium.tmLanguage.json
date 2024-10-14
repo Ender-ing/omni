@@ -52,6 +52,9 @@
           "include": "#strings"
         },
         {
+          "include": "#chars"
+        },
+        {
           "include": "#markdown"
         },
         {
@@ -430,14 +433,31 @@
         }
       ]
     },
+    "chars": {
+      "patterns": [
+        {
+          "name": "invalid.illegal.constant.quoted.single.omniarium",
+          "match": "'(((?!\\\\)..+)|(\\\\..+))'"
+        },
+        {
+          "name": "string.quoted.single.omniarium",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "include": "#escapeSequences"
+            }
+          ]
+        }
+      ]
+    },
     "strings": {
       "name": "string.quoted.double.omniarium",
       "begin": "\"",
       "end": "\"",
       "patterns": [
         {
-          "name": "constant.character.escape.omniarium",
-          "match": "\\\\."
+          "include": "#escapeSequences"
         },
         {
           "name": "constant.character.escape.curly.omniarium",
@@ -517,10 +537,6 @@
           "match": "(?<![\\w])(empty)(?![\\w-])"
         },
         {
-          "name": "string.quoted.single.omniarium",
-          "match": "'(.*?)'"
-        },
-        {
           "name": "constant.numeric.omniarium",
           "match": "(?<![\\w])(-)?(\\d+(\\.\\d+)?([eE][-+]?\\d+)?)(?![\\w-])"
         },
@@ -539,6 +555,18 @@
         {
           "name": "keyword.constant.omniarium",
           "match": "#[a-z][a-zA-Z0-9_\\.-]*"
+        }
+      ]
+    },
+    "escapeSequences": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.omniarium",
+          "match": "\\\\([\"'\/\\\\btnfrs])"
+        },
+        {
+          "name": "invalid.illegal.constant.character.escape.omniarium",
+          "match": "\\\\."
         }
       ]
     },
