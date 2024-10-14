@@ -522,7 +522,11 @@
         },
         {
           "name": "constant.numeric.omniarium",
-          "match": "(?<![\\w])(\\d+(\\.\\d+)?)(?![\\w-])"
+          "match": "(?<![\\w])(-)?(\\d+(\\.\\d+)?([eE][-+]?\\d+)?)(?![\\w-])"
+        },
+        {
+          "name": "keyword.numeric.omniarium",
+          "match": "(?<![\\w])(infinity|NaN)(?![\\w-])"
         },
         {
           "name": "invalid.illegal.constant.user.reserved.omniarium",
