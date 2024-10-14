@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.1
+
++ Update import syntax
+
 ## 0.1.0
 
 + Update import syntax
