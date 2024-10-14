@@ -23,7 +23,7 @@ library, there will be a collection of community-created libraries for specific 
 
 ## Grammar
 
-For more info on the current grammar for the language, check the [ANTLR grammar file](./plan_1/omni.grammar.g4)!
+For more info on the current grammar for the language, check the [ANTLR grammar file](./plan_1/OmniariumParser.g4)!
 
 > [!NOTE]
 > Naturally, the grammar of the language could change as the language is being revised!
