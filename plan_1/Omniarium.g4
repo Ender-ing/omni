@@ -90,6 +90,9 @@ SYMBOL_UNDERSCORE                       : '_' ;
 // Literals
 LITERAL_BOOLEAN_TRUE                    : 'true' ;
 LITERAL_BOOLEAN_FALSE                   : 'false' ;
+LITERAL_BOOLEAN                         :
+    (LITERAL_BOOLEAN_TRUE | LITERAL_BOOLEAN_FALSE)
+    ;
 LITERAL_EMPTY                           : 'empty' ;
 LITERAL_DECIMAL                         :
     [0-9]+
@@ -107,6 +110,14 @@ LITERAL_CHAR                            :
         ( ~[SYMBOL_SINGLE_QUOTE\\] | SYMBOL_BACKSLASH . )*
     SYMBOL_SINGLE_QUOTE
     ;
+LITERAL                                 :
+    LITERAL_BOOLEAN
+    | LITERAL_EMPTY
+    | LITERAL_DECIMAL
+    | LITERAL_FLOAT
+    | LITERAL_STRING
+    | LITERAL_CHAR
+    ;
 
 // Identifiers
 IDENTIFIER_PRIMITIVE_TYPE               :
@@ -116,7 +127,8 @@ IDENTIFIER_PROTOTYPE                    :
     [A-Z][a-zA-Z0-9_-]*
     ;
 IDENTIFIER_TYPE                         :
-    (IDENTIFIER_PRIMITIVE_TYPE | IDENTIFIER_PROTOTYPE)
+    IDENTIFIER_PRIMITIVE_TYPE
+    | IDENTIFIER_PROTOTYPE
     ;
 IDENTIFIER_VALUE                        :
     [a-z][a-zA-Z0-9_-]*
@@ -125,7 +137,9 @@ IDENTIFIER_FUNCTION                     :
     [-][a-zA-Z0-9_-]+
     ;
 IDENTIFIER                              :
-    (IDENTIFIER_TYPE | IDENTIFIER_VALUE | IDENTIFIER_FUNCTION)
+    IDENTIFIER_TYPE
+    | IDENTIFIER_VALUE
+    | IDENTIFIER_FUNCTION
     ;
 
 //// Parser Rules
@@ -149,7 +163,7 @@ globalRootLevelStatements
     | 'filterStatement'
     | 'prototypeStatement'
     | 'functionDefinition'
-    | 'variableDeclaration' SYMBOL_SEMICOLON
+    | 'valueDefinition' SYMBOL_SEMICOLON
     ;
 
 sourceRootLevelStatements
@@ -158,6 +172,17 @@ sourceRootLevelStatements
 
 importRootLevelStatements
     : 'exportStatement'
+    ;
+
+// Values
+valueDefinition
+    : IDENTIFIER_TYPE IDENTIFIER_VALUE
+        (valueAssignment)?
+        (SYMBOL_COMMA IDENTIFIER_VALUE (valueAssignment)?)*
+    ;
+
+valueAssignment
+    : SYMBOL_EQUAL LITERAL
     ;
 
 ////////////////////////////////////
