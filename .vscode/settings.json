@@ -20,7 +20,9 @@
         "**/dist/**": true,
         "**/.git/**": true,
         "**/node_modules/**": true,
-        "**/.vscode0/**": true
+        "**/.vscode/**": false, // Change this later
+        "**/.omni.out/core/**": false, // Change this later
+        "**.omni.cache": false // Change this later
     },
     // File associations
     "files.associations": {
