@@ -71,19 +71,25 @@ LITERAL_FLOAT
     |   SYMBOL_MINUS? SYMBOL_DOT DIGIT+ EXPONENT?                               // -.14, .5
     |   SYMBOL_MINUS? DIGIT+ EXPONENT                                           // 1e10, -2E-5
     ;
-LITERAL_NUMBER
+LITERAL_FLOAT_NUMERICAL
     : LITERAL_NAN
     | LITERAL_INFINITY
-    | LITERAL_DECIMAL
     | LITERAL_FLOAT
-    ;
+    ; /* All float-point literal values */
+LITERAL_DECIMAL_NUMERICAL
+    : LITERAL_DECIMAL
+    ; /* All decimal literal values */
+LITERAL_NUMERICAL                                                               // To-do: add hex, octal, binary
+    : LITERAL_FLOAT_NUMERICAL
+    | LITERAL_DECIMAL_NUMERICAL
+    ; /* All numerical values */
 
 LITERAL_STRING                                                                  // Needs further tokenisation
     : SYMBOL_DOUBLE_QUOTE
             ( ESCAPE_SEQUENCE | ~( '\\' | '"' ) )*
         SYMBOL_DOUBLE_QUOTE
     ;
-LITERAL_CHAR
+LITERAL_CHAR                                                                    // TO-do: add special character definition!
     : SYMBOL_SINGLE_QUOTE
             ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )*
         SYMBOL_SINGLE_QUOTE
@@ -106,7 +112,7 @@ LITERAL_INJECT_QUOTE                                                            
 LITERAL
     : LITERAL_BOOLEAN
     | LITERAL_EMPTY
-    | LITERAL_NUMBER
+    | LITERAL_NUMERICAL
     | LITERAL_STRING
     | LITERAL_CHAR
     | LITERAL_REGEXP
