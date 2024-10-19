@@ -17,10 +17,10 @@ options {
 
 //// Parser Rules
 
-start
+start                                                                           // Might need to rethink this...
     : { __RIDE_PARSER_isImportFile() }? importScope
     | { __RIDE_PARSER_isLayerFile() }? layerScope
-    | sourceScope
+    | { __RIDE_PARSER_isMainSourceFile() }? sourceScope
     ;
 
 // Scopes
