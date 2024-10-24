@@ -5,7 +5,7 @@
 **/
 
 // Imports
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
 // Constants
 const DOCS_URL = 'https://docs.ender.ing/docs/omni-std1/intro/';
