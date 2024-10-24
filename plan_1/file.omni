@@ -482,6 +482,22 @@ prototype Custom-Type {
     local integer d; // Cannot be inherited by new object types!                        - private
     expose local integer e; // You can combine these keywords!
 
+    // You can group related variables and functions together in a group!
+    group name {
+        expose integer f;
+        local integer g;
+    }
+    // You can also append prefix keywords to all items within a group!
+    local group name {
+        integer h;
+        expose integer i;
+    }
+    // @note : Groups are not objects! You can think of them as a mere prefix!
+    // This means groups don't have a type, they only "contain" their elements, without
+    // actually creating a separate object! (basically namespaces)
+    // This is meant to be used to organise your variables and functions within your codebase!
+    // @note : You can use groups everywhere, not just within type definitions!
+
     // Functions that make use of certain keywords are type/object event functions!
     // These functions are used to manage the behaviour of the data type!
 

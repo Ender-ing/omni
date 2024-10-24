@@ -253,6 +253,9 @@ KEYWORD_CEDE
 KEYWORD_CLONE
     : 'clone' 
     ;
+KEYWORD_GROUP
+    : 'group' 
+    ;
 
 // Symbols
 SYMBOL_OPEN_BRACE

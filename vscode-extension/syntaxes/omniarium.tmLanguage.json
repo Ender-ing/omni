@@ -291,7 +291,7 @@
       "patterns": [
         {
           "name": "keyword.control.omniarium",
-          "match": "(?<![\\w])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)(?![\\w-])"
+          "match": "(?<![\\w])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter|group)(?![\\w-])"
         },
         {
           "name": "keyword.control.memory.omniarium",

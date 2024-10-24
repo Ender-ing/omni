@@ -2,6 +2,7 @@
 
 ## 0.1.2?
 
++ Add `group` keyword!
 + Update import and path syntax
 + Fix char string highlighting
 
