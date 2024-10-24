@@ -3,7 +3,9 @@
 Omniarium - or *Omni* - is an open-source multi-targeted metaprogramming language whose for multi-targeted transpilation!
 
 > [!IMPORTANT]
-> For up-to-date documentation, visit: <https://docs.ender.ing/docs/omni/intro>!
+> For internal documentation, visit: <https://docs.ender.ing/docs/omni/intro>!
+>
+> For Standard documentation, visit: <https://docs.ender.ing/docs/omni-std1/intro/>!
 
 ## To-Do list (rough)
 
