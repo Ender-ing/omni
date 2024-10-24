@@ -37,6 +37,7 @@ node_modules
 
 # Duplicated LICENSE file
 vscode-extension/LICENSE
+std-1/supplements/VSCode-Extension/LICENSE
 
 ## Temporary files
 *.tmp
