@@ -6,6 +6,7 @@
         "ms-vscode.cpptools-extension-pack",
         "mike-lischke.vscode-antlr4",
         "pedro-w.tmlanguage",
-        "bierner.github-markdown-preview"
+        "bierner.github-markdown-preview",
+        "onlyutkarsh.vsix-viewer"
     ]
 }
