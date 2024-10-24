@@ -136,7 +136,7 @@ filter @custom-target {
  * 
  * List of planned types:
  * Numbers: [byte], [short], [integer], [long], [float], [double],
- * Text: [String], [char], [Regex]
+ * Text: [String], [char], [Regex], [Path]
  * Bool: [boolean],
  * Data: [File]
  * Graphical: [Layer]
@@ -246,15 +246,22 @@ File my-file = new self ("path/to/file.txt", File.mode.read-only);
  *
 **/
 
-import Layer from standard.types;
+import Layer, Path from standard.types;
 
 // You can load a layer file from an outside source!
 Layer my-layout = new self (source.path.to.layer?omni.lyr);
 // Note that paths within .omni files are always assumed to be pointing to other .omni files!
 // If you want to point to files that are of a different type, you must specify the type
 // of the file within the path itself!
-// If you are passing the path to a function that is expecting one specific extension from your path,
-// you may use double question marks to fill-in that extension into your path!
+
+// You can also save this path inside a variable!
+Path path = source.path.to.layer?omni.lyr; // [Path] values can only be created using the
+                                                // "source", "standard", and "source" keywords!
+String path-string = source.path.to.layer?omni.lyr; // This type is based on the [String] type!
+// This means you can essentially treat [Path] values as strings!
+(path == path-string); // This is [true]!
+path.extension; // This value equals ["omni.lyr"]!
+path-string.extension; // This value doesn't exist! This will result in an error!
 
 // Or you can directly define a layer in your code!
 Layer my-own-layout = lyr<>
