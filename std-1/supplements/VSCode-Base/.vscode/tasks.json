@@ -1,0 +1,8 @@
+// This file defines tasks that can be executed from within VS Code. These tasks can be used for
+// building, compiling, testing, or running your project.
+{
+	"version": "2.0.0",
+	"tasks": [
+		// Not needed yet!
+	]
+}
