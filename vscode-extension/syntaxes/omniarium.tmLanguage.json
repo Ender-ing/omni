@@ -345,7 +345,7 @@
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
-              "match": "((\\.\\.|\\?\\?\\?|\\?\\?([\\w\\.-]+))([\\w\\.\\?-]*))",
+              "match": "((\\.\\.|\\?\\.|\\?\\?\\?|\\?\\?([\\w\\.-]+))([\\w\\.\\?-]*))",
               "captures": {
                 "1": {
                   "name": "emphasis.omniarium"
