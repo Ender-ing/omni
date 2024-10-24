@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## 0.1.2?
+## 0.1.2
 
++ Update README.md file!
 + Add `group` keyword!
 + Update import and path syntax
 + Fix char string highlighting

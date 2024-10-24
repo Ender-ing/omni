@@ -1,5 +1,7 @@
 # Omniarium Language Support for VSCode
 
+> Note that this is a version of the extension that doesn't adhere to the rules of ***Omniarium Standard Edition 1.0***!
+
 This extension provides language support for Omniarium, Omniarium Layers, and Omniarium Regex
 within VS Code.
 
@@ -25,24 +27,11 @@ guidelines.
 - File Associations: Automatically associate `.omni`, `.omni.lyr`, `.omni.loc`, `.omni.ini`,
 and `.omni.manifest` files with the Omniarium language mode.
 
-## Planned Features
-
-- Linting: Identify potential errors and style issues in your Omniarium code.
-
-- Configuration: Generate and manage Omniarium projects directly within VSCode.
-
-- Code Reports: Get live transpiler messages and reports within VSCode.
-
-- Code Completion: Get intelligent suggestions for Omniarium commands, variables, and functions as
-you type.
-
-- Building: Manage your Omniarium builds directly within VSCode.
-
-- Debugging: Debug your Omniarium code directly within VSCode.
-
 ## Contributing
 
 Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests.
+
+> You might want to contribute to the newer extension instead of this one!
 
 ## License
 

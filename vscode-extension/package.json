@@ -2,9 +2,9 @@
     "name": "omniarium",
     "main": "scripts/extension.js",
     "browser": "scripts/extension.browser.js",
-    "displayName": "Omniarium",
+    "displayName": "Omniarium (Internal - not standard)",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "preview": true,
     "icon": "icons/omni.png",
     "engines": {
