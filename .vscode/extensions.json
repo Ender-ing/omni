@@ -5,6 +5,8 @@
         "endering.omniarium",
         "ms-vscode.cpptools-extension-pack",
         "mike-lischke.vscode-antlr4",
-        "pedro-w.tmlanguage"
+        "pedro-w.tmlanguage",
+        "bierner.github-markdown-preview",
+        "onlyutkarsh.vsix-viewer"
     ]
 }

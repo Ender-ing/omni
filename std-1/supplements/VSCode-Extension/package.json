@@ -1,14 +1,14 @@
 {
-    "name": "omniarium",
+    "name": "omniarium-std1",
     "main": "scripts/extension.js",
-    "browser": "scripts/extension.browser.js",
-    "displayName": "Omniarium (Internal - not standard)",
+    "browser": "scripts/extension.light.js",
+    "displayName": "Omniarium (Standard Edition 1.0)",
     "description": "All you need to start working with the Omniarium programming language!",
-    "version": "0.1.2",
+    "version": "0.0.1",
     "preview": true,
     "icon": "icons/omni.png",
     "engines": {
-        "vscode": ">=1.93.0"
+        "vscode": "^1.94.0"
     },
     "publisher": "Endering",
     "contributes": {
@@ -60,7 +60,9 @@
             },
             {
                 "id": "jsonc",
-                "extensions": [".omni.loc"],
+                "extensions": [
+                    ".omni.loc"
+                ],
                 "icon": {
                     "light": "icons/omni-loc.svg",
                     "dark": "icons/omni-loc.svg"
@@ -68,7 +70,9 @@
             },
             {
                 "id": "jsonc",
-                "extensions": [".omni.manifest"],
+                "extensions": [
+                    ".omni.manifest"
+                ],
                 "icon": {
                     "light": "icons/omni-manifest.svg",
                     "dark": "icons/omni-manifest.svg"
@@ -76,7 +80,9 @@
             },
             {
                 "id": "ini",
-                "extensions": [".omni.ini"],
+                "extensions": [
+                    ".omni.ini"
+                ],
                 "icon": {
                     "light": "icons/omni-ini.svg",
                     "dark": "icons/omni-ini.svg"
@@ -112,8 +118,8 @@
         ],
         "commands": [
             {
-                "command": "omniarium.msg",
-                "title": "Show a test Omniarium Hello Message!",
+                "command": "omniarium.docs",
+                "title": "Check the latest Omniarium documentation!",
                 "category": "Omniarium"
             }
         ]
@@ -147,13 +153,17 @@
     ],
     "scripts": {
         "build": "tsc",
-        "win-copy-license": "xcopy /y ..\\LICENSE .",
-        "win-delete-vsix": "del omniarium-*.vsix",
+        "vsce-package": "vsce package --no-dependencies --baseContentUrl https://github.com/Ender-ing/omni/std-1/supplements/VSCode-Extension",
+        "win-copy-license": "xcopy /y ..\\..\\..\\LICENSE .",
+        "lix-copy-license": "cp ../../../LICENSE .",
+        "win-delete-vsix": "del omniarium*.vsix",
+        "lix-delete-vsix": "rm omniarium*.vsix",
         "win-delete-license": "del LICENSE",
-        "package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && npm run build && vsce package && npm run win-delete-license"
+        "lix-delete-license": "rm LICENSE",
+        "win-package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && npm run build && npm run vsce-package && npm run win-delete-license",
+        "lix-package": "npm run lix-delete-vsix && npm run lix-delete-license && npm run lix-copy-license && npm run build && npm run vsce-package && npm run lix-delete-license"
     },
     "devDependencies": {
-        "@types/vscode": "^1.93.0",
-        "vscode": "^1.1.34"
+        "@types/vscode": "^1.94.0"
     }
 }

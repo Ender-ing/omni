@@ -1,7 +1,5 @@
 # Omniarium
 
-> Last update: Sep 16th, 2024
-
 Omniarium - or *Omni* - is an open-source multi-targeted metaprogramming language whose for multi-targeted transpilation!
 
 > [!IMPORTANT]

@@ -291,7 +291,7 @@
       "patterns": [
         {
           "name": "keyword.control.omniarium",
-          "match": "(?<![\\w])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter)(?![\\w-])"
+          "match": "(?<![\\w])(if|else|while|do|for|try|catch|switch|case|default|as|is|filter|group)(?![\\w-])"
         },
         {
           "name": "keyword.control.memory.omniarium",
@@ -314,6 +314,21 @@
     "imports": {
       "patterns": [
         {
+          "name": "storage.library.path.omniarium",
+          "match": "((?<![\\w])((source|standard|library)))((([^\\w\\.-])([\\w\\.\\?-]*)))",
+          "captures": {
+            "1": {
+              "name": "emphasis.omniarium"
+            },
+            "4": {
+              "name": "emphasis.omniarium"
+            },
+            "5": {
+              "name": "invalid.illegal.library.path.omniarium"
+            }
+          }
+        },
+        {
           "begin": "(?<![\\w])((source|standard|library))(?![\\w-])",
           "beginCaptures": {
             "1": {
@@ -323,13 +338,17 @@
               "name": "emphasis.omniarium"
             }
           },
-          "end": "(;|,|\\))",
+          "end": "([^\\w\\.\\?-])",
           "endCaptures": {
             "1": {
               "name": "keyword.operator.end.omniarium"
             }
           },
           "patterns": [
+            {
+              "name": "invalid.illegal.library.path.omniarium",
+              "match": "(?<![\\w])(source|standard|library)(?![\\w-])"
+            },
             {
               "name": "string.unquoted.path.omniarium",
               "match": "\\b([a-z][\\w-]*)(?![\\w-])",
@@ -341,11 +360,7 @@
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
-              "match": "(?<![\\w])(source|standard|library)(?![\\w-])"
-            },
-            {
-              "name": "invalid.illegal.library.path.omniarium",
-              "match": "\\/\\/(.+?)",
+              "match": "((\\.\\.|\\?\\.|\\?\\?)([\\w\\.\\?-]*))",
               "captures": {
                 "1": {
                   "name": "emphasis.omniarium"
@@ -354,7 +369,7 @@
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
-              "match": "(.*?)\\.(.*?)\\/(.*?)\\.(.+?)",
+              "match": "(\\?([^\\?]+)\\?([\\w\\.\\?-]*))",
               "captures": {
                 "1": {
                   "name": "emphasis.omniarium"
@@ -363,7 +378,7 @@
             },
             {
               "name": "keyword.operator.library.separator.omniarium",
-              "match": "(\\/|\\.)"
+              "match": "(\\?|\\.)"
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
@@ -610,7 +625,7 @@
         },
         {
           "name": "keyword.operator.omniarium",
-          "match": ",|{|}|\\(|\\)|;|:|\\."
+          "match": ",|{|}|\\(|\\)|;|\\?|:|\\."
         },
         {
           "name": "keyword.operator.new.omniarium",
