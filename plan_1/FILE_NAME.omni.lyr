@@ -22,6 +22,7 @@ lyr<>
     </Element>
     <!-- You may import other layers by using the path of the layer as the name for an element! -->
     <source.path.to.layer />
+    <!-- Note that all paths within a layer scope are assumed to be paths that point to another layer file! -->
 </Element>
 </>
 @alpha

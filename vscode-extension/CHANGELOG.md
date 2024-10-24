@@ -2,6 +2,7 @@
 
 ## 0.1.2?
 
++ Update import and path syntax
 + Fix char string highlighting
 
 ## 0.1.1

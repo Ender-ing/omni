@@ -323,7 +323,7 @@
               "name": "emphasis.omniarium"
             }
           },
-          "end": "(;|,|\\))",
+          "end": "([^\\w\\.\\?-])",
           "endCaptures": {
             "1": {
               "name": "keyword.operator.end.omniarium"
@@ -345,7 +345,7 @@
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
-              "match": "\\/\\/(.+?)",
+              "match": "((\\.\\.|\\?\\?\\?|\\?\\?([\\w\\.-]+))([\\w\\.\\?-]*))",
               "captures": {
                 "1": {
                   "name": "emphasis.omniarium"
@@ -354,7 +354,7 @@
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
-              "match": "(.*?)\\.(.*?)\\/(.*?)\\.(.+?)",
+              "match": "(\\?([^\\?]+)\\?([\\w\\.\\?-]*))",
               "captures": {
                 "1": {
                   "name": "emphasis.omniarium"
@@ -363,7 +363,7 @@
             },
             {
               "name": "keyword.operator.library.separator.omniarium",
-              "match": "(\\/|\\.)"
+              "match": "(\\?|\\.)"
             },
             {
               "name": "invalid.illegal.library.path.omniarium",
