@@ -1,4 +1,4 @@
-# Omniarium Standard Edition 1.0
+# Omniarium Standard Edition 0.1
 
 This directory contains files related to the approved concepts of the Omniarium Standard Edition, version 1.0!
 

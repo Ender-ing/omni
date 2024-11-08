@@ -2,7 +2,7 @@
     "name": "omniarium-std1",
     "main": "scripts/extension.js",
     "browser": "scripts/extension.light.js",
-    "displayName": "Omniarium (Standard Edition 1.0)",
+    "displayName": "Omniarium (Standard Edition 0.1)",
     "description": "All you need to start working with the Omniarium programming language!",
     "version": "0.0.1",
     "preview": true,

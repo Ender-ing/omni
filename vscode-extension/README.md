@@ -1,6 +1,6 @@
 # Omniarium Language Support for VSCode
 
-> Note that this is a version of the extension that doesn't adhere to the rules of ***Omniarium Standard Edition 1.0***!
+> Note that this is a version of the extension that doesn't adhere to the rules of ***Omniarium Standard Edition 0.1***!
 
 This extension provides language support for Omniarium, Omniarium Layers, and Omniarium Regex
 within VS Code.
