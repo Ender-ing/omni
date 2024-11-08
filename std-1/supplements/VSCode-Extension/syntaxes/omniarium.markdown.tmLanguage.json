@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "Omniarium Layer | Standard Edition 1.0",
+  "name": "Omniarium Layer | Standard Edition 0.1",
   "scopeName": "source.omniarium.markdown",
   "patterns": [
     {
