@@ -1,6 +1,6 @@
 # Omniarium files
-*.omni linguist-language=omniarium
-*.omni.layer linguist-language=omniarium-layer
+*.omni linguist-language=OMNIARIUM
+*.omni.layer linguist-language=OMNIARIUM-LAYER
 *.omni.ini linguist-language=INI
 *.omni.manifest linguist-language=JSONC
 *.omni.local linguist-language=JSONC
