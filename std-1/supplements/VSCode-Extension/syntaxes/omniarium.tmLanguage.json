@@ -18,14 +18,27 @@
     "comments": {
       "patterns": [
         {
-          "match": "//.*",
-          "name": "comment.line.double-slash.omniarium"
+          "name": "comment.line.double-slash.omniarium",
+          "begin": "//",
+          "end": "\\\n",
+          "patterns": [
+            {
+              "include": "#comment-highlights"
+            }
+          ]
         },
         {
-          "match": "/\\*\\*.*\\*/",
-          "name": "comment.block.documentation.omniarium"
+          "name": "comment.block.documentation.omniarium",
+          "begin": "\\/\\*",
+          "end": "\\*\\/",
+          "patterns": [
+            {
+              "include": "#comment-highlights"
+            }
+          ]
         }
       ]
-    }
+    },
+    "comment-highlights": {}
   }
 }

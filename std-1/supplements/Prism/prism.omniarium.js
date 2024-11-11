@@ -1,13 +1,11 @@
 Prism.languages.omniarium = {
     'comment': [
 		{
-			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-			lookbehind: true,
+			pattern: /\/\*[\s\S]*?(?:\*\/|$)/,
 			greedy: true
 		},
 		{
-			pattern: /(^|[^\\:])\/\/.*/,
-			lookbehind: true,
+			pattern: /\/\/.*/,
 			greedy: true
 		}
 	]

@@ -11,19 +11,7 @@
     "root-order": {
       "patterns": [
         {
-          "include": "#comments"
-        }
-      ]
-    },
-    "comments": {
-      "patterns": [
-        {
-          "match": "//.*",
-          "name": "comment.line.double-slash.omniarium"
-        },
-        {
-          "match": "/\\*\\*.*\\*/",
-          "name": "comment.block.documentation.omniarium"
+          "include": "source.omniarium"
         }
       ]
     }
