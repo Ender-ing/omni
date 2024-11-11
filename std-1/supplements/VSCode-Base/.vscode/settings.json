@@ -20,14 +20,14 @@
         "**/.vscode/**": true,
         "**/.omni.out/core/**": true,
         "**.omni.cache": true,
-        "**.omni.lyr.cache": true
+        "**.omni.layer.cache": true
     },
     // File associations
     "files.associations": {
         "*.omni.manifest": "jsonc",
-        "*.omni.loc": "jsonc",
+        "*.omni.local": "jsonc",
         "*.omni.ini": "ini",
-        "*.omni.lyr": "omniarium-markdown",
+        "*.omni.layer": "omniarium-layer",
         "*.omni": "omniarium"
     }
 }

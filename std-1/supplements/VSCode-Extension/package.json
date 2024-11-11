@@ -32,23 +32,23 @@
                 }
             },
             {
-                "id": "omniarium-markdown",
+                "id": "omniarium-layer",
                 "aliases": [
-                    "Omniarium Markdown",
+                    "Omniarium Layer",
+                    "Omni Layer",
                     "Omni Markdown",
-                    "Omni MD",
-                    "Omni Lyr"
+                    "Omni MD"
                 ],
                 "extensions": [
-                    ".omni.lyr"
+                    ".omni.layer"
                 ],
                 "icon": {
-                    "light": "icons/omni-md.svg",
-                    "dark": "icons/omni-md.svg"
+                    "light": "icons/omni-layer.svg",
+                    "dark": "icons/omni-layer.svg"
                 },
                 "formatter": {
                     "scheme": "file",
-                    "language": "omniarium-markdown"
+                    "language": "omniarium-layer"
                 }
             },
             {
@@ -61,11 +61,11 @@
             {
                 "id": "jsonc",
                 "extensions": [
-                    ".omni.loc"
+                    ".omni.local"
                 ],
                 "icon": {
-                    "light": "icons/omni-loc.svg",
-                    "dark": "icons/omni-loc.svg"
+                    "light": "icons/omni-local.svg",
+                    "dark": "icons/omni-local.svg"
                 }
             },
             {
@@ -96,9 +96,9 @@
                 "path": "./syntaxes/omniarium.tmLanguage.json"
             },
             {
-                "language": "omniarium-markdown",
-                "scopeName": "source.omniarium.markdown",
-                "path": "./syntaxes/omniarium.markdown.tmLanguage.json"
+                "language": "omniarium-layer",
+                "scopeName": "source.omniarium.layer",
+                "path": "./syntaxes/omniarium.layer.tmLanguage.json"
             },
             {
                 "language": "omniarium-regexp",
@@ -112,8 +112,8 @@
                 "path": "./snippets/omniarium.code-snippets.json"
             },
             {
-                "language": "omniarium-markdown",
-                "path": "./snippets/omniarium.markdown.code-snippets.json"
+                "language": "omniarium-layer",
+                "path": "./snippets/omniarium.layer.code-snippets.json"
             }
         ],
         "commands": [
@@ -126,12 +126,12 @@
     },
     "activationEvents": [
         "onLanguage:omniarium",
-        "onLanguage:omniarium-markdown",
+        "onLanguage:omniarium-layer",
         "onLanguage:omniarium-regexp",
         "workspaceContains:**/.omni.manifest",
         "workspaceContains:**/.omni.ini",
-        "workspaceContains:**/.omni.lyr",
-        "workspaceContains:**/.omni.loc",
+        "workspaceContains:**/.omni.layer",
+        "workspaceContains:**/.omni.local",
         "workspaceContains:**/*.omni"
     ],
     "repository": {
