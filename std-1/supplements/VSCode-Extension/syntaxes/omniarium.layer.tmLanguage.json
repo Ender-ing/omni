@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "Omniarium | Standard Edition 0.1",
-  "scopeName": "source.omniarium",
+  "name": "Omniarium Layer | Standard Edition 0.1",
+  "scopeName": "source.omniarium.layer",
   "patterns": [
     {
       "include": "#root-order"
