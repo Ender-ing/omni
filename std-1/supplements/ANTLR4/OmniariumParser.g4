@@ -14,7 +14,7 @@ parser grammar OmniariumParser;
 // Manage options
 options {
     tokenVocab=OmniariumLexer;
-    language = Cpp;
+    language=Cpp;
 }
 
 //// Parser Rules

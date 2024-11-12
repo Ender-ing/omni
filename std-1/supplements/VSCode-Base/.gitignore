@@ -1,3 +1,6 @@
 ## Omniarium ignore list
 # Output folder
 .omni.out
+# Cache files
+*.omni.cache
+*.omni.layer.cache

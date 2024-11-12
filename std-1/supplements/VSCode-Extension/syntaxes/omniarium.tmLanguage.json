@@ -10,6 +10,65 @@
   "repository": {
     "root-order": {
       "patterns": [
+        {
+          "include": "#comments"
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.documentation.omniarium",
+          "begin": ";;;",
+          "end": ";;;",
+          "patterns": [
+            {
+              "include": "#comment-highlights"
+            }
+          ]
+        },
+        {
+          "name": "comment.line.double-slash.omniarium",
+          "begin": ";;",
+          "end": "\\\n",
+          "patterns": [
+            {
+              "include": "#comment-highlights"
+            }
+          ]
+        }
+      ]
+    },
+    "comment-highlights": {
+      "patterns": [
+        {
+          "name": "comment.highlight.title.omniarium",
+          "match": "(?<![^\\s])(@[^\\s]+)",
+          "captures": {
+            "1": {
+              "name": "markup.heading.omniarium"
+            }
+          }
+        },
+        {
+          "name": "comment.highlight.escape.omniarium",
+          "begin": "{",
+          "end": "}",
+          "captures": {
+            "0": {
+              "name": "markup.italic.omniarium"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#root-order"
+            },
+            {
+              "name": "markup.italic.omniarium",
+              "match": ".+?"
+            }
+          ]
+        }
       ]
     }
   }
