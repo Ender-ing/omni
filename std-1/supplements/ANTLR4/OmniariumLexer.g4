@@ -19,11 +19,11 @@ fragment WHITESPACE
 
 // Comments
 COMMENT_BLOCK
-    : '/*' .*? '*/' -> channel(HIDDEN)
+    : ';;;' .*? ';;;' -> channel(HIDDEN)
     ; /* Multilinear comments are never processed for code generation */
 
 COMMENT_LINE
-    : '//' ~[\r\n]* [\r\n] -> channel(HIDDEN)
+    : ';;' ~[\r\n]* [\r\n] -> channel(HIDDEN)
     ; /* New lines are only used to mark the end of linear comments */
 
 COMMENT

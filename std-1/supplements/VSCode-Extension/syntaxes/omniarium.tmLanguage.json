@@ -18,9 +18,9 @@
     "comments": {
       "patterns": [
         {
-          "name": "comment.line.double-slash.omniarium",
-          "begin": "//",
-          "end": "\\\n",
+          "name": "comment.block.documentation.omniarium",
+          "begin": ";;;",
+          "end": ";;;",
           "patterns": [
             {
               "include": "#comment-highlights"
@@ -28,9 +28,9 @@
           ]
         },
         {
-          "name": "comment.block.documentation.omniarium",
-          "begin": "\\/\\*",
-          "end": "\\*\\/",
+          "name": "comment.line.double-slash.omniarium",
+          "begin": ";;",
+          "end": "\\\n",
           "patterns": [
             {
               "include": "#comment-highlights"
@@ -61,7 +61,7 @@
           },
           "patterns": [
             {
-              "include": "#root-order",
+              "include": "#root-order"
             },
             {
               "name": "markup.italic.omniarium",

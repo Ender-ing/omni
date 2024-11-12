@@ -1,10 +1,14 @@
-/**
- * @INFO
- * This is a TEMPLATE file that includes proper Omni comments!
-**/
+;;;
+ ;  @INFO
+ ;  This is a TEMPLATE file that includes proper Omni comments!
+;;;
 
-// As seen above, you must start each file with a comment that explains what each file does!
+;; As seen above, you must start each file with a comment that explains what each file does!
 
-// @NOTE Anything written inside comments will never affect your code!
+;; @NOTE Anything written inside comments will never affect your code!
 
-// @NOTE You can actually escape the highlighting {without affecting your code} using curly brackets!
+;; @NOTE You can actually escape the highlighting {without affecting your code} using curly brackets!
+
+;; @TIP You can use double semi-colons to start a linear comment!
+
+;; @TIP You can use triple semi-colons to start and end a multi-linear comment!
