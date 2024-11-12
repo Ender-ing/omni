@@ -39,6 +39,37 @@
         }
       ]
     },
-    "comment-highlights": {}
+    "comment-highlights": {
+      "patterns": [
+        {
+          "name": "comment.highlight.title.omniarium",
+          "match": "(?<![^\\s])(@[^\\s]+)",
+          "captures": {
+            "1": {
+              "name": "markup.heading.omniarium"
+            }
+          }
+        },
+        {
+          "name": "comment.highlight.escape.omniarium",
+          "begin": "{",
+          "end": "}",
+          "captures": {
+            "0": {
+              "name": "markup.italic.omniarium"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#root-order",
+            },
+            {
+              "name": "markup.italic.omniarium",
+              "match": ".+?"
+            }
+          ]
+        }
+      ]
+    }
   }
 }
