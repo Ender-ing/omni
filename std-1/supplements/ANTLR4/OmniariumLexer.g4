@@ -38,8 +38,8 @@ FUNCTION_IDENTIFIER
     : '$' (STANDARD_IDENTIFIER_CHARS)+
     ; /* All function identifiers must start with a dollar sign! */
 CONSTANT_IDENTIFIER
-    : '_' (STANDARD_IDENTIFIER_CHARS)+
-    ; /* All constant identifiers must start with an underscore! */
+    : '#' (STANDARD_IDENTIFIER_CHARS)+
+    ; /* All constant identifiers must start with a hashtag! */
 VARIABLE_IDENTIFIER
     : [a-z] (STANDARD_IDENTIFIER_CHARS)*
     ; /* All variable identifiers must start with a small letter! */

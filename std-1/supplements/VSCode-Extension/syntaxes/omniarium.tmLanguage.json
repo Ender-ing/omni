@@ -82,7 +82,7 @@
         },
         {
           "name": "constant.other.user.omniarium",
-          "match": "\\b(_[\\w]+)\\b",
+          "match": "(#[\\w]+)\\b",
           "captures": {
             "0": {
               "name": "storage.omniarium"
