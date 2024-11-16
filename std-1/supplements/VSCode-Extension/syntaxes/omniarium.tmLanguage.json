@@ -12,6 +12,9 @@
       "patterns": [
         {
           "include": "#comments"
+        },
+        {
+          "include": "#identifiers"
         }
       ]
     },
@@ -68,6 +71,26 @@
               "match": ".+?"
             }
           ]
+        }
+      ]
+    },
+    "identifiers": {
+      "patterns": [
+        {
+          "name": "entity.name.function.omniarium",
+          "match": "(\\$[\\w]+)\\b"
+        },
+        {
+          "name": "constant.language.omniarium",
+          "match": "\\b(_[\\w]+)\\b"
+        },
+        {
+          "name": "variable.name.omniarium",
+          "match": "\\b([a-z][\\w]*)\\b"
+        },
+        {
+          "name": "entity.name.type.omniarium",
+          "match": "\\b([A-Z][\\w]*)\\b"
         }
       ]
     }
