@@ -1,6 +1,18 @@
 // This file is used to configure debugging settings for your project. It specifies the debugger to
 // use, the target to debug, and any necessary arguments or environment variables.
 {
-    // Not needed yet!
-    // (need to also define c_cpp_properties.json later on!)
+    "version": "2.0.0",
+    "configurations": [
+        {
+            "name": "Omni 0.1 Debug (ANTLR4 grammar)",
+            "type": "antlr-debug",
+            "request": "launch",
+            "input": "std-1/supplements/debug.omni",
+            "grammar": "std-1/supplements/ANTLR4/OmniariumParser.g4",
+            "actionFile": "std-1/supplements/actions.debug.js",
+            "startRule": "root",
+            "printParseTree": true,
+            "visualParseTree": false
+        }
+    ]
 }
