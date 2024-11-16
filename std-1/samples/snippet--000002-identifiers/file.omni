@@ -1,8 +1,11 @@
 ;;;
  ;  @INFO
- ;  The identifier naming scheme in Omni is strict! This is done in order to ensure a universal naming
- ;  scheme across all different projects!
+ ;  The identifier naming scheme in Omni is strict! This is done in order to ensure a universal
+ ;  naming scheme across all different projects!
 ;;;
+
+;; @NOTE This file will not be processed successfully because it doesn't follow the proper syntax
+;; tokens order!
 
 ;; @NOTE All variable identifiers must start with a small letter!
 my_var
@@ -19,4 +22,5 @@ PRIMITIVE_TYPE
 ;; @NOTE All function identifiers must start with a dollar sign
 $My_Function
 
-;; @WARNING The way you start your identifier actually matters! If you misname an identifier, the build will fail!
+;; @WARNING The way you start your identifier actually matters! If you misname an identifier,
+;; the build will fail!
