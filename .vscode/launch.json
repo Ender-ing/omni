@@ -9,7 +9,7 @@
             "request": "launch",
             "input": "${file}",
             "grammar": "std-1/supplements/ANTLR4/OmniariumParser.g4",
-            "actionFile": "std-1/supplements/actions.debug.js",
+            "actionFile": "std-1/supplements/ANTLR4/actions.debug.js",
             "startRule": "root",
             "printParseTree": true,
             "visualParseTree": false
