@@ -12,3 +12,10 @@
 ;; @TIP You can use double semi-colons to start a linear comment!
 
 ;; @TIP You can use triple semi-colons to start and end a multi-linear comment!
+
+;; @NOTE This is a list of all whitespace characters: \s, \t, \r, \n
+;; These characters are always ignored by the transpiler! (Except when they are part of literal values, like strings)
+
+;; @ETIQUETTE
+;; You know the old rhyme: "Boys do not make passes at girls with devil tails"!
+;; Suppress your flaws, and hide your file's tail with an extra new line at the end!
