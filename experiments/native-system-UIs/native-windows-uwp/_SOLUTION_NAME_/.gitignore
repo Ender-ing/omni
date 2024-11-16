@@ -1,0 +1,49 @@
+# Visual Studio caches and temporary files
+*.vshost.exe
+*.pdb
+*.suo
+*.user
+*.tlog
+*.tmp
+*.log
+*.obj
+*.pch
+*.ipch
+*.ilk
+*.rsp
+*.sbr
+*.opensdf
+*.opensdf.lock
+*.sdf
+*.sdf.lock
+*.cachefile
+*.VC.db
+
+# Visual Studio configuration files
+*.vcxproj.user
+*.vspscc
+*.vssscc
+
+# Build output
+bin/
+obj/
+
+# NuGet packages
+packages/
+
+# User-specific settings
+.vs/
+
+# Temporary files
+*.tmp
+*~
+
+# Specific to WinUI 3 projects
+AppxManifest.xml
+
+# Generated VS files
+Generated Files/
+x64/
+x86/
+arm/
+arm64/
