@@ -8,19 +8,19 @@
 ;; tokens order!
 
 ;; @NOTE All variable identifiers must start with a small letter!
-my_var
+myVar
 
 ;; @NOTE All constant identifiers must start with an underscore!
-_my_constant
+_myConst
 
 ;; @NOTE All type identifiers must start with a capital letter!
-My_Type
+MyType
 
 ;; @NOTE Primitive types are all capitalised
 PRIMITIVE_TYPE
 
 ;; @NOTE All function identifiers must start with a dollar sign
-$My_Function
+$MyFunction
 
 ;; @WARNING The way you start your identifier actually matters! If you misname an identifier,
 ;; the build will fail!
