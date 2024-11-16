@@ -49,3 +49,4 @@ arm/
 arm64/
 Debug/
 Release/
+AppPackages/
