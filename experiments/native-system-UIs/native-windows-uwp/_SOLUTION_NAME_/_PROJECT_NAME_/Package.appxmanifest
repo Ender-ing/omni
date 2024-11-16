@@ -10,7 +10,7 @@
   <Identity
     Name="927d7697-292a-4f02-8716-7faffca1bf42"
     Publisher="CN=adels"
-    Version="1.0.0.0" />
+    Version="0.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="927d7697-292a-4f02-8716-7faffca1bf42" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
