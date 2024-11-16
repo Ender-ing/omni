@@ -5,6 +5,7 @@ missing packages:
 
 ```batch
 nuget restore -NonInteractive
+nuget install
 ```
 
 > [!NOTE]
