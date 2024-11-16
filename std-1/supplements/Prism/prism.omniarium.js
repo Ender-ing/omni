@@ -13,7 +13,7 @@ Prism.languages.omniarium = {
         pattern: /(\$[\w]+)\b/
     },
     "constant": {
-        pattern: /\b(_[\w]+)\b/
+        pattern: /(#[\w]+)\b/
     },
     "variable": {
         pattern: /\b([a-z][\w]*)\b/

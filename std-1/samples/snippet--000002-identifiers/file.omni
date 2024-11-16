@@ -10,8 +10,8 @@
 ;; @NOTE All variable identifiers must start with a small letter!
 myVar
 
-;; @NOTE All constant identifiers must start with an underscore!
-_myConst
+;; @NOTE All constant identifiers must start with a hashtag!
+#myConst
 
 ;; @NOTE All type identifiers must start with a capital letter!
 MyType
