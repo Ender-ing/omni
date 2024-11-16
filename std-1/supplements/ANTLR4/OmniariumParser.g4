@@ -14,11 +14,22 @@ parser grammar OmniariumParser;
 // Manage options
 options {
     tokenVocab=OmniariumLexer;
-    language=Cpp;
+    language=Cpp; // change to Cpp
 }
 
 //// Parser Rules
 
-start
-    :
+root
+    : (expression)* EOF
     ; /* This is the start scope! */
+
+// Expressions
+expression
+    : value_identifier // Tmp
+    ; /* All supported expressions */
+
+// Identifiers
+value_identifier
+    : VARIABLE_IDENTIFIER
+    | CONSTANT_IDENTIFIER
+    ; /* Constants and variables are used interchangeably a lot! */
