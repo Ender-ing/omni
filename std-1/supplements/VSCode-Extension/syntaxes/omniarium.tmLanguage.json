@@ -49,7 +49,7 @@
           "match": "(?<![^\\s])(@[^\\s]+)",
           "captures": {
             "1": {
-              "name": "markup.heading.omniarium"
+              "name": "markup.inserted.omniarium"
             }
           }
         },
@@ -81,8 +81,13 @@
           "match": "(\\$[\\w]+)\\b"
         },
         {
-          "name": "constant.language.omniarium",
-          "match": "\\b(_[\\w]+)\\b"
+          "name": "constant.other.user.omniarium",
+          "match": "\\b(_[\\w]+)\\b",
+          "captures": {
+            "0": {
+              "name": "storage.omniarium"
+            }
+          }
         },
         {
           "name": "variable.name.omniarium",
