@@ -7,7 +7,7 @@
             "name": "Omni 0.1 Debug (ANTLR4 grammar)",
             "type": "antlr-debug",
             "request": "launch",
-            "input": "std-1/supplements/debug.omni",
+            "input": "${file}",
             "grammar": "std-1/supplements/ANTLR4/OmniariumParser.g4",
             "actionFile": "std-1/supplements/actions.debug.js",
             "startRule": "root",
