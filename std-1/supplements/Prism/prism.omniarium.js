@@ -20,5 +20,17 @@ Prism.languages.omniarium = {
     },
     "type": {
         pattern: /\b([A-Z][\w]*)\b/
-    }
+    },
+    "number": {
+        pattern: /-?((\d+\.\d*([eE][-+]?\d+)?)|(\d*\.\d+([eE][-+]?\d+)?)|(\d+([eE][-+]?\d+)?))/
+    },
+    "string": [
+        {
+            pattern: /"(?:\\.|[^"\\])*("?)/,
+            greedy: true
+        },
+        {
+            pattern: /'[^\n]*?('|$)/
+        }
+    ]
 };
