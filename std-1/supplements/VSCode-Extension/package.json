@@ -179,14 +179,15 @@
         "win-copy-license": "xcopy /y ..\\..\\..\\LICENSE .",
         "lix-copy-license": "cp ../../../LICENSE .",
         "win-delete-vsix": "del omniarium*.vsix",
-        "lix-delete-vsix": "rm omniarium*.vsix",
+        "lix-delete-vsix": "rm -f omniarium*.vsix",
         "win-delete-license": "del LICENSE",
-        "lix-delete-license": "rm LICENSE",
+        "lix-delete-license": "rm -f LICENSE",
         "win-package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && npm run build && npm run vsce-package && npm run win-delete-license",
         "lix-package": "npm run lix-delete-vsix && npm run lix-delete-license && npm run lix-copy-license && npm run build && npm run vsce-package && npm run lix-delete-license"
     },
     "devDependencies": {
         "@types/vscode": "^1.94.0",
-        "@vscode/vsce": "^3.2.1"
+        "@vscode/vsce": "^3.2.1",
+        "typescript": "^5.6.3"
     }
 }
