@@ -29,7 +29,7 @@ fragment DIGIT
     : [0-9]
     ; /* Digits! */
 fragment EXPONENT
-    : ('e' | 'E' ) (SYM_PLUS | SYM_MINUS)? DIGIT+
+    : ('e' | 'E' ) ('+' | '-')? DIGIT+
     ; /* Number exponent syntax */
 
 // Chars-related
@@ -54,33 +54,36 @@ LIT_INFINITY
     | '#negative_infinity'
     ;
 LIT_FLOAT
-    :   SYM_MINUS? DIGIT+ (SYM_DOT) DIGIT* EXPONENT? // -3.14, 0.1, 2.0e-5, -.14, .5, 3.
-    |   SYM_MINUS? DIGIT* (SYM_DOT) DIGIT+ EXPONENT? // -3.14, 0.1, 2.0e-5, -.14, .5, 3.
-    |   SYM_MINUS? DIGIT+ EXPONENT // 1e10, -2E-5
+    :   '-'? DIGIT+ '.' DIGIT* EXPONENT? // -3.14, 0.1, 2.0e-5, -.14, .5, 3.
+    |   '-'? DIGIT* '.' DIGIT+ EXPONENT? // -3.14, 0.1, 2.0e-5, -.14, .5, 3.
+    |   '-'? DIGIT+ EXPONENT // 1e10, -2E-5
     ;
 LIT_INTEGER
-    : SYM_MINUS? DIGIT+ // -12, 2, 0
+    : '-'? DIGIT+ // -12, 2, 0
     ;
 
 // Char literals
 LIT_CHAR
-    :   SYM_QUOTE_SINGLE
+    :   '\''
             ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )
-        SYM_QUOTE_SINGLE
+        '\''
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
-    :   SYM_QUOTE_SINGLE
+    :   '\''
             ( .*? )
-        SYM_QUOTE_SINGLE
+        '\''
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
-    :   SYM_QUOTE_DOUBLE
+    :   '"'
             ( .*? )
-        SYM_QUOTE_DOUBLE
+        '"'
     ; /* Capture normal strings! */
+LIT_TEMPLATE_STRING_START
+    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
+    ;
 
 // Symbols
-SYM_PARENTHESIS_OPEN
+/*SYM_PARENTHESIS_OPEN
     : '('
     ;
 SYM_PARENTHESIS_CLOSE
@@ -101,6 +104,9 @@ SYM_QUOTE_SINGLE
 SYM_QUOTE_DOUBLE
     : '"'
     ;
+SYM_BACKTICK
+    : '`'
+    ;*/
 
 // Identifiers
 FUNCTION_IDENTIFIER
@@ -115,3 +121,32 @@ VARIABLE_IDENTIFIER
 TYPE_IDENTIFIER
     : [A-Z] (STANDARD_IDENTIFIER_CHARS)*
     ; /* All type identifiers must start with a capital letter! */
+
+mode MODE_TEMPLATE_STRING_ESCAPE;
+    TEMPLATE_STRING_CONSTANT_REFERENCE
+        : CONSTANT_IDENTIFIER
+        ; /* This is done to avoid  */
+    TEMPLATE_STRING_VARIABLE_REFERENCE
+        : VARIABLE_IDENTIFIER
+        ; /* All variable identifiers must start with a small letter! */
+    LIT_TEMPLATE_STRING_ESCAPE_START_
+        : '{'
+        ;
+    LIT_TEMPLATE_STRING_ESCAPE_END
+        : '}' -> popMode
+        ; /* End the escape mode! */
+
+mode MODE_TEMPLATE_STRING_CAPTURE;
+    LIT_TEMPLATE_STRING_ESCAPE_START
+        : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
+        ;
+    LIT_TEMPLATE_STRING_ESCAPE_END_
+        : '}'
+        ; /* End the escape mode! */
+    LIT_TEMPLATE_STRING_CONTENT
+        : ~( '`' | '{' | '}' )+
+        ;
+    LIT_TEMPLATE_STRING_END
+        : '`' -> popMode
+        ; /* End the template mode */
+
