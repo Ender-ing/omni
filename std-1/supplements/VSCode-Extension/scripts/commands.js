@@ -28,13 +28,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.msg = void 0;
+exports.docs = void 0;
 // Imports
 const vscode = __importStar(require("vscode"));
 // Constants
 const DOCS_URL = 'https://docs.ender.ing/docs/omni-std1/intro/';
 // Message test
-exports.msg = vscode.commands.registerCommand('omniarium.docs', () => {
+exports.docs = vscode.commands.registerCommand('omniarium.docs', () => {
     const url = vscode.Uri.parse(DOCS_URL);
     vscode.env.openExternal(url);
 });

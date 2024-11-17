@@ -34,12 +34,13 @@ const commands = __importStar(require("./commands"));
 // Lightweight extension activation! (for web browsers!)
 function lightweightActivation(context) {
     // Register light commands!
-    context.subscriptions.push(commands.msg);
+    context.subscriptions.push(commands.docs);
 }
 // Activate the extension!
 function activate(context) {
     // Do lightweight activation first
     lightweightActivation(context);
     // Do more heavy stuff here
+    // (Like transpiler communication!)
     // ...
 }
