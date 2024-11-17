@@ -78,9 +78,6 @@ LIT_STRING
             ( .*? )
         '"'
     ; /* Capture normal strings! */
-LIT_TEMPLATE_STRING_START
-    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
-    ;
 
 // Symbols
 /*SYM_PARENTHESIS_OPEN
@@ -122,19 +119,24 @@ TYPE_IDENTIFIER
     : [A-Z] (STANDARD_IDENTIFIER_CHARS)*
     ; /* All type identifiers must start with a capital letter! */
 
+/*
+LIT_TEMPLATE_STRING_START
+    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
+    ; /* Start capturing template strings *\/
+
 mode MODE_TEMPLATE_STRING_ESCAPE;
     TEMPLATE_STRING_CONSTANT_REFERENCE
         : CONSTANT_IDENTIFIER
-        ; /* This is done to avoid  */
+        ; /* This is done to avoid  *\/
     TEMPLATE_STRING_VARIABLE_REFERENCE
         : VARIABLE_IDENTIFIER
-        ; /* All variable identifiers must start with a small letter! */
+        ; /* All variable identifiers must start with a small letter! *\/
     LIT_TEMPLATE_STRING_ESCAPE_START_
         : '{'
         ;
     LIT_TEMPLATE_STRING_ESCAPE_END
         : '}' -> popMode
-        ; /* End the escape mode! */
+        ; /* End the escape mode! *\/
 
 mode MODE_TEMPLATE_STRING_CAPTURE;
     LIT_TEMPLATE_STRING_ESCAPE_START
@@ -142,11 +144,11 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         ;
     LIT_TEMPLATE_STRING_ESCAPE_END_
         : '}'
-        ; /* End the escape mode! */
+        ; /* End the escape mode! *\/
     LIT_TEMPLATE_STRING_CONTENT
         : ~( '`' | '{' | '}' )+
         ;
     LIT_TEMPLATE_STRING_END
         : '`' -> popMode
-        ; /* End the template mode */
-
+        ; /* End the template mode *\/
+*/

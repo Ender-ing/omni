@@ -134,7 +134,7 @@
       "patterns": [
         {
           "name": "string.quoted.single.omniarium",
-          "match": "'[^\\\\']'"
+          "match": "'[^\\\\']'"         
         },
         {
           "name": "string.quoted.single.omniarium",
@@ -165,26 +165,6 @@
           "patterns": [
             {
               "include": "#escapeSequences"
-            }
-          ]
-        },
-        {
-          "name": "string.quoted.other.omniarium",
-          "begin": "`",
-          "end": "`",
-          "patterns": [
-            {
-              "include": "#escapeSequences"
-            },
-            {
-              "name": "constant.character.escape.curly.omniarium",
-              "begin": "{",
-              "end": "}",
-              "patterns": [
-                {
-                  "include": "$self"
-                }
-              ]
             }
           ]
         }
