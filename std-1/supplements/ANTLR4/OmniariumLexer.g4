@@ -27,7 +27,7 @@ fragment STANDARD_IDENTIFIER_CHARS
 
 // Comments
 COMMENT_BLOCK
-    : ';;;' .*? ';;;' -> channel(HIDDEN)
+    : ';;?' .*? '?;;' -> channel(HIDDEN)
     ; /* Multilinear comments are never processed for code generation */
 COMMENT_LINE
     : ';;' ~[\r\n]* [\r\n] -> channel(HIDDEN)

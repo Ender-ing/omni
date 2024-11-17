@@ -1,0 +1,80 @@
+{
+    "$note-1": "https://github.com/microsoft/vscode/blob/main/extensions/javascript/javascript-language-configuration.json",
+    "$note-2": "https://code.visualstudio.com/api/language-extensions/language-configuration-guide#autosurrounding",
+    "languageId": "omniarium",
+    "comments": {
+        "lineComment": ";;",
+        "blockComment": [";;?", "?;;"]
+    },
+    "brackets": [
+        ["(", ")"]
+    ],
+    "autoClosingPairs": [
+        ["(", ")"],
+        {
+            "open": "'",
+            "close": "'",
+            "notIn": ["string", "comment"]
+        },
+        {
+            "open": "\"",
+            "close": "\"",
+            "notIn": ["string"]
+        },
+        {
+            "open": ";;?",
+            "close": "?;;",
+            "notIn": ["string"]
+        }
+    ],
+    "surroundingPairs": [
+        ["(", ")"],
+        ["'", "'"],
+        ["\"", "\""]
+    ],
+    "autoCloseBefore": ";:.,=) \n\t",
+    "folding": {
+        "markers": {
+            "start": "^\\s*//\\s*#?region\\b",
+            "end": "^\\s*//\\s*#?endregion\\b"
+        }
+    },
+    "onEnterRules": [
+        {
+            // e.g. ;;? | ?;;
+            "beforeText": {
+                "pattern": "^\\s*;;\\?$"
+            },
+            "afterText": {
+                "pattern": "^\\s*\\?;;$"
+            },
+            "action": {
+                "indent": "none",
+                "appendText": " ;  \n"
+            }
+        },
+        {
+            // e.g. ;;? ...|
+            "beforeText": {
+                "pattern": "(^\\s*;;\\?(?!\\?)([^\\?]|\\?(?!;;))*$)"
+            },
+            "action": {
+                "indent": "none",
+                "appendText": " ;  "
+            }
+        },
+        {
+            // e.g.  ;  ...|
+            "beforeText": {
+                "pattern": "^(\\t|[ ])*[ ];([ ]([^;]|(?<!\\?);;)*)?$"
+            },
+            "previousLineText": {
+                "pattern": "(?=^(\\s*(;;\\?|;)).*)(?=(?!(\\s*\\?;;)))"
+            },
+            "action": {
+                "indent": "none",
+                "appendText": ";  "
+            }
+        }
+    ]
+}

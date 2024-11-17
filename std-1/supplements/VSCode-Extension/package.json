@@ -12,6 +12,29 @@
     },
     "publisher": "Endering",
     "contributes": {
+        "configurationDefaults": {
+            "[omniarium]": {
+                "editor.maxTokenizationLineLength": 2500,
+                "editor.formatOnSave": true,
+                "editor.formatOnType": true
+            },
+            "[omniarium-layer]": {
+                "editor.maxTokenizationLineLength": 2500,
+                "editor.formatOnSave": true,
+                "editor.formatOnType": true
+            },
+            "files.exclude": {
+                "**/.omni.out/core/**": true,
+                "**.omni.cache": true
+            },
+            "files.associations": {
+                "*.omni.manifest": "jsonc",
+                "*.omni.local": "jsonc",
+                "*.omni.ini": "ini",
+                "*.omni.layer": "omniarium-markdown",
+                "*.omni": "omniarium"
+            }
+        },
         "languages": [
             {
                 "id": "omniarium",
@@ -29,7 +52,8 @@
                 "formatter": {
                     "scheme": "file",
                     "language": "omniarium"
-                }
+                },
+                "configuration": "./configurations/omniarium-language-configuration.json"
             },
             {
                 "id": "omniarium-layer",
@@ -130,8 +154,8 @@
         "onLanguage:omniarium-regexp",
         "workspaceContains:**/.omni.manifest",
         "workspaceContains:**/.omni.ini",
-        "workspaceContains:**/.omni.layer",
-        "workspaceContains:**/.omni.local",
+        "workspaceContains:**/*.omni.layer",
+        "workspaceContains:**/*.omni.local",
         "workspaceContains:**/*.omni"
     ],
     "repository": {
@@ -140,30 +164,30 @@
     },
     "homepage": "https://omni.ender.ing/",
     "categories": [
-        "Programming Languages",
-        "Snippets",
-        "Formatters"
+        "Programming Languages"
     ],
     "keywords": [
         "omni",
         "omniarium",
         "omniarium layers",
-        "programming language",
+        "omni programming language",
         "omniarium programming language"
     ],
     "scripts": {
         "build": "tsc",
-        "vsce-package": "vsce package --no-dependencies --baseContentUrl https://github.com/Ender-ing/omni/std-1/supplements/VSCode-Extension",
+        "vsce-package": "vsce package --no-dependencies --baseContentUrl https://github.com/Ender-ing/omni/tree/main/std-1/supplements/VSCode-Extension",
         "win-copy-license": "xcopy /y ..\\..\\..\\LICENSE .",
         "lix-copy-license": "cp ../../../LICENSE .",
         "win-delete-vsix": "del omniarium*.vsix",
-        "lix-delete-vsix": "rm omniarium*.vsix",
+        "lix-delete-vsix": "rm -f omniarium*.vsix",
         "win-delete-license": "del LICENSE",
-        "lix-delete-license": "rm LICENSE",
+        "lix-delete-license": "rm -f LICENSE",
         "win-package": "npm run win-delete-vsix && npm run win-delete-license && npm run win-copy-license && npm run build && npm run vsce-package && npm run win-delete-license",
         "lix-package": "npm run lix-delete-vsix && npm run lix-delete-license && npm run lix-copy-license && npm run build && npm run vsce-package && npm run lix-delete-license"
     },
     "devDependencies": {
-        "@types/vscode": "^1.94.0"
+        "@types/vscode": "^1.94.0",
+        "@vscode/vsce": "^3.2.1",
+        "typescript": "^5.6.3"
     }
 }

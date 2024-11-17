@@ -1,11 +1,11 @@
 {
     "DocumentationComment": {
-		"prefix": [";;;", "cd", "doc"],
+		"prefix": [";;?", "cd", "doc"],
 		"body": [
-			";;;",
+			";;?",
 			" ;  @INFO",
             " ;  $0",
-			";;;"
+			"?;;"
 		],
 		"description": "Documentation Comment"
 	},
