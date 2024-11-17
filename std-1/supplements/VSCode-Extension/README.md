@@ -19,7 +19,7 @@ and Omniarium Layers constructs. Just type the prefix and press Tab to insert th
 
 - **Formatting**: Automatically format your code to adhere to consistent style guidelines.
 
-- **File Associations**: Automatically associate `.omni`, `.omni.lyr`, `.omni.loc`, `.omni.ini`,
+- **File Associations**: Automatically associate `.omni`, `.omni.layer`, `.omni.local`, `.omni.ini`,
 and `.omni.manifest` files with the Omniarium language mode.
 
 ## Planned Features
