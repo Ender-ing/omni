@@ -22,8 +22,8 @@
       "patterns": [
         {
           "name": "comment.block.documentation.omniarium",
-          "begin": ";;;",
-          "end": ";;;",
+          "begin": ";;\\?",
+          "end": "\\?;;",
           "patterns": [
             {
               "include": "#comment-highlights"

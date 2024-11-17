@@ -1,8 +1,8 @@
-;;;
+;;?
  ;  @INFO
  ;  The identifier naming scheme in Omni is strict! This is done in order to ensure a universal
  ;  naming scheme across all different projects!
-;;;
+?;;
 
 ;; @NOTE This file will not be processed successfully because it doesn't follow the proper syntax
 ;; tokens order!
