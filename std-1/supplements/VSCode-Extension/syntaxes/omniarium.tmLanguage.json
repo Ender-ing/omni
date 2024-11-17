@@ -48,6 +48,15 @@
     "comment-highlights": {
       "patterns": [
         {
+          "name": "comment.highlight.warning.omniarium",
+          "match": "(?<![^\\s])(@!.+?)$",
+          "captures": {
+            "1": {
+              "name": "invalid.warning.omniarium"
+            }
+          }
+        },
+        {
           "name": "comment.highlight.title.omniarium",
           "match": "(?<![^\\s])(@[^\\s]+)",
           "captures": {
