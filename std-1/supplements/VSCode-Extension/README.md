@@ -17,12 +17,12 @@ Omniarium Regex for an easier experience while coding.
 - **Snippets**: Speed up your development with built-in snippets for common Omniarium
 and Omniarium Layers constructs. Just type the prefix and press Tab to insert the code.
 
-- **Formatting**: Automatically format your code to adhere to consistent style guidelines.
-
 - **File Associations**: Automatically associate `.omni`, `.omni.layer`, `.omni.local`, `.omni.ini`,
 and `.omni.manifest` files with the Omniarium language mode.
 
 ## Planned Features
+
+- **Formatting**: Automatically format your code to adhere to consistent style guidelines.
 
 - **Linting**: Identify potential errors and style issues in your Omniarium code.
 
