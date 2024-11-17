@@ -25,7 +25,7 @@ root
 
 // Expressions
 expression
-    : value_identifier // Tmp
+    : literal
     ; /* All supported expressions */
 
 // Identifiers
@@ -33,3 +33,24 @@ value_identifier
     : VARIABLE_IDENTIFIER
     | CONSTANT_IDENTIFIER
     ; /* Constants and variables are used interchangeably a lot! */
+
+// Numeral literals
+lit_integer
+    : LIT_INTEGER
+    ; /* Normal integers */
+lit_float
+    : LIT_NAN
+    | LIT_INFINITY
+    | LIT_FLOAT
+    ; /* Fractions (NaN and infinity are considered fractions) */
+lit_numeral
+    : lit_integer
+    | lit_float
+    ; /* Group all numerals */
+
+// Character literals
+
+// Literals
+literal
+    : lit_numeral // Numbers
+    ; /* Group all literals */

@@ -14,6 +14,9 @@
           "include": "#comments"
         },
         {
+          "include": "#literals"
+        },
+        {
           "include": "#identifiers"
         }
       ]
@@ -96,6 +99,21 @@
         {
           "name": "entity.name.type.omniarium",
           "match": "\\b([A-Z][\\w]*)\\b"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "include": "#numericals"
+        }
+      ]
+    },
+    "numericals": {
+      "patterns": [
+        {
+          "name": "constant.numeric.omniarium",
+          "match": "-?((\\d+\\.\\d*([eE][-+]?\\d+)?)|(\\d*\\.\\d+([eE][-+]?\\d+)?)|(\\d+([eE][-+]?\\d+)?))"
         }
       ]
     }
