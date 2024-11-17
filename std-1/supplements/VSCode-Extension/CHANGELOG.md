@@ -10,12 +10,17 @@
   + Add `String` and `CHAR` closing pairs
   + Add parentheses (`()`) closing pair
 + Add language highlighting
-  + Add function identifier highlighting
-  + Add type identifier highlighting
-  + Add constant identifier highlighting
-  + Add variable identifier highlighting
-  + Support comments escape highlighting
-  + Support comments highlighting
+  + Add literals highlighting
+    + Add numbers (*decimals and floats*)
+    + Add `String` and `CHAR` (*with escape characters*)
+  + Add identifier highlighting
+    + Add function identifier
+    + Add type identifier
+    + Add constant identifier
+    + Add variable identifier
+  + Add comments highlighting
+    + Support comments (*all*) escape
+    + Add linear and multilinear comments
 + Add language snippets
   + Add a multilinear documentation comment template
   + Add a linear note comment template

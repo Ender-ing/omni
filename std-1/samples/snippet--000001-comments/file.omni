@@ -5,6 +5,8 @@
 
 ;; As seen above, you must start each file with a comment that explains what each file does!
 
+;; @! You can also highlight warnings like this!
+
 ;; @NOTE Anything written inside comments will never affect your code!
 
 ;; @NOTE You can actually escape the highlighting {without affecting your code} using curly brackets!

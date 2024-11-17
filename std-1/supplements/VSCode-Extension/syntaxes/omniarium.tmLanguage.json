@@ -14,6 +14,9 @@
           "include": "#comments"
         },
         {
+          "include": "#literals"
+        },
+        {
           "include": "#identifiers"
         }
       ]
@@ -45,6 +48,15 @@
     "comment-highlights": {
       "patterns": [
         {
+          "name": "comment.highlight.warning.omniarium",
+          "match": "(?<![^\\s])(@!.+?)$",
+          "captures": {
+            "1": {
+              "name": "invalid.warning.omniarium"
+            }
+          }
+        },
+        {
           "name": "comment.highlight.title.omniarium",
           "match": "(?<![^\\s])(@[^\\s]+)",
           "captures": {
@@ -55,7 +67,7 @@
         },
         {
           "name": "comment.highlight.escape.omniarium",
-          "begin": "{",
+          "begin": "{(?=[^\\n]*\\}[^\\n]*$)",
           "end": "}",
           "captures": {
             "0": {
@@ -96,6 +108,95 @@
         {
           "name": "entity.name.type.omniarium",
           "match": "\\b([A-Z][\\w]*)\\b"
+        }
+      ]
+    },
+    "literals": {
+      "patterns": [
+        {
+          "include": "#numericals"
+        },
+        {
+          "include": "#texts"
+        }
+      ]
+    },
+    "numericals": {
+      "patterns": [
+        {
+          "name": "constant.numeric.omniarium",
+          "match": "-?((\\d+\\.\\d*([eE][-+]?\\d+)?)|(\\d*\\.\\d+([eE][-+]?\\d+)?)|(\\d+([eE][-+]?\\d+)?))"
+        }
+      ]
+    },
+    "texts": {
+      "patterns": [
+        {
+          "include": "#chars"
+        },
+        {
+          "include": "#strings"
+        }
+      ]
+    },
+    "chars": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.omniarium",
+          "match": "'[^\\\\']'"         
+        },
+        {
+          "name": "string.quoted.single.omniarium",
+          "match": "'\\\\([btnfrs'\"\/\\\\])'",
+          "captures": {
+            "1": {
+              "name": "constant.character.escape.omniarium"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.single.omniarium",
+          "match": "'(.*?)'",
+          "captures": {
+            "1": {
+              "name": "invalid.illegal.omniarium"
+            }
+          }
+        },
+        {
+          "name": "string.quoted.single.omniarium",
+          "match": "'([^']*?)$",
+          "captures": {
+            "1": {
+              "name": "invalid.illegal.omniarium"
+            }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.omniarium",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "include": "#escapeSequences"
+            }
+          ]
+        }
+      ]
+    },
+    "escapeSequences": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.omniarium",
+          "match": "\\\\([btnfrs'\"\/\\\\])"
+        },
+        {
+          "name": "invalid.illegal.omniarium",
+          "match": "\\\\([^btnfrs'\"\/\\\\])"
         }
       ]
     }
