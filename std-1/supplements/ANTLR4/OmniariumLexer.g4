@@ -64,14 +64,11 @@ LIT_INTEGER
 
 // Char literals
 LIT_CHAR
-    :   '\''
-            ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )
-        '\''
+    : '\'' ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )'\''
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
-    :   '\''
-            ( .*? )
-        '\''
+    : '\'' ( .*? ) '\''
+    | '\'' ~( '\'') *? NEWLINE
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
     :   '"'
