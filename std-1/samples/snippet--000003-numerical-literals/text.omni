@@ -1,0 +1,19 @@
+;;?
+ ;  @INFO
+ ;  Text literals!
+?;;
+
+;; @NOTE You can define char literals using single quotes!
+'a'
+
+;; @NOTE You can also use escape characters!
+'\n'
+
+;; @WARNING If you attempt to use invalid characters, or add more than one character, the build will fail!
+;; {'asasa'} and {'\x'} are invalid!
+
+;; @NOTE You can define string literals using double quotes!
+"This is my string!"
+
+;; @NOTE You can also use escape characters!
+"This\nis\nmy\nstring!"

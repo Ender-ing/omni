@@ -48,9 +48,20 @@ lit_numeral
     | lit_float
     ; /* Group all numerals */
 
-// Character literals
+// Text literals
+lit_char
+    : LIT_CHAR
+    ; /* Single character literals */
+lit_string
+    : LIT_STRING
+    ; /* String literals */
+lit_text
+    : lit_char
+    | lit_string
+    ; /* Group all text literals */
 
 // Literals
 literal
     : lit_numeral // Numbers
+    | lit_text // text-based
     ; /* Group all literals */

@@ -8,7 +8,6 @@
 
 lexer grammar OmniariumLexer;
 
-
 // Whitespace
 fragment NEWLINE
     : [\r\n]
@@ -32,6 +31,11 @@ fragment DIGIT
 fragment EXPONENT
     : ('e' | 'E' ) (SYM_PLUS | SYM_MINUS)? DIGIT+
     ; /* Number exponent syntax */
+
+// Chars-related
+fragment ESCAPE_SEQUENCE
+    : '\\' [btnfrs'"\\/{]
+    ; /* Escape characters */
 
 // Comments
 COMMENT_BLOCK
@@ -58,7 +62,30 @@ LIT_INTEGER
     : SYM_MINUS? DIGIT+ // -12, 2, 0
     ;
 
+// Char literals
+LIT_CHAR
+    :   SYM_QUOTE_SINGLE
+            ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )
+        SYM_QUOTE_SINGLE
+    ; /* Char literals use single quotes, and they only include one char! */
+INVALID_LIT_CHAR
+    :   SYM_QUOTE_SINGLE
+            ( .*? )
+        SYM_QUOTE_SINGLE
+    ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
+LIT_STRING
+    :   SYM_QUOTE_DOUBLE
+            ( .*? )
+        SYM_QUOTE_DOUBLE
+    ; /* Capture normal strings! */
+
 // Symbols
+SYM_PARENTHESIS_OPEN
+    : '('
+    ;
+SYM_PARENTHESIS_CLOSE
+    : ')'
+    ;
 SYM_DOT
     : '.'
     ;
@@ -67,6 +94,12 @@ SYM_MINUS
     ;
 SYM_PLUS
     : '+'
+    ;
+SYM_QUOTE_SINGLE
+    : '\''
+    ;
+SYM_QUOTE_DOUBLE
+    : '"'
     ;
 
 // Identifiers
