@@ -49,7 +49,7 @@
       "patterns": [
         {
           "name": "comment.highlight.warning.omniarium",
-          "match": "(?<![^\\s])(@!.+?)$",
+          "match": "(?<![^\\s])(@!.+)(?=\\n)",
           "captures": {
             "1": {
               "name": "invalid.warning.omniarium"
@@ -67,7 +67,7 @@
         },
         {
           "name": "comment.highlight.escape.omniarium",
-          "begin": "{(?=[^\\n]*\\}[^\\n]*$)",
+          "begin": "{(?=[^\\n]*\\}[^\\n]*)",
           "end": "}",
           "captures": {
             "0": {
@@ -80,7 +80,7 @@
             },
             {
               "name": "markup.italic.omniarium",
-              "match": ".+?"
+              "match": "[^\\n]+?"
             }
           ]
         }
@@ -93,6 +93,17 @@
           "match": "(\\$[\\w]+)\\b"
         },
         {
+          "include": "#value-identifiers"
+        },
+        {
+          "name": "entity.name.type.omniarium",
+          "match": "\\b([A-Z][\\w]*)\\b"
+        }
+      ]
+    },
+    "value-identifiers": {
+      "patterns": [
+        {
           "name": "constant.other.user.omniarium",
           "match": "(#[\\w]+)\\b",
           "captures": {
@@ -104,10 +115,6 @@
         {
           "name": "variable.name.omniarium",
           "match": "\\b([a-z][\\w]*)\\b"
-        },
-        {
-          "name": "entity.name.type.omniarium",
-          "match": "\\b([A-Z][\\w]*)\\b"
         }
       ]
     },
@@ -147,7 +154,7 @@
         },
         {
           "name": "string.quoted.single.omniarium",
-          "match": "'\\\\([btnfrs'\"\/\\\\])'",
+          "match": "'\\\\([btnfrs'\"`\/\\\\{])'",
           "captures": {
             "1": {
               "name": "constant.character.escape.omniarium"
@@ -185,6 +192,42 @@
               "include": "#escapeSequences"
             }
           ]
+        },
+        {
+          "name": "string.quoted.other.omniarium",
+          "begin": "`",
+          "end": "`",
+          "patterns": [
+            {
+              "include": "#escapeSequences"
+            },
+            {
+              "name": "invalid.illegal.omniarium",
+              "match": "{([^}]*?)`"
+            },
+            {
+              "name": "constant.character.escape.curly.omniarium",
+              "begin": "{",
+              "end": "}|`",
+              "patterns": [
+                {
+                  "name": "invalid.illegal.omniarium",
+                  "match": "(?<=[^\\s}])\\s+([^\\s}`]*)?"
+                },
+                {
+                  "name": "invalid.illegal.omniarium",
+                  "match": "[^a-z#]([^}`]*)?"
+                },
+                {
+                  "include": "#value-identifiers"
+                },
+                {
+                  "name": "invalid.illegal.omniarium",
+                  "match": ".+?"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -192,11 +235,11 @@
       "patterns": [
         {
           "name": "constant.character.escape.omniarium",
-          "match": "\\\\([btnfrs'\"\/\\\\])"
+          "match": "\\\\([btnfrs'\"`\/\\\\{])"
         },
         {
           "name": "invalid.illegal.omniarium",
-          "match": "\\\\([^btnfrs'\"\/\\\\])"
+          "match": "\\\\([^btnfrs'\"`\/\\\\{])"
         }
       ]
     }

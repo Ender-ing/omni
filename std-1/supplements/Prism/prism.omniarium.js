@@ -30,6 +30,10 @@ Prism.languages.omniarium = {
             greedy: true
         },
         {
+            pattern: /`(?:\\.|[^`\\])*(`?)/,
+            greedy: true
+        },
+        {
             pattern: /'[^\n]*?('|$)/
         }
     ]

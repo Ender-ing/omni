@@ -55,9 +55,23 @@ lit_char
 lit_string
     : LIT_STRING
     ; /* String literals */
+lit_template_string
+    :   LIT_TEMPLATE_STRING_START
+            (
+                LIT_TEMPLATE_STRING_CONTENT |
+                LIT_TEMPLATE_STRING_CONTENT_ESCAPED |
+                (
+                    LIT_TEMPLATE_STRING_ESCAPE_START
+                    (LIT_TEMPLATE_STRING_CONSTANT_REFERENCE | LIT_TEMPLATE_STRING_VARIABLE_REFERENCE)
+                    LIT_TEMPLATE_STRING_ESCAPE_END
+                )
+            )*
+        LIT_TEMPLATE_STRING_END
+    ; /* Template string literals */
 lit_text
     : lit_char
     | lit_string
+    | lit_template_string
     ; /* Group all text literals */
 
 // Literals

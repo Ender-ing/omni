@@ -21,3 +21,9 @@
 
 ;; @NOTE You can also use escape characters!
 "This\nis\nmy\nstring!"
+
+;; @NOTE You can use template strings to reference variables and constants!
+;; The referenced value is casted into a String when passed to the template string!
+;; @WARNING This is only limited to primitive types! Any other type will result in an error!
+`The value of 'myVar' is \{myVar}!` ;; this will not work, because you escaped the opening curely bracket!
+`The value of '#myConst' is {#myConst}!`

@@ -15,6 +15,9 @@ fragment NEWLINE
 fragment WHITESPACE
     : [ \t\r\n]
     ;
+fragment WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING
+    : [^ \t\r\n}]
+    ;
 CHARS_IGNORE_LIST
     : WHITESPACE -> channel(HIDDEN)
     ;
@@ -34,7 +37,7 @@ fragment EXPONENT
 
 // Chars-related
 fragment ESCAPE_SEQUENCE
-    : '\\' [btnfrs'"\\/{]
+    : '\\' [btnfrs'"`\\/{]
     ; /* Escape characters */
 
 // Comments
@@ -68,13 +71,77 @@ LIT_CHAR
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
     : '\'' ( .*? ) '\''
-    | '\'' ~( '\'') *? NEWLINE
+            {throwLexerError("INVALID_LIT_CHAR")}
+    | '\'' ~( '\'')*? NEWLINE
+            {throwLexerError("INVALID_LIT_CHAR")}
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
     :   '"'
             ( .*? )
         '"'
     ; /* Capture normal strings! */
+
+// String template
+LIT_TEMPLATE_STRING_START
+    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
+    ; /* Start capturing template strings */
+
+// String template reference capture
+mode MODE_TEMPLATE_STRING_ESCAPE;
+    LIT_TEMPLATE_STRING_ESCAPE_START_
+        : '{'
+        ; /* Start a reference */
+    LIT_TEMPLATE_STRING_ESCAPE_CHARS_IGNORE_LIST
+        : WHITESPACE -> channel(HIDDEN)
+        ;
+    LIT_TEMPLATE_STRING_CONSTANT_REFERENCE
+        : CONSTANT_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
+        ; /* This is done to avoid  */
+    LIT_TEMPLATE_STRING_VARIABLE_REFERENCE
+        : VARIABLE_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
+        ; /* All variable identifiers must start with a small letter! */
+    LIT_TEMPLATE_STRING_ESCAPE_END_
+        : '}' -> popMode
+        ; /* End the escape mode! (in case of an empty escape!) */
+    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
+        : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
+                {throwLexerError("INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING")}
+        ; /* Capture extra/invalid reference escapes */
+
+// String template inner capture
+mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
+    LIT_TEMPLATE_STRING_ESCAPE_CLOSING_CHARS_IGNORE_LIST
+        : WHITESPACE -> channel(HIDDEN)
+        ;
+    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
+        : ~( '}' | '`' )+
+                {throwLexerError("INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING")}
+        ; /* Capture extra/invalid reference escapes */
+    LIT_TEMPLATE_STRING_ESCAPE_END
+        : '}' -> popMode, popMode
+        ; /* End the escape mode! */
+    INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
+        : '`' -> popMode, popMode, popMode
+        ; /* The end of a template string with an unclosed reference escape */
+
+// String template inner capture
+mode MODE_TEMPLATE_STRING_CAPTURE;
+    LIT_TEMPLATE_STRING_CONTENT_ESCAPED
+        : ESCAPE_SEQUENCE
+        ; /* Capture static string content */
+    INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
+        : '{' (WHITESPACE)* '}'
+                {throwLexerError("INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY")}
+        ; /* Capture empty reference escapes! */
+    LIT_TEMPLATE_STRING_ESCAPE_START
+        : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
+        ; /* Start a reference capture */
+    LIT_TEMPLATE_STRING_CONTENT
+        : ~( '`' | '{' | '\\' )+
+        ; /* Capture static string content */
+    LIT_TEMPLATE_STRING_END
+        : '`' -> popMode
+        ; /* End the template mode */
 
 // Symbols
 /*SYM_PARENTHESIS_OPEN
@@ -115,37 +182,3 @@ VARIABLE_IDENTIFIER
 TYPE_IDENTIFIER
     : [A-Z] (STANDARD_IDENTIFIER_CHARS)*
     ; /* All type identifiers must start with a capital letter! */
-
-/*
-LIT_TEMPLATE_STRING_START
-    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
-    ; /* Start capturing template strings *\/
-
-mode MODE_TEMPLATE_STRING_ESCAPE;
-    TEMPLATE_STRING_CONSTANT_REFERENCE
-        : CONSTANT_IDENTIFIER
-        ; /* This is done to avoid  *\/
-    TEMPLATE_STRING_VARIABLE_REFERENCE
-        : VARIABLE_IDENTIFIER
-        ; /* All variable identifiers must start with a small letter! *\/
-    LIT_TEMPLATE_STRING_ESCAPE_START_
-        : '{'
-        ;
-    LIT_TEMPLATE_STRING_ESCAPE_END
-        : '}' -> popMode
-        ; /* End the escape mode! *\/
-
-mode MODE_TEMPLATE_STRING_CAPTURE;
-    LIT_TEMPLATE_STRING_ESCAPE_START
-        : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
-        ;
-    LIT_TEMPLATE_STRING_ESCAPE_END_
-        : '}'
-        ; /* End the escape mode! *\/
-    LIT_TEMPLATE_STRING_CONTENT
-        : ~( '`' | '{' | '}' )+
-        ;
-    LIT_TEMPLATE_STRING_END
-        : '`' -> popMode
-        ; /* End the template mode *\/
-*/
