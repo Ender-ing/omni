@@ -49,7 +49,7 @@
       "patterns": [
         {
           "name": "comment.highlight.warning.omniarium",
-          "match": "(?<![^\\s])(@!.+?)$",
+          "match": "(?<![^\\s])(@!.+)(?=\\n)",
           "captures": {
             "1": {
               "name": "invalid.warning.omniarium"
@@ -67,7 +67,7 @@
         },
         {
           "name": "comment.highlight.escape.omniarium",
-          "begin": "{(?=[^\\n]*\\}[^\\n]*$)",
+          "begin": "{(?=[^\\n]*\\}[^\\n]*)",
           "end": "}",
           "captures": {
             "0": {
@@ -80,7 +80,7 @@
             },
             {
               "name": "markup.italic.omniarium",
-              "match": ".+?"
+              "match": "[^\\n]+?"
             }
           ]
         }
