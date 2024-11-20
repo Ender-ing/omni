@@ -19,7 +19,8 @@ fragment WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING
     : [^ \t\r\n}]
     ;
 CHARS_IGNORE_LIST
-    : WHITESPACE -> channel(HIDDEN)
+    : WHITESPACE
+            -> channel(HIDDEN)
     ;
 
 // Naming schemes
@@ -42,10 +43,12 @@ fragment ESCAPE_SEQUENCE
 
 // Comments
 COMMENT_BLOCK
-    : ';;?' .*? '?;;' -> channel(HIDDEN)
+    : ';;?' .*? '?;;'
+            -> channel(HIDDEN)
     ; /* Multilinear comments are never processed for code generation */
 COMMENT_LINE
-    : ';;' ~[\r\n]* [\r\n] -> channel(HIDDEN)
+    : ';;' ~[\r\n]* [\r\n]
+            -> channel(HIDDEN)
     ; /* New lines are only used to mark the end of linear comments */
 
 // Numerial Literals
@@ -71,9 +74,9 @@ LIT_CHAR
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
     : '\'' ( .*? ) '\''
-            {throwLexerError("INVALID_LIT_CHAR")}
+            {throwOmniError(ERROR_OMNI_LEXER__1000001)}
     | '\'' ~( '\'')*? NEWLINE
-            {throwLexerError("INVALID_LIT_CHAR")}
+            {throwOmniError(ERROR_OMNI_LEXER__1000002)}
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
     :   '"'
@@ -83,7 +86,8 @@ LIT_STRING
 
 // String template
 LIT_TEMPLATE_STRING_START
-    : '`' -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
+    : '`'
+            -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
     ; /* Start capturing template strings */
 
 // String template reference capture
@@ -92,7 +96,8 @@ mode MODE_TEMPLATE_STRING_ESCAPE;
         : '{'
         ; /* Start a reference */
     LIT_TEMPLATE_STRING_ESCAPE_CHARS_IGNORE_LIST
-        : WHITESPACE -> channel(HIDDEN)
+        : WHITESPACE
+                -> channel(HIDDEN)
         ;
     LIT_TEMPLATE_STRING_CONSTANT_REFERENCE
         : CONSTANT_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
@@ -101,27 +106,32 @@ mode MODE_TEMPLATE_STRING_ESCAPE;
         : VARIABLE_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
         ; /* All variable identifiers must start with a small letter! */
     LIT_TEMPLATE_STRING_ESCAPE_END_
-        : '}' -> popMode
+        : '}'
+                -> popMode
         ; /* End the escape mode! (in case of an empty escape!) */
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
         : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
-                {throwLexerError("INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING")}
+                {throwOmniError(ERROR_OMNI_LEXER__1000003)}
         ; /* Capture extra/invalid reference escapes */
 
 // String template inner capture
 mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
     LIT_TEMPLATE_STRING_ESCAPE_CLOSING_CHARS_IGNORE_LIST
-        : WHITESPACE -> channel(HIDDEN)
+        : WHITESPACE
+                -> channel(HIDDEN)
         ;
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
         : ~( '}' | '`' )+
-                {throwLexerError("INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING")}
+                {throwOmniError(ERROR_OMNI_LEXER__1000004)}
         ; /* Capture extra/invalid reference escapes */
     LIT_TEMPLATE_STRING_ESCAPE_END
-        : '}' -> popMode, popMode
+        : '}'
+                -> popMode, popMode
         ; /* End the escape mode! */
     INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
-        : '`' -> popMode, popMode, popMode
+        : '`'
+                {throwOmniError(ERROR_OMNI_LEXER__1000005)}
+                -> popMode, popMode, popMode
         ; /* The end of a template string with an unclosed reference escape */
 
 // String template inner capture
@@ -131,7 +141,7 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         ; /* Capture static string content */
     INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
         : '{' (WHITESPACE)* '}'
-                {throwLexerError("INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY")}
+                {throwOmniError(ERROR_OMNI_LEXER__1000006)}
         ; /* Capture empty reference escapes! */
     LIT_TEMPLATE_STRING_ESCAPE_START
         : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
@@ -140,7 +150,8 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         : ~( '`' | '{' | '\\' )+
         ; /* Capture static string content */
     LIT_TEMPLATE_STRING_END
-        : '`' -> popMode
+        : '`'
+                -> popMode
         ; /* End the template mode */
 
 // Symbols

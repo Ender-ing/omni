@@ -6,4 +6,4 @@
  * 
 **/
 
-const throwLexerError = (msg) => { throw new Error("Lexer error: " + msg); };
+const throwOmniError = (msg) => { throw new Error("Lexer error: " + msg); };
