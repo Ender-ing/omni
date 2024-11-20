@@ -3,7 +3,7 @@
 This is a tool that converts the content of the [`/source/messages`](./../../source/messages/) folder into final C++ header files that contain
 the final transpiler messages!
 
-> [!NOTE]  
+> [!NOTE]
 > Should you need to create a new scope for a new part of the transpiler, there is no need to update this tool.
 > `MSG-PROCESSOR` dynamically scans the `/source/messages` folder!
 >
