@@ -25,8 +25,10 @@ All transpiler messages, no matter the type, are to be stored here in accordance
 ## Message guidelines
 
 - Should you decide that a message is no longer needed, simply change message content text to `?`!
-  > [!CAUTION]
-  > Never delete unused message codes!
+
+> [!CAUTION]
+> Never delete unused message codes!
+
 - Should you need to add a new message:
   - If there is a message ID that is not in use, simply replace the message text content (`?`) with your new
     message text!
