@@ -122,7 +122,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
         ;
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
         : ~( '}' | '`' )+
-                {throwOmniError(ERROR_OMNI_LEXER__1000004)}
+                {throwOmniError(ERROR_OMNI_LEXER__1000003)}
         ; /* Capture extra/invalid reference escapes */
     LIT_TEMPLATE_STRING_ESCAPE_END
         : '}'
