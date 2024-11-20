@@ -7,12 +7,12 @@
 + Add Omniarium language VSCode configurations
   + Add multilinear comments autocompletion
   + Add folding regions markers (*not in use yet*)
-  + Add `String` and `CHAR` closing pairs
+  + Add `String`, `CHAR`, and Template strings closing pairs
   + Add parentheses (`()`) closing pair
 + Add language highlighting
   + Add literals highlighting
     + Add numbers (*decimals and floats*)
-    + Add `String` and `CHAR` (*with escape characters*)
+    + Add `String`, `CHAR`, and Template strings (*with escape characters*)
   + Add identifier highlighting
     + Add function identifier
     + Add type identifier
