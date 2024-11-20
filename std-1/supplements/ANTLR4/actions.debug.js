@@ -5,3 +5,5 @@
  * (If you need to quickly define custom parser functions and variables, do so here!)
  * 
 **/
+
+const throwLexerError = (msg) => { throw new Error("Lexer error: " + msg); };
