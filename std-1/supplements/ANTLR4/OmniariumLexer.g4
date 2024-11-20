@@ -74,9 +74,9 @@ LIT_CHAR
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
     : '\'' ( .*? ) '\''
-            {throwOmniError(ERROR_OMNI_LEXER__1000001)}
+            {throwOmniError(_TRANSPILER_MSG_E1000001)}
     | '\'' ~( '\'')*? NEWLINE
-            {throwOmniError(ERROR_OMNI_LEXER__1000002)}
+            {throwOmniError(_TRANSPILER_MSG_E1000002)}
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
     :   '"'
@@ -111,7 +111,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE;
         ; /* End the escape mode! (in case of an empty escape!) */
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
         : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
-                {throwOmniError(ERROR_OMNI_LEXER__1000003)}
+                {throwOmniError(_TRANSPILER_MSG_E1000003)}
         ; /* Capture extra/invalid reference escapes */
 
 // String template inner capture
@@ -122,7 +122,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
         ;
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
         : ~( '}' | '`' )+
-                {throwOmniError(ERROR_OMNI_LEXER__1000004)}
+                {throwOmniError(_TRANSPILER_MSG_E1000003)}
         ; /* Capture extra/invalid reference escapes */
     LIT_TEMPLATE_STRING_ESCAPE_END
         : '}'
@@ -130,7 +130,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
         ; /* End the escape mode! */
     INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
         : '`'
-                {throwOmniError(ERROR_OMNI_LEXER__1000005)}
+                {throwOmniError(_TRANSPILER_MSG_E1000005)}
                 -> popMode, popMode, popMode
         ; /* The end of a template string with an unclosed reference escape */
 
@@ -141,7 +141,7 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         ; /* Capture static string content */
     INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
         : '{' (WHITESPACE)* '}'
-                {throwOmniError(ERROR_OMNI_LEXER__1000006)}
+                {throwOmniError(_TRANSPILER_MSG_E1000006)}
         ; /* Capture empty reference escapes! */
     LIT_TEMPLATE_STRING_ESCAPE_START
         : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
