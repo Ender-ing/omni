@@ -44,12 +44,16 @@ XN000000 ?
 
 - `X`: The type of the message
   (*Should match the name of the file containing the message*)
-  > [!TIP]
-  > Check all the currently defined message types in the `types.ini` file inside the `/source/messages` folder
+
+> [!TIP]
+> Check all the currently defined message types in the `types.ini` file inside the `/source/messages` folder
+
 - `N`: The scope of the message
   (*Should match the name of the parent folder contain the message*)
-  > [!TIP]
-  > Check all the currently [defined scopes in the `/source/messages` folder](./../../source/messages/README.md)
+
+> [!TIP]
+> Check all the currently [defined scopes in the `/source/messages` folder](./../../source/messages/README.md)
+
 - `000000`: Unique six-digit long ID number that represents the message within the file that contains the message
   (*That means that the ID number should be unique only within the file itself!*)
 - `\s`: You must seperate the message code and message text using one whitespace character!
