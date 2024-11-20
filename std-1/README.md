@@ -16,25 +16,25 @@ All finalised aspects of the language are included here!
 
 ```txt
 (std-1)
---> (supplements)
---|--> (ANTLR4) [Contains Lexer and Parser files]
---|--| ...
---|--> (VSCode-Extension) [Contains The standard VSCode extension]
---|--| ...
---|--> (VSCode-Base) [Contains a the base files for all VSCode Omni project]
---|--| ...
---| ...
 --> (samples) [Contains folders of either snippets, projects, or libraries]
 --|--> (snippet--000000-*)
---|--|--> <file.omni> [By default, all snippets should contain this file!]
+--|--|--> <file.omni> [Usually, snippets contain this file!]
 --|--| ...
 --|--> (project--000000-*)
---|--|--> <file.omni> [...]
 --|--| ...
 --|--> (library--000000-*)
---|--|--> <file.omni> [...]
 --|--| ...
 --| [000000 represents a string of numbers, and these numbers must be unique!]
+--| ...
+--> (supplements)
+--|--> (ANTLR4) [Contains Lexer and Parser files]
+--|--> (Prism) [Contains a PrismJS syntax file]
+--|--> (VSCode-Extension) [Contains The standard VSCode extension]
+--|--> (VSCode-Base) [Contains a the base files for all VSCode Omni project]
+--| ...
+--> (transpiler)
+--|--> (source) [Contains the core source files for the transpiler]
+--|--> (tools) [Contains supporting files and tools needed to build the transpiler]
 --| ...
 ...
 ```
