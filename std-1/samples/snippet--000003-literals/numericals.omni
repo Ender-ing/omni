@@ -31,3 +31,14 @@
 #NaN ;; A failed numerical operation value
 #infinity ;; An infinity value!
 #negative_infinity ;; A negative infinity value!
+
+;; @NOTE You can perform mathematical operations in Omni!
+
+;; @NOTE addition (between integers)
+1 + 1; ;; 2 (an integer)
+
+;; @NOTE addition (with at least one float member)
+1 + 1.; ;; 2.0 (a float)
+
+;; @note Boolean values can also be treated as numbers!
+#true + #false; ;; this is the same as 1 + 0 (integers)
