@@ -18,6 +18,9 @@
         },
         {
           "include": "#identifiers"
+        },
+        {
+          "include": "#operators"
         }
       ]
     },
@@ -240,6 +243,22 @@
         {
           "name": "invalid.illegal.omniarium",
           "match": "\\\\([^btnfrs'\"`\/\\\\{])"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.omniarium",
+          "match": "\\+|-|\\*|\/\/?|%|\\^\\^?"
+        },
+        {
+          "name": "keyword.operator.omniarium",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.omniarium",
+          "match": "\\(|\\)|;|,"
         }
       ]
     }
