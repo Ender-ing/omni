@@ -1,0 +1,14 @@
+;;?
+ ;  @INFO
+ ;  Boolean literals!
+?;;
+
+;; @NOTE There are only two boolean literals!
+#TRUE ;; Can be #TRUE or any numerical value that doesn't equal 0
+#FALSE ;; Can be #FALSE or the numerical value of 0!
+
+;; @NOTE Boolean values can be treated as numbers!
+#TRUE + #FALSE ;; this is the same as 1 + 0 (integers)
+
+;; @NOTE In all numerical mathematical operations, boolean values are converted into
+;; numerical values!

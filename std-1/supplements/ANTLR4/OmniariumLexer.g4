@@ -51,13 +51,23 @@ COMMENT_LINE
             -> channel(HIDDEN)
     ; /* New lines are only used to mark the end of linear comments */
 
+// Boolean Literals
+LIT_BOOLEAN_TRUE
+    : '#TRUE'
+    ; /* #true or any numerical value that doesn't match zero */
+LIT_BOOLEAN_FALSE
+    : '#FALSE'
+    ; /* #false or any numerical value that matches zero */
+
 // Numerial Literals
 LIT_NAN
-    : '#NaN'
+    : '#NAN'
     ;
 LIT_INFINITY
-    : '#infinity'
-    | '#negative_infinity'
+    : '#INFINITY'
+    ;
+LIT_NEGATIVE_INFINITY
+    : '#NEGATIVE_INFINITY'
     ;
 LIT_FLOAT
     :   '-'? DIGIT+ '.' DIGIT* EXPONENT? // -3.14, 0.1, 2.0e-5, -.14, .5, 3.
@@ -89,70 +99,6 @@ LIT_TEMPLATE_STRING_START
     : '`'
             -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
     ; /* Start capturing template strings */
-
-// String template reference capture
-mode MODE_TEMPLATE_STRING_ESCAPE;
-    LIT_TEMPLATE_STRING_ESCAPE_START_
-        : '{'
-        ; /* Start a reference */
-    LIT_TEMPLATE_STRING_ESCAPE_CHARS_IGNORE_LIST
-        : WHITESPACE
-                -> channel(HIDDEN)
-        ;
-    LIT_TEMPLATE_STRING_CONSTANT_REFERENCE
-        : CONSTANT_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
-        ; /* This is done to avoid  */
-    LIT_TEMPLATE_STRING_VARIABLE_REFERENCE
-        : VARIABLE_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
-        ; /* All variable identifiers must start with a small letter! */
-    LIT_TEMPLATE_STRING_ESCAPE_END_
-        : '}'
-                -> popMode
-        ; /* End the escape mode! (in case of an empty escape!) */
-    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
-        : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
-                {throwOmniError(_TRANSPILER_MSG_E1000003)}
-        ; /* Capture extra/invalid reference escapes */
-
-// String template inner capture
-mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
-    LIT_TEMPLATE_STRING_ESCAPE_CLOSING_CHARS_IGNORE_LIST
-        : WHITESPACE
-                -> channel(HIDDEN)
-        ;
-    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
-        : ~( '}' | '`' )+
-                {throwOmniError(_TRANSPILER_MSG_E1000003)}
-        ; /* Capture extra/invalid reference escapes */
-    LIT_TEMPLATE_STRING_ESCAPE_END
-        : '}'
-                -> popMode, popMode
-        ; /* End the escape mode! */
-    INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
-        : '`'
-                {throwOmniError(_TRANSPILER_MSG_E1000005)}
-                -> popMode, popMode, popMode
-        ; /* The end of a template string with an unclosed reference escape */
-
-// String template inner capture
-mode MODE_TEMPLATE_STRING_CAPTURE;
-    LIT_TEMPLATE_STRING_CONTENT_ESCAPED
-        : ESCAPE_SEQUENCE
-        ; /* Capture static string content */
-    INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
-        : '{' (WHITESPACE)* '}'
-                {throwOmniError(_TRANSPILER_MSG_E1000006)}
-        ; /* Capture empty reference escapes! */
-    LIT_TEMPLATE_STRING_ESCAPE_START
-        : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
-        ; /* Start a reference capture */
-    LIT_TEMPLATE_STRING_CONTENT
-        : ~( '`' | '{' | '\\' )+
-        ; /* Capture static string content */
-    LIT_TEMPLATE_STRING_END
-        : '`'
-                -> popMode
-        ; /* End the template mode */
 
 // Symbols
 SYM_PLUS
@@ -193,3 +139,69 @@ VARIABLE_IDENTIFIER
 TYPE_IDENTIFIER
     : [A-Z] (STANDARD_IDENTIFIER_CHARS)*
     ; /* All type identifiers must start with a capital letter! */
+
+// String template reference capture
+mode MODE_TEMPLATE_STRING_ESCAPE;
+    LIT_TEMPLATE_STRING_ESCAPE_START_
+        : '{'
+        ; /* Start a reference */
+    LIT_TEMPLATE_STRING_ESCAPE_CHARS_IGNORE_LIST
+        : WHITESPACE
+                -> channel(HIDDEN)
+        ;
+    LIT_TEMPLATE_STRING_CONSTANT_REFERENCE
+        : CONSTANT_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
+        ; /* This is done to avoid  */
+    LIT_TEMPLATE_STRING_VARIABLE_REFERENCE
+        : VARIABLE_IDENTIFIER -> pushMode(MODE_TEMPLATE_STRING_ESCAPE_CLOSING)
+        ; /* All variable identifiers must start with a small letter! */
+    LIT_TEMPLATE_STRING_ESCAPE_END_
+        : '}'
+                -> popMode
+        ; /* End the escape mode! (in case of an empty escape!) */
+    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
+        : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
+                {throwOmniError(_TRANSPILER_MSG_E1000003)}
+        ; /* Capture extra/invalid reference escapes */
+
+//// Modes code!
+
+// String template inner capture
+mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
+    LIT_TEMPLATE_STRING_ESCAPE_CLOSING_CHARS_IGNORE_LIST
+        : WHITESPACE
+                -> channel(HIDDEN)
+        ;
+    INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
+        : ~( '}' | '`' )+
+                {throwOmniError(_TRANSPILER_MSG_E1000003)}
+        ; /* Capture extra/invalid reference escapes */
+    LIT_TEMPLATE_STRING_ESCAPE_END
+        : '}'
+                -> popMode, popMode
+        ; /* End the escape mode! */
+    INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
+        : '`'
+                {throwOmniError(_TRANSPILER_MSG_E1000005)}
+                -> popMode, popMode, popMode
+        ; /* The end of a template string with an unclosed reference escape */
+
+// String template inner capture
+mode MODE_TEMPLATE_STRING_CAPTURE;
+    LIT_TEMPLATE_STRING_CONTENT_ESCAPED
+        : ESCAPE_SEQUENCE
+        ; /* Capture static string content */
+    INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
+        : '{' (WHITESPACE)* '}'
+                {throwOmniError(_TRANSPILER_MSG_E1000006)}
+        ; /* Capture empty reference escapes! */
+    LIT_TEMPLATE_STRING_ESCAPE_START
+        : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
+        ; /* Start a reference capture */
+    LIT_TEMPLATE_STRING_CONTENT
+        : ~( '`' | '{' | '\\' )+
+        ; /* Capture static string content */
+    LIT_TEMPLATE_STRING_END
+        : '`'
+                -> popMode
+        ; /* End the template mode */
