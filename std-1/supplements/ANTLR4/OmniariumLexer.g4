@@ -155,6 +155,9 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         ; /* End the template mode */
 
 // Symbols
+SYM_PLUS
+    : '+'
+    ; /* Used to operate on all primitive types! */
 /*SYM_PARENTHESIS_OPEN
     : '('
     ;
@@ -166,9 +169,6 @@ SYM_DOT
     ;
 SYM_MINUS
     : '-'
-    ;
-SYM_PLUS
-    : '+'
     ;
 SYM_QUOTE_SINGLE
     : '\''
