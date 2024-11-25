@@ -206,6 +206,7 @@ invalid_declare_constant
 declare_value
     : declare_variable
     | declare_constant
+    | invalid_declare_constant
     ; /* Value declaration */
 declare_values_expression
     :  type_identifier // Data type
@@ -224,6 +225,7 @@ invalid_assign_value_expression
     ; /* Invalid empty direct value assignment */
 assign_variable_value_expression
     : variable_identifier assign_value_expression
+    | invalid_assign_constant_value_expression
     ; /* Value assignment after initiation */
 invalid_assign_constant_value_expression
     : constant_identifier assign_value_expression
