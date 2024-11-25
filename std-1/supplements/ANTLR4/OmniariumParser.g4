@@ -29,10 +29,28 @@ expression
     ; /* All supported expressions */
 
 // Identifiers
-value_identifier
+variable_identifier
     : VARIABLE_IDENTIFIER
-    | CONSTANT_IDENTIFIER
+    ; /* Variables! */
+constant_identifier
+    : CONSTANT_IDENTIFIER
+    ; /* Constants! */
+value_identifier
+    : variable_identifier
+    | constant_identifier
     ; /* Constants and variables are used interchangeably a lot! */
+
+// Boolean Literals
+lit_boolean_true
+    : LIT_BOOLEAN_TRUE
+    ; /* True boolean value */
+lit_boolean_false
+    : LIT_BOOLEAN_FALSE
+    ; /* False boolean value */
+lit_boolean
+    : lit_boolean_true
+    | lit_boolean_false
+    ; /* group literal boolean values */
 
 // Numeral literals
 lit_integer
@@ -41,6 +59,7 @@ lit_integer
 lit_float
     : LIT_NAN
     | LIT_INFINITY
+    | LIT_NEGATIVE_INFINITY
     | LIT_FLOAT
     ; /* Fractions (NaN and infinity are considered fractions) */
 lit_numeral
@@ -76,6 +95,7 @@ lit_text
 
 // Literals
 literal
-    : lit_numeral // Numbers
+    : lit_boolean // Booleans
+    | lit_numeral // Numbers
     | lit_text // text-based
     ; /* Group all literals */
