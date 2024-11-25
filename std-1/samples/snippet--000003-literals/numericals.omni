@@ -4,41 +4,72 @@
 ?;;
 
 ;; @NOTE You can represent negative and positive numbers!
--12
-0
-12
+-12;
+0;
+12;
 
 ;; @NOTE You can use literal exponent float numbers!
-2.1e-5
-2.e-10
-1.1E-5
-1.E-10
-1.1e10
-1.e2
-0.1
--3.14
+2.1e-5;
+2.e-10;
+1.1E-5;
+1.E-10;
+1.1e10;
+1.e2;
+0.1;
+-3.14;
 
 ;; @NOTE You can event represent the same number in different ways using exponents!
--2.1e+5
--21e+4
+-2.1e+5;
+-21e+4;
 
 ;; @NOTE You can also omit the start/end zero in floats!
--.14
-.5
-3.
+-.14;
+.5;
+3.;
 
 ;; @NOTE There are special constant numerical literals that are used to represent special Maths cases!
-#NaN ;; A failed numerical operation value
-#infinity ;; An infinity value!
-#negative_infinity ;; A negative infinity value!
+#NAN; ;; A failed numerical operation value (NaN - Not a Number)
+#INFINITY; ;; An infinity value!
+#NEGATIVE_INFINITY; ;; A negative infinity value!
 
 ;; @NOTE You can perform mathematical operations in Omni!
 
-;; @NOTE addition (between integers)
+;; @NOTE In all numerical mathematical operations, only numerical primitive values and boolean values are allowed!
+
+;; @NOTE Addition (between integers)
 1 + 1; ;; 2 (an integer)
 
-;; @NOTE addition (with at least one float member)
+;; @NOTE Addition (with at least one float member)
 1 + 1.; ;; 2.0 (a float)
+2.e-10 + -12; ;; (a float)
+#INFINITY + 1; ;; Infinity (a float)
+#INFINITY + #NEGATIVE_INFINITY; ;; NaN / Not a Number (a float)
 
-;; @note Boolean values can also be treated as numbers!
-#true + #false; ;; this is the same as 1 + 0 (integers)
+;; @NOTE Boolean values can be treated as numbers!
+1 + #TRUE; ;; this is the same as 1 + 1 (integers)
+
+;; @NOTE Subtraction (between integers)
+1 - 1; ;; 0 (an integer)
+
+;; @NOTE Subtraction (with at least one float member)
+1 - 1.; ;; 0.0 (a float)
+
+;; @NOTE Division
+1 / 1; ;; 1 (an integer)
+1.0 / 1; ;; 1.0 (a float)
+1 // 1; ;; 1 (floor division, without the remainder) - always returns an integer
+1 % 1; ;; 0 (modulo, only the remainder)
+1.2 % 1; ;; 0.2 (float modulo, only the remainder)
+
+;; @NOTE Multiplication
+1 * 2; ;; 2 (an integer)
+1.0 * 2; ;; 2.0 (a float)
+
+;; @NOTE Powers and roots
+2 ^ 2; ;; 4 - power (an integer)
+2. ^ 2; ;; 4.0 - power (a float)
+4 ^^ 2; ;; 2 - root (an integer)
+4. ^^ 2; ;; 2.0 - root (a float)
+
+ab / 1; ;; You can also use variables in maths operations
+(INTEGER (ab)) / 1; ;; You can also cast the variables within the expression itself!

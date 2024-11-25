@@ -1,6 +1,6 @@
 E1000001 CHARs should only contain one character!
-E1000002 You must close an opened (CHAR) single quote!
+E1000002 Must close an opened (CHAR) single quote! ('c')
 E1000003 Template string escape reference should only point to one variable or constant! (No direct literals are allowed!)
 E1000004 ?
-E1000005 You must close an opened template string escape reference! ({myRef})
+E1000005 Must close an opened template string escape reference! ({myRef})
 E1000006 Template string escape reference cannot be empty!

@@ -1,0 +1,44 @@
+;;?
+ ;  @INFO
+ ;  Data types!
+?;;
+
+;; @NOTE In Omni, there are two types of data: primitive, and non-primitive!
+
+;; @NOTE In Omni, there are two ways types are defined: built-in, and user-defined!
+
+;; @NOTE All primitive types are capitalised!
+
+;; @NOTE There are multiple types of integers!
+INTEGER int_1 = 1; ;; Signed 32-bit (INTEGER_32)
+BYTE int_2; ;; Signed 8-bit integer (INTEGER_8)
+SHORT int_3; ;; Signed 16-bit integer (INTEGER_16)
+LONG int_4; ;; Signed 64-bit integer (INTEGER_64)
+UNSIGNED int_5; ;; Unsigned 32-bit integer (INTEGER_U32)
+UNSIGNED BYTE int_6; ;; Unsigned 8-bit integer (INTEGER_U8)
+UNSIGNED SHORT int_7; ;; Unsigned 16-bit integer (INTEGER_U16)
+UNSIGNED LONG int_8; ;; Unsigned 64-bit integer (INTEGER_U64)
+
+;; @NOTE There are two types of floats!
+FLOAT a = 0.1; ;; 4 bytes
+DOUBLE a; ;; 8 bytes
+
+;; @NOTE When it comes to text, you can use two types!
+CHAR my_char = 'a'; ;; 16 bit
+String my_string = "The letter A is cool!";
+
+;; @NOTE Booleans are the core value behind logical operations!
+BOOLEAN my_boolean_1 = #false;
+BOOLEAN my_boolean_2 = #true;
+
+;; @NOTE You can use the same value definition instance to define multiple variables and constants of the same type!
+String my_string_1 = "This string is stored inside a variable!",
+    #my_string_2 = "This string is a constant! You can't change it later!", ;; @!WARN consts need a value at definition
+    my_string_3; ;; The third string variable is not defined yet! But it's ok!
+
+;; @NOTE You can assign values to variables after the initial definition!
+my_string_3 = "Here I am!";
+
+;; @NOTE All built-in types have a default value!
+;; But user-defined types initially hold the #NULL value 
+CustomType custom_var = #NULL; ;; Used for undefined custom types!

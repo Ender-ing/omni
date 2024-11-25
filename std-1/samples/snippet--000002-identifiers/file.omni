@@ -8,22 +8,22 @@
 ;; tokens order!
 
 ;; @NOTE All variable identifiers must start with a small letter!
-myVar
+myVar;
 
 ;; @NOTE All constant identifiers must start with a hashtag!
-#myConst
+#myConst;
 
 ;; @NOTE Basic pre-defined language constant identifiers are CAPITALISED!
 ;; {#COMPILER_CONSTANT}
 
 ;; @NOTE All type identifiers must start with a capital letter!
-MyType
+;; {MyType}
 
 ;; @NOTE Primitive types are all capitalised
-PRIMITIVE_TYPE
+;; {PRIMITIVE_TYPE}
 
 ;; @NOTE All function identifiers must start with a dollar sign
-$MyFunction
+;; {$MyFunction}
 
 ;; @WARNING The way you start your identifier actually matters! If you misname an identifier,
 ;; the build will fail!

@@ -51,6 +51,11 @@ COMMENT_LINE
             -> channel(HIDDEN)
     ; /* New lines are only used to mark the end of linear comments */
 
+// Null literal
+LIT_NULL
+    : '#NULL'
+    ; /* Used for undefined custom types! */
+
 // Boolean Literals
 LIT_BOOLEAN_TRUE
     : '#TRUE'
@@ -83,10 +88,10 @@ LIT_CHAR
     : '\'' ( ESCAPE_SEQUENCE | ~( '\\' | '\'' ) )'\''
     ; /* Char literals use single quotes, and they only include one char! */
 INVALID_LIT_CHAR
-    : '\'' ( .*? ) '\''
-            {throwOmniError(_TRANSPILER_MSG_E1000001)}
-    | '\'' ~( '\'')*? NEWLINE
-            {throwOmniError(_TRANSPILER_MSG_E1000002)}
+    : '\'' ~( '\'' )*? NEWLINE
+            {throwOmniError(_TRANSPILER_MSG_E1000002_)}
+    | '\'' ( ~( '\'')*? ) '\''
+            {throwOmniError(_TRANSPILER_MSG_E1000001_)}
     ; /* Capture invalid chars! (this is done to lessen the number of parser errors!) */
 LIT_STRING
     :   '"'
@@ -100,21 +105,81 @@ LIT_TEMPLATE_STRING_START
             -> pushMode(MODE_TEMPLATE_STRING_CAPTURE)
     ; /* Start capturing template strings */
 
+
+// Built-in types
+TYPE_INTEGER
+    : 'INTEGER'
+    ;
+TYPE_BYTE
+    : 'BYTE'
+    ;
+TYPE_SHORT
+    : 'SHORT'
+    ;
+TYPE_LONG
+    : 'LONG'
+    ;
+TYPE_UNSIGNED
+    : 'UNSIGNED'
+    ;
+TYPE_FLOAT
+    : 'FLOAT'
+    ;
+TYPE_DOUBLE
+    : 'DOUBLE'
+    ;
+TYPE_CHAR
+    : 'CHAR'
+    ;
+TYPE_BOOLEAN
+    : 'BOOLEAN'
+    ;
+TYPE_STRING
+    : 'String'
+    ;
+
 // Symbols
 SYM_PLUS
     : '+'
-    ; /* Used to operate on all primitive types! */
-/*SYM_PARENTHESIS_OPEN
+    ; /* Used to operate on some primitive types and Strings! */
+SYM_MINUS
+    : '-'
+    ; /* Used to operate on some primitive types! */
+SYM_ASTERISK
+    : '*'
+    ; /* Used to operate on some primitive types! */
+SYM_DOUBLE_FORWARD_SLASH
+    : '//'
+    ; /* Floor division, used to operate on some primitive types! */
+SYM_FORWARD_SLASH
+    : '/'
+    ; /* Used to operate on some primitive types! */
+SYM_MODULO
+    : '%'
+    ; /* Used to operate on some primitive types! */
+SYM_DOUBLE_CARET
+    : '^^'
+    ; /* Square operation, used to operate on some primitive types! */
+SYM_CARET
+    : '^'
+    ; /* Used to operate on some primitive types! */
+SYM_EQUAL 
+    : '='
+    ; /* Value assignment */
+SYM_PARENTHESIS_OPEN
     : '('
     ;
 SYM_PARENTHESIS_CLOSE
     : ')'
     ;
-SYM_DOT
-    : '.'
+SYM_SEMICOLON
+    : ';'
     ;
-SYM_MINUS
-    : '-'
+SYM_COMMA
+    : ','
+    ;
+/*SYM_DOT
+    : '.'
     ;
 SYM_QUOTE_SINGLE
     : '\''
@@ -161,7 +226,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE;
         ; /* End the escape mode! (in case of an empty escape!) */
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_OPENING
         : (WHITESPACE_NEGATIVE_TEMPLATE_ESCAPE_CLOSING)+
-                {throwOmniError(_TRANSPILER_MSG_E1000003)}
+                {throwOmniError(_TRANSPILER_MSG_E1000003_)}
         ; /* Capture extra/invalid reference escapes */
 
 //// Modes code!
@@ -174,7 +239,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
         ;
     INVALID_TEMPLATE_STRING_CONTENT_ESCAPE_CLOSING
         : ~( '}' | '`' )+
-                {throwOmniError(_TRANSPILER_MSG_E1000003)}
+                {throwOmniError(_TRANSPILER_MSG_E1000003_)}
         ; /* Capture extra/invalid reference escapes */
     LIT_TEMPLATE_STRING_ESCAPE_END
         : '}'
@@ -182,7 +247,7 @@ mode MODE_TEMPLATE_STRING_ESCAPE_CLOSING;
         ; /* End the escape mode! */
     INVALID_LIT_TEMPLATE_STRING_END_UNCLOSED_ESCAPE
         : '`'
-                {throwOmniError(_TRANSPILER_MSG_E1000005)}
+                {throwOmniError(_TRANSPILER_MSG_E1000005_)}
                 -> popMode, popMode, popMode
         ; /* The end of a template string with an unclosed reference escape */
 
@@ -193,7 +258,7 @@ mode MODE_TEMPLATE_STRING_CAPTURE;
         ; /* Capture static string content */
     INVALID_LIT_TEMPLATE_STRING_ESCAPE_EMPTY
         : '{' (WHITESPACE)* '}'
-                {throwOmniError(_TRANSPILER_MSG_E1000006)}
+                {throwOmniError(_TRANSPILER_MSG_E1000006_)}
         ; /* Capture empty reference escapes! */
     LIT_TEMPLATE_STRING_ESCAPE_START
         : '{' -> pushMode(MODE_TEMPLATE_STRING_ESCAPE)
