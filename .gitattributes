@@ -6,5 +6,4 @@
 *.omni.local linguist-language=JSONC
 
 # C++
-*.cpp linguist-language=CPP
-*.hpp linguist-language=CPP
+*.cpp *.hpp linguist-language=cpp
