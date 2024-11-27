@@ -1,1 +1,3 @@
-E2000001 ?
+E2000001 Cannot change value of constants after initial declaration!
+E2000002 Must assign a value to constants on initial declaration!
+E2000003 Must actually reference a valid value after the assignment operator!

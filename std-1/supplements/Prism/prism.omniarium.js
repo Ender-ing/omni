@@ -38,5 +38,16 @@ Prism.languages.omniarium = {
             pattern: /'[^\n]*?('|\n)/,
             greedy: true
         }
+    ],
+    "operator": {
+        pattern: /\+|-|\*|\/\/?|%|\^\^?/
+    },
+    "punctuation": [
+        {
+            pattern: /\(|\)|;|,/
+        },
+        {
+            pattern: /=/
+        }
     ]
 };

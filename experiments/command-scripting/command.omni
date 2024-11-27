@@ -1,0 +1,47 @@
+@!command
+;; ^ Switch to commands mode!
+
+;; @NOTE The language will fail the script when attempting to access undefined values
+;; or values that don't follow their type rules on transpilation and on runtime!
+
+import Any, Text, Number from standard.commands.types; ;; Only these three types are supported in this mode!
+import $$random_number, $round_up from standard.commands.numbers;
+
+Any $my_function (Text num, Number num_) {
+    if ($round_up ($$random_number ())) {
+        return num;
+    } else {
+        return num_;
+    }
+}
+
+Text $my_function (Text num) {
+    return num;
+}
+Number $my_function (Number num) {
+    if (num == 0) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+$fibonacci (5);
+
+$fibonacci ("sdadadasdsa");
+
+##PATH;
+;; environment PATH
+
+import $$copy, $$delete from standard.commands.files;
+import $$grep from standard.commands.console;
+
+$$copy (@c, "string", 9394523);
+
+Text a = $$copy (@c, "string", 9394523);
+
+channel $$copy (@c, "string", 9394523) as data, ($$delete ("dsada")) as data_2 to {
+    $$grep (data_2, data);
+}
+
+
