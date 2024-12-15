@@ -28,8 +28,8 @@ CHAR my_char = 'a'; ;; 16 bit
 String my_string = "The letter A is cool!";
 
 ;; @NOTE Booleans are the core value behind logical operations!
-BOOLEAN my_boolean_1 = #false;
-BOOLEAN my_boolean_2 = #true;
+BOOLEAN my_boolean_1 = #FALSE;
+BOOLEAN my_boolean_2 = #TRUE;
 
 ;; @NOTE You can use the same value definition instance to define multiple variables and constants of the same type!
 String my_string_1 = "This string is stored inside a variable!",
