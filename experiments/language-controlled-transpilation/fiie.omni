@@ -1,0 +1,11 @@
+;; This code will be transpiled into final code!
+Integer myNumber = 0;
+?{
+    ;; Any code inside this zone is not going to be transpiled into final code!
+    ;; It's only going to be used to generate final output code!
+
+    ;; Parser elements will be accessible from here!
+    ;; You can keep track of the state of the programme, and adjust the final output based on your needs!
+
+    ;; But...however should I do this?
+}?
